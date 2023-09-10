@@ -1,0 +1,93 @@
+.header-top {
+  .header-top__connection {
+    display: grid;
+    background: #F8F8F8;
+    grid-template-columns: 200px 200px 200px;
+    justify-content: center;
+    text-align: center;
+    padding: 8px 0;
+    .header-top__phone {
+      span {
+        font-family: $OpenSans;
+        font-weight: 400;
+      }
+    }
+    .header-top__link {
+      a {
+        font-weight: 600;
+        text-decoration: none;
+        font-size: 16px;
+        color: black;
+        font-family: $OpenSans;
+        &:hover {
+          transition: .7s;
+          color: #8d8d8d;
+        }
+      }
+    }
+  }
+  .header-top__main {
+    padding: 60px 0;
+    .container {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      align-items: center;
+      .header-top__location {
+        display: flex;
+        span {
+          font-family: $OpenSans;
+          font-weight: 400;
+          font-size: 16px;
+          cursor: pointer;
+        }
+      }
+      .header-top__logo {
+        display: flex;
+        justify-content: center;
+        h1 {
+          text-transform: uppercase;
+          font-size: 54px;
+          font-family: $Raleway;
+          font-weight: 400;
+          cursor: pointer;
+          a {
+            text-decoration: none;
+            color: black;
+          }
+        }
+      }
+      .header-top__right {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+        .header-top__enter {
+          margin: 0 40px 0 0;
+          span {
+            font-family: $OpenSans;
+            font-size: 16px;
+            font-weight: 400;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            img {
+              margin: 0 10px 0 0;
+            }
+          }
+        }
+        .header-top__basket {
+          span {
+            font-family: $OpenSans;
+            font-size: 16px;
+            font-weight: 400;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            img {
+              margin: 0 10px 0 0;
+            }
+          }
+        }
+      }
+    }
+  }
+}

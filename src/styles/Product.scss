@@ -1,0 +1,97 @@
+.section-product {
+  padding: 100px 0 0 0;
+  border-top: 1px solid #979797;
+  &__back {
+    margin: 0 0 100px 0;
+    span {
+      font-family: $Roboto;
+      font-size: 16px;
+      font-weight: 500;
+      cursor: pointer;
+      img {
+        width: 10px;
+        height: 10px;
+        margin: 0 10px 0 0;
+      }
+    }
+  }
+  &__main {
+    display: flex;
+    justify-content: space-between;
+    margin: 0 0 45px 0;
+    .product-photos {
+      margin: 0 100px 0 0;
+    }
+    .product-aside {
+      &__title {
+        margin: 0 0 25px 0;
+        h2 {
+          font-family: $OpenSans;
+          font-weight: 400;
+          font-size: 24px;
+        }
+      }
+      &__gender {
+        margin: 0 0 25px 0;
+        span {
+          font-family: $Raleway;
+          font-size: 16px;
+        }
+      }
+      &__price {
+        margin: 0 0 25px 0;
+        span {
+          font-family: $OpenSans;
+          font-size: 20px;
+          font-weight: 400;
+        }
+      }
+      &__buttons {
+        display: flex;
+        button {
+          background: #000;
+          outline: none;
+          color: #fff;
+          border: none;
+          height: 45px;
+          padding: 0 15px;
+          font-family: $Roboto;
+          font-size: 16px;
+          font-weight: 400;
+          cursor: pointer;
+        }
+        .add-cart {
+          margin: 0 5px 0 0;
+        }
+        .add-favorite {
+          img {
+            width: 20px;
+            height: 20px;
+          }
+        }
+      }
+    }
+  }
+  &__description {
+    margin: 0 0 150px 0;
+    .product-description__title {
+      margin: 0 0 60px 0;
+      h3 {
+        cursor: pointer;
+        display: inline;
+        padding: 0 0 15px 0;
+        border-bottom: 3px solid #ccc;
+        font-family: $Raleway;
+        font-size: 22px;
+      }
+    }
+    .product-description__text {
+      p {
+        font-family: $OpenSans;
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 27px;
+      }
+    }
+  }
+}

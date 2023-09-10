@@ -1,0 +1,201 @@
+.section-landing {
+  &__links {
+    display: grid;
+    grid-column-gap: 28px;
+    grid-row-gap: 28px;
+    grid-template-columns: calc(50% - 15px) calc(50% - 15px);
+    grid-template-rows: calc(50% - 15px) 50%;
+    grid-template-areas: 
+      "A B"
+      "A C"
+    ;
+    margin: 0 0 100px 0;
+    .picture-link {
+      position: relative;
+      a {
+        text-decoration: none;
+        h2 {
+          position: absolute;
+          color: black;
+          font-family: $OpenSans;
+          font-size: 30px;
+        }
+      }
+    }
+    .big {
+      grid-area: A;
+      h2 {
+        top: 90px;
+        left: 60px;
+      }
+      img {
+        height: 750px;
+        width: 100%;
+        object-fit: cover;
+      }
+    }
+    .small-top {
+      grid-area: B;
+      h2 {
+        top: 30px;
+        left: 30px;
+      }
+      img {
+        width: 100%;
+        height: 360px;
+        object-fit: cover;
+      }
+    }
+    .small-bottom {
+      grid-area: C;
+      h2 {
+        top: 30px;
+        left: 30px;
+      }
+      img {
+        width: 100%;
+        height: 360px;
+        object-fit: cover;
+      }
+    }
+  }
+  &__futures {
+    display: grid;
+    grid-template-columns: calc(50% - 15px);
+    grid-template-areas: 
+      "A B C"
+      "A D E"
+    ;
+    gap: 28px;
+    margin: 0 0 100px 0;
+    .future-landing {
+      display: flex;
+      flex-direction: column;
+      background: #F8F8F8;
+      justify-content: center;
+      align-items: center;
+      padding: 60px 15px;
+      img {
+        width: 70px;
+        height: 70px;
+        margin: 0 0 20px 0;
+      }
+      span {
+        font-family: $OpenSans;
+        font-weight: 400;
+      }
+    }
+    .future-landing:nth-child(1) {
+      display: flex;
+      grid-area: A;
+      align-items: start;
+      padding: 60px 45px;
+      form {
+        width: 100%;
+        margin: 0 0 10px 0;
+        input {
+          width: 70%;
+          outline: none;
+          height: 40px;
+          border: 2px solid black;
+          padding: 5px;
+          font-family: $Raleway;
+          font-size: 16px;
+          font-weight: 400;
+          color: black;
+        }
+        button {
+          height: 40px;
+          border: none;
+          background: black;
+          color: #fff;
+          font-family: $Raleway;
+          font-weight: 400;
+          font-size: 16px;
+          width: 145px;
+        }
+      }
+      h2 {
+        font-family: $Raleway;
+        font-weight: 800;
+        letter-spacing: 1px;
+        font-size: 28px;
+        margin: 0 0 30px 0;
+      }
+      p {
+        font-family: $Raleway;
+        font-weight: 400;
+        font-size: 12px;
+        span {
+          text-decoration: underline;
+        }
+      }
+    }
+    .future-landing:nth-child(2) {
+      grid-area: B;
+    }
+    .future-landing:nth-child(3) {
+      grid-area: C;
+    }
+    .future-landing:nth-child(4) {
+      grid-area: D;
+    }
+    .future-landing:nth-child(5) {
+      grid-area: E;
+    }
+  }
+  &__snapshots {
+    display: grid;
+    grid-template-areas: 
+      "A B"
+      "A C"
+    ;
+    grid-template-columns: calc(50% - 15px) calc(50% - 15px);
+    gap: 28px;
+    margin: 0 0 100px 0;
+    .snapshot-landing:nth-child(1) {
+      grid-area: A;
+      img {
+        height: 750px;
+        width: 100%;
+        object-fit: cover;
+      }
+    }
+    .snapshot-landing:nth-child(2) {
+      grid-area: B;  
+      img {
+        height: 360px;
+        width: 100%;
+        object-fit: cover;
+      }
+    }
+    .snapshot-landing:nth-child(3) {
+      grid-area: C;
+      img {
+        height: 360px;
+        width: 100%;
+        object-fit: cover;
+      }
+    }
+  }
+  &__about {
+    display: grid;
+    grid-template-columns: calc(50% - 15px) calc(50% - 15px);
+    gap: 30px;
+    margin: 0 0 100px 0;
+    .about-block {
+      h2 {
+        font-family: $Roboto;
+        font-weight: 500;
+        font-size: 24px;
+        margin: 0 0 20px 0;
+      }
+      p {
+        font-family: $Roboto;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 30px;
+      }
+    }
+  }
+}

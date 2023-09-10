@@ -1,0 +1,76 @@
+.watches-items {
+  padding: 90px 0;
+  display: grid;
+  gap: 30px;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+}
+.watch-item {
+  width: 350px;
+  text-align: center;
+  padding: 25px 0;
+  &__image {
+    height: 450px;
+    img {
+      width: 300px;
+      height: 100%;
+      object-fit: contain;
+    }
+  }
+  &_favorite {
+    display: none;
+    justify-content: flex-end;
+    padding: 0 20px 20px 0;
+    cursor: pointer;
+    svg {
+      width: 20px;
+      height: 20px;
+      path {
+        fill: #fff;
+        stroke: #000;
+      }
+    }
+  }
+  &__title {
+    text-align: center;
+    margin: 40px 0 20px 0;
+    h2 {
+      font-family: $OpenSans;
+      font-weight: 500;
+      font-size: 18px;
+    }
+  }
+  &__price {
+    text-align: center;
+    margin: 0 0 40px 0;
+    span {
+      font-family: $OpenSans;
+      font-weight: 400;
+      font-size: 18px;
+    }
+  }
+  &__buy {
+    display: none;
+    button {
+      background: black;
+      border: none;
+      width: 100px;
+      height: 40px;
+      cursor: pointer;
+      a {
+        color: #fff;
+        font-family: $Raleway;
+        font-weight: 400;
+        text-decoration: none;
+      }
+    }
+  }
+  &:hover {
+    border: 1px solid #cccccc;
+    .watch-item__buy {
+      display: block;
+    }
+    .watch-item_favorite {
+      display: flex;
+    }
+  }
+}

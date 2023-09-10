@@ -1,0 +1,136 @@
+.footer-bottom {
+  background: #F8F8F8;
+  min-height: 1115px;
+  padding: 70px 0 0 0;
+  .container-footer {
+    max-width: 940px;
+    margin: 75px auto;
+    padding: 0 15px;
+    .footer-menu {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+      margin: 0 0 165px 0;
+      h3 {
+        font-family: $Raleway;
+        font-weight: 600;
+        font-size: 18px;
+        color: black;
+        margin: 0 0 30px 0;
+      }
+      ul {
+        list-style: none;
+        line-height: 40px;
+        a {
+          text-decoration: none;
+          font-size: 16px;
+          font-family: $Raleway;
+          font-weight: 400;
+          color: black;
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+      }
+      .about-company {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      .for-buyers {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      .our-work {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+      }
+    }
+    .footer-connection {
+      display: grid;
+      grid-template-columns: 275.5px 275.5px;
+      .connect-us {
+        display: flex;
+        flex-direction: column;
+        h3 {
+          font-family: $Raleway;
+          font-weight: 600;
+          font-size: 18px;
+          color: black;
+          margin: 0 0 30px 0;
+        }
+        &__phone {
+          display: flex;
+          flex-direction: column;
+          margin: 0 0 40px 0;
+          span {
+            font-family: $OpenSans;
+            font-weight: 400;
+            font-size: 16px;
+            &:nth-child(1) {
+              margin: 0 0 10px 0;
+            }
+          }
+        }
+        &__visiting {
+          display: flex;
+          flex-direction: column;
+          span {
+            font-family: $OpenSans;
+            font-weight: 400;
+            font-size: 16px;
+            &:nth-child(1) {
+              margin: 0 0 10px 0;
+            }
+            &:nth-child(2) {
+              margin: 0 0 30px 0;
+            }
+          }
+          button {
+            height: 35px;
+            border: none;
+            background: black;
+            color: #fff;
+            font-family: $Raleway;
+            font-weight: 400;
+            font-size: 14px;
+            width: 145px;
+            a {
+              text-decoration: none;
+              color: #fff;
+            }
+          }
+        }
+      }
+      .social-network {
+        padding: 0 0 0 15px;
+        h3 {
+          font-family: $Raleway;
+          font-weight: 600;
+          font-size: 18px;
+          color: black;
+          margin: 0 0 30px 0;
+        }
+        ul {
+          list-style: none;
+          display: flex;
+          li {
+            margin: 0 30px 0 0;
+          }
+        }
+      }
+    }
+  }
+  .footer-copyright {
+    padding: 40px 0;
+    border-top: 1px solid black;
+    p {
+      font-family: $Raleway;
+      font-weight: 400;
+      font-size: 16px;
+      color: black;
+      text-align: center;
+    }
+  }
+}

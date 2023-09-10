@@ -1,0 +1,42 @@
+.filter-toolbar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  &__category {
+    display: flex;
+    .category-item {
+      font-family: $Roboto;
+      font-weight: 500;
+      font-size: 16px;
+      letter-spacing: 1px;
+      color: black;
+      margin: 0 90px 0 0;
+      cursor: pointer;
+      &:hover {
+        border-bottom: 3px solid #cccccc;
+      }
+      &:last-child {
+        margin: 0;
+      }
+    }
+  }
+  &__sort {
+    .sort-item {
+      display: flex;
+      align-items: center;
+      padding: 10px;
+      font-family: $Roboto;
+      font-weight: 500;
+      font-size: 16px;
+      letter-spacing: 1px;
+      color: black;
+      cursor: pointer;
+      &:hover {
+        border: 1px solid #cccccc;
+      }
+      img {
+        width: 25px;
+      }
+    }
+  }
+}
