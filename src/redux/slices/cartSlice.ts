@@ -26,6 +26,20 @@ export const addToCart = createAsyncThunk<CartProduct, CartProduct>(
   }
 )
 
+export const getProductsFromCart = createAsyncThunk<CartProduct[]>(
+  'cart/getDataFromCart',
+  async () => {
+    try {
+      const { data } = await axios.get('http://localhost:3001/cart')
+
+      return data
+    } catch (e) {
+      console.log(e)
+    }
+  }
+)
+
+
 const initialState: Cart = {
   cart: [],
   total: 0
@@ -38,6 +52,9 @@ const cartSlice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(addToCart.fulfilled, (state, action) => {
       state.cart.push(action.payload)
+    })
+    builder.addCase(getProductsFromCart.fulfilled, (state, action) => {
+      state.cart = action.payload
     })
   }
 })

@@ -33,10 +33,12 @@ const Header: React.FC = () => {
               </span>
             </div>
             <div className="header-top__basket">
-              <span>
-                <img src={BasketSvg} alt="Корзина" />
-                Корзина
-              </span>
+              <Link to="/cart">
+                <span>
+                  <img src={BasketSvg} alt="Корзина" />
+                  Корзина
+                </span>
+              </Link>
             </div>
           </div>
         </div>
