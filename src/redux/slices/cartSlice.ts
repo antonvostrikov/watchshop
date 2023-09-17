@@ -1,7 +1,9 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import { RootState } from "../store";
 
 type CartProduct = {
+  id: number
   img: string
   name: string
   sum: number
@@ -16,14 +18,10 @@ type Cart = {
 export const addToCart = createAsyncThunk<CartProduct, CartProduct>(
   'cart/addToCart',
   async (obj) => {
-    try {
-      const { data } = await axios.post('http://localhost:3001/cart', obj)
+    const { data } = await axios.post('http://localhost:3001/cart', obj) 
 
-      return data
-    } catch (e) {
-      console.log(e)
-    }
-  }
+    return data
+  }  
 )
 
 export const getProductsFromCart = createAsyncThunk<CartProduct[]>(
@@ -39,6 +37,56 @@ export const getProductsFromCart = createAsyncThunk<CartProduct[]>(
   }
 )
 
+export const deleteProductFromCart = createAsyncThunk<number, number>(
+  'cart/deleteProductFromCart',
+  async (id) => {
+    const response = await axios.delete(`http://localhost:3001/cart/${id}`)
+
+    if (!response) {
+      console.log('error')
+    }
+
+    return id
+  }
+)
+
+export const plusProductToCart = createAsyncThunk<CartProduct, number, { state: RootState }>(
+  'cart/plusProductToCart',
+  async (id, { getState }) => {
+    const findProduct = getState().cart.cart.find(product => product.id === id)
+
+    if (findProduct) {
+      const { data } = await axios.put(`http://localhost:3001/cart/${id}`, { 
+        id: id,
+        img: findProduct.img,
+        name: findProduct.name,
+        sum: findProduct.sum+1,
+        price: findProduct.price,
+      })
+
+      return data
+    }
+  }
+)
+
+export const minusProductToCart = createAsyncThunk<CartProduct, number, { state: RootState }>(
+  'cart/minusProductToCart',
+  async (id, { getState }) => {
+    const findProduct = getState().cart.cart.find(product => product.id === id)
+
+    if (findProduct) {
+      const { data } = await axios.put(`http://localhost:3001/cart/${id}`, { 
+        id: id,
+        img: findProduct.img,
+        name: findProduct.name,
+        sum: findProduct.sum-1,
+        price: findProduct.price,
+      })
+
+      return data
+    }
+  }
+)
 
 const initialState: Cart = {
   cart: [],
@@ -55,6 +103,26 @@ const cartSlice = createSlice({
     })
     builder.addCase(getProductsFromCart.fulfilled, (state, action) => {
       state.cart = action.payload
+    })
+    builder.addCase(deleteProductFromCart.fulfilled, (state, action) => {
+      state.cart = state.cart.filter(product => product.id !== action.payload)
+    })
+    builder.addCase(plusProductToCart.fulfilled, (state, action) => {
+      const findProduct = state.cart.find(product => product.id === action.payload.id)
+
+      if (findProduct) {
+        findProduct.sum = action.payload.sum
+        findProduct.price = action.payload.price * action.payload.sum
+      }
+    })
+    builder.addCase(minusProductToCart.fulfilled, (state, action) => {
+      const findProduct = state.cart.find(product => product.id === action.payload.id)
+
+      if (findProduct) {
+        findProduct.sum = action.payload.sum
+
+        const totalPrice = action.payload.price * action.payload.sum
+      }
     })
   }
 })

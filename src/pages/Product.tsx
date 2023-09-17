@@ -17,11 +17,12 @@ type imageSlider = {
 }
 
 type WatchProduct = {
-  imageUrl: string,
-  name: string,
-  sex: string,
-  price: number,
-  description: string,
+  id: number
+  imageUrl: string
+  name: string
+  sex: string
+  price: number
+  description: string
   sliderImages: imageSlider[]
 }
 
@@ -35,13 +36,14 @@ const Product:React.FC = () => {
   const onAddToCart = () => {
     if (watch) {
       const obj = {
+        id: Number(id),
         img: watch.imageUrl,
         name: watch.name,
-        sum: 0,
+        sum: 1,
         price: watch.price
       }
 
-    dispatch(addToCart(obj))
+      dispatch(addToCart(obj))
     }
   }
 
@@ -58,8 +60,6 @@ const Product:React.FC = () => {
 
     getWatch()
   }, [])
-
-  console.log(watch)
 
   if (!watch) {
     return <>Loading...</>

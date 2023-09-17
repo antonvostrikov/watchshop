@@ -27,10 +27,12 @@ const Header: React.FC = () => {
           </div>
           <div className="header-top__right">
             <div className="header-top__enter">
-              <span>
-                <img src={EnterSvg} alt="Вход" />
-                Вход
-              </span>
+              <Link to="/enter">
+                <span>
+                  <img src={EnterSvg} alt="Вход" />
+                  Вход
+                </span>
+              </Link>
             </div>
             <div className="header-top__basket">
               <Link to="/cart">

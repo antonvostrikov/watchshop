@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import CartItem from '../components/CartItem/CartItem';
 import { useAppDispatch, useAppSelector } from '../hooks/hook';
 import { getProductsFromCart } from '../redux/slices/cartSlice';
+import CartEmpty from '../components/CartEmpty/CartEmpty';
 
 const Cart:React.FC = () => {
   const navigate = useNavigate()
@@ -24,7 +25,8 @@ const Cart:React.FC = () => {
           <span onClick={() => navigate(-1)}>Назад к покупкам</span>
         </div>
       </div>
-      { productsCart.map(cart => <CartItem {...cart} />) }
+      
+      { productsCart.length === 0 ? <CartEmpty /> : productsCart.map(cart => <CartItem {...cart} />) }
     </div>
   )
 }

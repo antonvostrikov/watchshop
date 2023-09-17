@@ -3,6 +3,9 @@
   display: grid;
   gap: 30px;
   grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  a {
+    text-decoration: none;
+  }
 }
 .watch-item {
   width: 350px;
@@ -37,6 +40,7 @@
       font-family: $OpenSans;
       font-weight: 500;
       font-size: 18px;
+      color: black;
     }
   }
   &__price {
@@ -46,6 +50,7 @@
       font-family: $OpenSans;
       font-weight: 400;
       font-size: 18px;
+      color: black;
     }
   }
   &__buy {

@@ -4,24 +4,35 @@ import PlusSvg from '../../ímg/plus.svg';
 import MinusSvg from '../../ímg/minus.svg';
 import CloseSvg from '../../ímg/close.svg';
 
+import { deleteProductFromCart, minusProductToCart, plusProductToCart } from '../../redux/slices/cartSlice';
+import { useAppDispatch, useAppSelector } from '../../hooks/hook';
+
 type CartProduct = {
+  id: number
   img: string
   name: string
   sum: number
   price: number
 }
 
-const CartItem:React.FC<CartProduct> = ({ img, name, sum, price }) => {
+const CartItem:React.FC<CartProduct> = ({ id, img, name, sum, price }) => {
   const [number, setNumber] = React.useState(sum)
+  const dispatch = useAppDispatch()
 
   const onClickMinus = () => {
     if (number === 0) return 
 
     setNumber(prev => prev - 1)
+    dispatch(minusProductToCart(id))
   }
 
   const onClickPlus = () => {
-    setNumber(prev => prev + 1)
+    setNumber(prev => prev +1)
+    dispatch(plusProductToCart(id))
+  }
+
+  const onClickDeleteProduct = () => {
+    dispatch(deleteProductFromCart(id))
   }
 
   return (
@@ -50,7 +61,7 @@ const CartItem:React.FC<CartProduct> = ({ img, name, sum, price }) => {
           <span>{price} Р</span>
         </div>
         <div className="wrapper-product__delete">
-          <span><img src={CloseSvg} alt="" /></span>
+          <span onClick={() => onClickDeleteProduct()}><img src={CloseSvg} alt="" /></span>
         </div>
       </div>
     </div>
