@@ -9,13 +9,13 @@ import { useAppDispatch, useAppSelector } from '../../hooks/hook';
 
 type CartProduct = {
   id: number
-  img: string
+  imageUrl: string
   name: string
   sum: number
   price: number
 }
 
-const CartItem:React.FC<CartProduct> = ({ id, img, name, sum, price }) => {
+const CartItem:React.FC<CartProduct> = ({ id, imageUrl, name, sum, price }) => {
   const [number, setNumber] = React.useState(sum)
   const dispatch = useAppDispatch()
 
@@ -39,7 +39,7 @@ const CartItem:React.FC<CartProduct> = ({ id, img, name, sum, price }) => {
     <div className="cart-wrapper">
       <div className="wrapper-product">
         <div className="wrapper-product__image">
-          <img src={img} alt="" />
+          <img src={imageUrl} alt="" />
         </div>
         <div className="wrapper-product__name">
           <h3>{name}</h3>

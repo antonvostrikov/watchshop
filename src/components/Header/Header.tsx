@@ -1,10 +1,17 @@
+import React from 'react'
+
 import CityArrowSvg from '../../ímg/city-arrow.svg'
 import EnterSvg from '../../ímg/enter.svg'
 import BasketSvg from '../../ímg/basket.svg'
-import FavoriteSvg from '../../ímg/heart-black.svg'
+import FavoriteSvg from '../../ímg/heart-white.svg'
+
 import { Link } from 'react-router-dom'
+import Enter from '../Enter/Enter'
+import { useAppSelector } from '../../hooks/hook'
 
 const Header: React.FC = () => {
+  const [enterPopup, setEnterPopup] = React.useState(false)
+
   return (
     <header className="header-top">
       <div className="header-top__connection">
@@ -28,12 +35,10 @@ const Header: React.FC = () => {
           </div>
           <div className="header-top__right">
             <div className="header-top__enter">
-              <Link to="/enter">
-                <span>
-                  <img src={EnterSvg} alt="Вход" />
-                  Вход
-                </span>
-              </Link>
+              <span onClick={() => setEnterPopup(!enterPopup)}>
+                <img src={EnterSvg} alt="Вход" />
+                Вход
+              </span>
             </div>
             <div className="header-top__favorite">
               <Link to="/favorite">
@@ -54,6 +59,13 @@ const Header: React.FC = () => {
           </div>
         </div>
       </div>
+      { enterPopup ?  
+        <div className="absolute-popup">
+          <Enter />
+        </div>
+        : <></>
+      }
+      
     </header>
   )
 }

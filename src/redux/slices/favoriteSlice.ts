@@ -4,7 +4,7 @@ import { RootState } from "../store";
 
 type FavoriteItem = {
   id: number
-  img: string
+  imageUrl: string
   name: string
   price: number
 }
@@ -13,7 +13,7 @@ type Favorite = {
   favorite: FavoriteItem[]
 }
 
-export const addToFavorite = createAsyncThunk<FavoriteItem[], FavoriteItem, { rejectValue: string, state: RootState }>(
+export const addToFavorite = createAsyncThunk<FavoriteItem[], FavoriteItem, { state: RootState }>(
   'favorite/addToFavorite',
   async (obj, { getState }) => {
     const findProduct = getState().favorite.favorite.find(product => product.id === obj.id)
@@ -27,7 +27,19 @@ export const addToFavorite = createAsyncThunk<FavoriteItem[], FavoriteItem, { re
     } catch (e) {
       console.log(e)
     }
-    
+  }
+)
+
+export const deleteProductFromFavorite = createAsyncThunk<number, number, { rejectValue: string }>(
+  'favorite/deleteProductFromFavorite',
+  async (id, { rejectWithValue }) => {
+      const response = await axios.delete(`http://localhost:3001/favorite/${id}`)
+
+      if (!response) {
+        rejectWithValue('Some error')
+      }
+
+      return id
   }
 )
 
@@ -55,6 +67,9 @@ const favoriteSlice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(getProductsFromFavorite.fulfilled, (state, action) => {
       state.favorite = action.payload
+    })
+    builder.addCase(deleteProductFromFavorite.fulfilled, (state, action) => {
+      state.favorite = state.favorite.filter(product => product.id !== action.payload)
     })
   },
 })

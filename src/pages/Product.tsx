@@ -11,6 +11,7 @@ import SliderProduct from '../components/SliderProduct/SliderProduct'
 
 import FavoriteSvg from '../ímg/heart.svg'
 import { addProductToCart } from '../redux/slices/cartSlice'
+import { addToFavorite } from '../redux/slices/favoriteSlice'
 
 type imageSlider = {
   img: string
@@ -33,20 +34,30 @@ const Product:React.FC = () => {
 
   const dispatch = useAppDispatch()
 
-  const products = useAppSelector(state => state.cart.cart)
-  console.log(products)
-
   const onAddToCart = () => {
     if (watch) {
       const obj = {
         id: Number(id),
-        img: watch.imageUrl,
+        imageUrl: watch.imageUrl,
         name: watch.name,
         sum: 1,
         price: watch.price
       }
 
       dispatch(addProductToCart(obj))
+    }
+  }
+
+  const onAddToFavorite = () => {
+    if (watch) {
+      const obj = {
+        id: Number(id),
+        imageUrl: watch.imageUrl,
+        name: watch.name,
+        price: watch.price
+      }
+
+      dispatch(addToFavorite(obj))
     }
   }
 
@@ -92,7 +103,7 @@ const Product:React.FC = () => {
               </div>
               <div className="product-aside__buttons">
                 <button className="add-cart" onClick={() => onAddToCart()}>Добавить в корзину</button>
-                <button className="add-favorite"><img src={FavoriteSvg} alt="" /></button>
+                <button className="add-favorite" onClick={() => onAddToFavorite()}><img src={FavoriteSvg} alt="" /></button>
               </div>
             </div>
           </div>

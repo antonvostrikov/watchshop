@@ -4,7 +4,7 @@ import { RootState } from "../store";
 
 type CartProduct = {
   id: number
-  img: string
+  imageUrl: string
   name: string
   sum: number
   price: number
@@ -23,7 +23,7 @@ export const addProductToCart = createAsyncThunk<CartProduct, CartProduct, { sta
     if (findProduct) {
       const { data } = await axios.put(`http://localhost:3001/cart/${findProduct.id}`, {
         id: findProduct.id,
-        img: findProduct.img,
+        imageUrl: findProduct.imageUrl,
         name: findProduct.name,
         sum: findProduct.sum+1,
         price: findProduct.price
@@ -72,7 +72,7 @@ export const plusProductToCart = createAsyncThunk<CartProduct, number, { state: 
     if (findProduct) {
       const { data } = await axios.put(`http://localhost:3001/cart/${id}`, { 
         id: id,
-        img: findProduct.img,
+        imageUrl: findProduct.imageUrl,
         name: findProduct.name,
         sum: findProduct.sum+1,
         price: findProduct.price,
@@ -91,7 +91,7 @@ export const minusProductToCart = createAsyncThunk<CartProduct, number, { state:
     if (findProduct) {
       const { data } = await axios.put(`http://localhost:3001/cart/${id}`, { 
         id: id,
-        img: findProduct.img,
+        imageUrl: findProduct.imageUrl,
         name: findProduct.name,
         sum: findProduct.sum-1,
         price: findProduct.price,
@@ -137,6 +137,10 @@ const cartSlice = createSlice({
     })
     builder.addCase(minusProductToCart.fulfilled, (state, action) => {
       const findProduct = state.cart.find(product => product.id === action.payload.id)
+
+      if (findProduct) {
+        findProduct.sum = action.payload.sum
+      }
     })
   }
 })

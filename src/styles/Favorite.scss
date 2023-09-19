@@ -1,0 +1,36 @@
+.favorite-header {
+  display: flex;
+  justify-content: space-between;
+  padding: 65px 0 0 0;
+  margin: 0 0 110px 0;
+  &__title {
+    h2 {
+      font-family: $Raleway;
+      font-size: 32px;
+    }
+  }
+  &__back {
+    span {
+      font-family: $Roboto;
+      font-size: 16px;
+      color: #919191;
+      border-bottom: 2px solid #919191;
+      cursor: pointer;
+      &:hover {
+        color: black;
+        border-bottom: 2px solid black;
+        transition: .5s;
+      }
+    }
+  }
+}
+
+.favorite-items {
+  padding: 90px 0;
+  display: grid;
+  gap: 30px;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  a {
+    text-decoration: none;
+  }
+}

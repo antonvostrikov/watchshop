@@ -7,23 +7,25 @@ import CartEmpty from '../components/CartEmpty/CartEmpty';
 
 const Cart:React.FC = () => {
   const navigate = useNavigate()
-  const dispatch = useAppDispatch()
 
   const productsCart = useAppSelector(state => state.cart.cart)
 
   return (
-    <div className="container-watches">
-      <div className="cart-header">
-        <div className="cart-header__title">
-          <h2>Корзина</h2>
+    <div className="section-cart">
+      <div className="container-watches">
+        <div className="cart-header">
+          <div className="cart-header__title">
+            <h2>Корзина</h2>
+          </div>
+          <div className="cart-header__back">
+            <span onClick={() => navigate(-1)}>Назад к покупкам</span>
+          </div>
         </div>
-        <div className="cart-header__back">
-          <span onClick={() => navigate(-1)}>Назад к покупкам</span>
-        </div>
+        
+        { productsCart.length === 0 ? <CartEmpty /> : productsCart.map(cart => <CartItem key={cart.id} {...cart} />) }
       </div>
-      
-      { productsCart.length === 0 ? <CartEmpty /> : productsCart.map(cart => <CartItem {...cart} />) }
     </div>
+    
   )
 }
 
