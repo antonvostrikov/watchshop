@@ -1,6 +1,7 @@
 import CityArrowSvg from '../../ímg/city-arrow.svg'
 import EnterSvg from '../../ímg/enter.svg'
 import BasketSvg from '../../ímg/basket.svg'
+import FavoriteSvg from '../../ímg/heart-black.svg'
 import { Link } from 'react-router-dom'
 
 const Header: React.FC = () => {
@@ -31,6 +32,14 @@ const Header: React.FC = () => {
                 <span>
                   <img src={EnterSvg} alt="Вход" />
                   Вход
+                </span>
+              </Link>
+            </div>
+            <div className="header-top__favorite">
+              <Link to="/favorite">
+                <span>
+                  <img src={FavoriteSvg} alt="" />
+                  Избранное
                 </span>
               </Link>
             </div>

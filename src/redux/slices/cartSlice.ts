@@ -15,12 +15,26 @@ type Cart = {
   total: number
 }
 
-export const addToCart = createAsyncThunk<CartProduct, CartProduct>(
+export const addProductToCart = createAsyncThunk<CartProduct, CartProduct, { state: RootState }>(
   'cart/addToCart',
-  async (obj) => {
-    const { data } = await axios.post('http://localhost:3001/cart', obj) 
+  async (obj, { getState }) => {
+    const findProduct = getState().cart.cart.find(product => product.id === obj.id)
 
-    return data
+    if (findProduct) {
+      const { data } = await axios.put(`http://localhost:3001/cart/${findProduct.id}`, {
+        id: findProduct.id,
+        img: findProduct.img,
+        name: findProduct.name,
+        sum: findProduct.sum+1,
+        price: findProduct.price
+      })
+
+      return data
+    } else {
+      const { data } = await axios.post('http://localhost:3001/cart', obj)
+
+      return data
+    }
   }  
 )
 
@@ -63,7 +77,7 @@ export const plusProductToCart = createAsyncThunk<CartProduct, number, { state: 
         sum: findProduct.sum+1,
         price: findProduct.price,
       })
-
+     
       return data
     }
   }
@@ -98,8 +112,14 @@ const cartSlice = createSlice({
   name: 'cart',
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(addToCart.fulfilled, (state, action) => {
-      state.cart.push(action.payload)
+    builder.addCase(addProductToCart.fulfilled, (state, action) => {
+      const findProduct = state.cart.find(product => product.id === action.payload.id)
+
+      if (findProduct) {
+        findProduct.sum = findProduct.sum+1
+      } else {
+        state.cart.push(action.payload)
+      }
     })
     builder.addCase(getProductsFromCart.fulfilled, (state, action) => {
       state.cart = action.payload
@@ -117,12 +137,6 @@ const cartSlice = createSlice({
     })
     builder.addCase(minusProductToCart.fulfilled, (state, action) => {
       const findProduct = state.cart.find(product => product.id === action.payload.id)
-
-      if (findProduct) {
-        findProduct.sum = action.payload.sum
-
-        const totalPrice = action.payload.price * action.payload.sum
-      }
     })
   }
 })

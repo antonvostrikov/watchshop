@@ -38,9 +38,9 @@ export const getAllWatches = createAsyncThunk<Watch[]>(
   'watches/getAllWatches',
   async () => {
     try {
-      const response = await axios.get('http://localhost:3001/wristWatches')
+      const { data } = await axios.get('http://localhost:3001/wristWatches')
 
-      return response.data
+      return data
     } catch (e) {
       console.log('Не удалось получить данные')
     }
@@ -77,18 +77,6 @@ const getWatchesSlice = createSlice({
       state.watches = []
       state.status = "rejected"
     }) 
-    builder.addCase(getPremiumWatches.fulfilled, (state, action) => {
-      state.watches = action.payload
-      state.status = "fullfilled"
-    })
-    builder.addCase(getPremiumWatches.pending, (state, action) => {
-      state.watches = []
-      state.status = "pending"
-    })
-    builder.addCase(getPremiumWatches.rejected, (state, action) => {
-      state.watches = []
-      state.status = "rejected"
-    })
   }
 })
 

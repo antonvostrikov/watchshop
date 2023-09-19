@@ -9,10 +9,6 @@ const Cart:React.FC = () => {
   const navigate = useNavigate()
   const dispatch = useAppDispatch()
 
-  React.useEffect(() => {
-    dispatch(getProductsFromCart())
-  }, [])
-
   const productsCart = useAppSelector(state => state.cart.cart)
 
   return (

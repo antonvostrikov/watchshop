@@ -78,6 +78,22 @@
             }
           }
         }
+        .header-top__favorite {
+          margin: 0 40px 0 0;
+          span {
+            font-family: $OpenSans;
+            font-size: 16px;
+            font-weight: 400;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            img {
+              margin: 0 10px 0 0;
+              width: 25px;
+              height: 25px;
+            }
+          }
+        }
         .header-top__basket {
           span {
             font-family: $OpenSans;

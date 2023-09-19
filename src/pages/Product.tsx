@@ -10,7 +10,7 @@ import LeftArrowSvg from '../ímg/arrow-left.svg'
 import SliderProduct from '../components/SliderProduct/SliderProduct'
 
 import FavoriteSvg from '../ímg/heart.svg'
-import { addToCart } from '../redux/slices/cartSlice'
+import { addProductToCart } from '../redux/slices/cartSlice'
 
 type imageSlider = {
   img: string
@@ -33,6 +33,9 @@ const Product:React.FC = () => {
 
   const dispatch = useAppDispatch()
 
+  const products = useAppSelector(state => state.cart.cart)
+  console.log(products)
+
   const onAddToCart = () => {
     if (watch) {
       const obj = {
@@ -43,7 +46,7 @@ const Product:React.FC = () => {
         price: watch.price
       }
 
-      dispatch(addToCart(obj))
+      dispatch(addProductToCart(obj))
     }
   }
 
