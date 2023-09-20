@@ -12,6 +12,12 @@ import { useAppSelector } from '../../hooks/hook'
 const Header: React.FC = () => {
   const [enterPopup, setEnterPopup] = React.useState(false)
 
+  const onClickTogglePopup = () => {
+    setEnterPopup(!enterPopup)
+    
+    document.body.classList.add('body-popup')
+  }
+
   return (
     <header className="header-top">
       <div className="header-top__connection">
@@ -35,7 +41,7 @@ const Header: React.FC = () => {
           </div>
           <div className="header-top__right">
             <div className="header-top__enter">
-              <span onClick={() => setEnterPopup(!enterPopup)}>
+              <span onClick={() => onClickTogglePopup()}>
                 <img src={EnterSvg} alt="Вход" />
                 Вход
               </span>

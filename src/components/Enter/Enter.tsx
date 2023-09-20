@@ -1,5 +1,7 @@
 import React from "react";
 
+import CloseSvg from '../../ímg/close.svg'
+
 const Enter:React.FC = () => {
   const [tab, setTab] = React.useState(1)
 
@@ -24,6 +26,9 @@ const Enter:React.FC = () => {
           <div className={`tab-section ${toggleTabSection(2, 'active')}`}>
             2
           </div>
+        </div>
+        <div className="popup-close">
+          <span><img src={CloseSvg} alt="" /></span>
         </div>
       </div>
     </div>
