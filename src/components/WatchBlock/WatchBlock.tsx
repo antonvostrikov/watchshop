@@ -3,7 +3,8 @@ import React from 'react'
 import WatchItem from '../WatchItem/WatchItem'
 import WatchSkeleton from '../WatchItem/WatchSkeleton'
 
-import { useAppSelector } from '../../hooks/hook'
+import { useAppSelector, useAppDispatch } from '../../hooks/hook'
+import { getProductsFromCart } from '../../redux/slices/cartSlice'
 
 const WatchBlock:React.FC = () => {
   const { watches, status } = useAppSelector(state => state.watches)

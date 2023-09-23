@@ -6,16 +6,6 @@ import heartBlack from '../../ímg/heart-black.svg'
 import heartWhite from '../../ímg/heart-white.svg'
 import { addToFavorite, deleteProductFromFavorite } from '../../redux/slices/favoriteSlice'
 
-type WatchCharacteristics = {
-  country: string,
-  model: string,
-  type: string,
-  dial: string,
-  band: string,
-  waterproof: string,
-  dimensions: string
-}
-
 type WatchItem = {
   id: number,
   imageUrl: string,

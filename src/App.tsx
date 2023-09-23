@@ -7,24 +7,9 @@ import WristWatches from './pages/WristWatches';
 import PremiumWatches from './pages/PremiumWatches';
 import Product from './pages/Product';
 import Cart from './pages/Cart';
-import { useAppDispatch, useAppSelector } from './hooks/hook';
-import { getProductsFromCart } from './redux/slices/cartSlice';
 import Favorite from './pages/Favorite';
-import { getProductsFromFavorite } from './redux/slices/favoriteSlice';
 
 const App:React.FC = () => {
-  const productsFromFavorite = useAppSelector(state => state.favorite.favorite)
-
-  const dispatch = useAppDispatch()
-
-  React.useEffect(() => {
-    dispatch(getProductsFromCart())
-  }, [])
-
-  React.useEffect(() => {
-    dispatch(getProductsFromFavorite())
-  }, [])
-
   return (
     <div className="App">
       <Header />

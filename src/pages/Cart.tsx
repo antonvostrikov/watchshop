@@ -6,7 +6,12 @@ import { getProductsFromCart } from '../redux/slices/cartSlice';
 import CartEmpty from '../components/CartEmpty/CartEmpty';
 
 const Cart:React.FC = () => {
+  const dispatch = useAppDispatch()
   const navigate = useNavigate()
+
+  React.useEffect(() => {
+    dispatch(getProductsFromCart())
+  })
 
   const productsCart = useAppSelector(state => state.cart.cart)
 
@@ -21,8 +26,9 @@ const Cart:React.FC = () => {
             <span onClick={() => navigate(-1)}>Назад к покупкам</span>
           </div>
         </div>
-        
-        { productsCart.length === 0 ? <CartEmpty /> : productsCart.map(cart => <CartItem key={cart.id} {...cart} />) }
+        <div className="cart-wrapper">
+          { productsCart.length === 0 ? <CartEmpty /> : productsCart.map(cart => <CartItem key={cart.id} {...cart} />) }
+        </div>
       </div>
     </div>
     

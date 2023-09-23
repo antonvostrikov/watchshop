@@ -7,15 +7,16 @@ import FavoriteSvg from '../../ímg/heart-white.svg'
 
 import { Link } from 'react-router-dom'
 import Enter from '../Enter/Enter'
-import { useAppSelector } from '../../hooks/hook'
 
 const Header: React.FC = () => {
   const [enterPopup, setEnterPopup] = React.useState(false)
 
-  const onClickTogglePopup = () => {
-    setEnterPopup(!enterPopup)
-    
-    document.body.classList.add('body-popup')
+  const onClickOpenPopup = () => {
+    setEnterPopup(true)
+  }
+
+  const onClickClosePopup = () => {
+    setEnterPopup(false)
   }
 
   return (
@@ -41,7 +42,7 @@ const Header: React.FC = () => {
           </div>
           <div className="header-top__right">
             <div className="header-top__enter">
-              <span onClick={() => onClickTogglePopup()}>
+              <span onClick={() => onClickOpenPopup()}>
                 <img src={EnterSvg} alt="Вход" />
                 Вход
               </span>
@@ -65,12 +66,7 @@ const Header: React.FC = () => {
           </div>
         </div>
       </div>
-      { enterPopup ?  
-        <div className="absolute-popup">
-          <Enter />
-        </div>
-        : <></>
-      }
+      { enterPopup && <Enter popup={enterPopup} closePopup={onClickClosePopup}/> }
       
     </header>
   )

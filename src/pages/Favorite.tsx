@@ -1,10 +1,17 @@
 import React from 'react'
-import { useAppSelector } from '../hooks/hook'
-import FavoriteBlock from '../components/FavoriteBlock/FavoriteBlock'
+import WatchItem from '../components/WatchItem/WatchItem'
 import { useNavigate } from 'react-router-dom'
+import { useAppDispatch, useAppSelector } from '../hooks/hook'
+import { getProductsFromFavorite } from '../redux/slices/favoriteSlice'
 
 const Favorite: React.FC = () => {
 	const navigate = useNavigate()
+	const dispatch = useAppDispatch()
+
+	React.useEffect(() => {
+		dispatch(getProductsFromFavorite())
+	}, [])
+
 	const favoriteProducts = useAppSelector(state => state.favorite.favorite)
 
 	return (
@@ -18,7 +25,9 @@ const Favorite: React.FC = () => {
 						<span onClick={() => navigate(-1)}>Назад к покупкам</span>
 					</div>
 				</div>
-				<FavoriteBlock />
+				<div className="favorite-wrapper">
+					{ favoriteProducts.length !== 0 ? favoriteProducts.map(favorite => <WatchItem key={favorite.id} {...favorite} />) : <>Пусто</> }
+				</div>
 			</div>
     </section>
 	)
