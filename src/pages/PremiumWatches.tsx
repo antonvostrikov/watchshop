@@ -13,7 +13,7 @@ const PremiumWatches: React.FC = () => {
 
   React.useEffect(() => {
     dispatch(getPremiumWatches())
-  })
+  }, [])
 
   return (
     <>

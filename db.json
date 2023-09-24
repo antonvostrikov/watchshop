@@ -3,6 +3,7 @@
     {
       "id": 1,
       "sex": "Мужские",
+      "brand": "Casio",
       "name": "Японские наручные часы Casio G-SHOCK DW-5600BB-1E с хронографом",
       "price": 10230,
       "imageUrl": "https://www.alltime.ru/obj/catalog/watch/casio/img/big/DW-5600BB-1E.jpg",
@@ -33,6 +34,7 @@
     {
       "id": 2,
       "sex": "Женские",
+      "brand": "Quadro",
       "name": "Наручные часы Quadro Melrose Daniel Wellington DW00100510",
       "price": 14620,
       "imageUrl": "https://www.alltime.ru/obj/catalog/watch/daniel-wellington/img/big/DW00100510.jpg",
@@ -63,6 +65,7 @@
     {
       "id": 3,
       "sex": "Мужские",
+      "brand": "Seiko",
       "name": "Японские наручные часы Seiko SSB321P1 с хронографом",
       "price": 37710,
       "imageUrl": "https://www.alltime.ru/obj/catalog/watch/seiko/img/big/SSB321P1.jpg",
@@ -93,6 +96,7 @@
     {
       "id": 4,
       "sex": "Женские",
+      "brand": "Giga",
       "name": "Механические керамические наручные часы CIGA Design U032-WU01-W5W7W",
       "price": 162010,
       "imageUrl": "https://www.alltime.ru/obj/catalog/watch/ciga-design/img/big/U032-WU01-W5W7W.jpg",
@@ -119,6 +123,37 @@
           "img": "https://www.alltime.ru/obj/catalog/watch/ciga-design/img/big/U032-WU01-W5W7W__4.jpg"
         }
       ]
+    },
+    {
+      "id": 5,
+      "sex": "Мужские",
+      "brand": "Cuervo",
+      "name": "Швейцарские механические наручные часы Cuervo y Sobrinos 2860.1BL",
+      "price": 351700,
+      "imageUrl": "https://www.alltime.ru/obj/catalog/watch/cuervo-y-sobrinos/img/big/2860-1BL.jpg",
+      "description": "Безупречные дайверские часы станут вашим верным спутником в покорении морских глубин. Мужские часы Buceador Caribe. Вдохновением на создание модели послужили голубое море и водный мир Кубы. В механизме 25 камней, частота 28800 полуколебаний в час. Запас хода 38 часов. Механизм часов декорирован узором Cotes de Geneve. Синий матовый циферблат. Метки в виде штрихов и арабских цифр. Окошко даты находится в положении 6 часов. Корпус с конструкцией контейнерного типа из полированной и сатинированной стали. Задняя крышка украшена гравировкой. Ремешок с классической застежкой, украшенной эмблемой бренда «CyS». Система быстрой замены ремешка. В комплекте сменный кожаный ремешок. В подарок фирменный хьюмидор.",
+      "country": "Швейцария",
+      "model": "Cuervo y Sobrinos 2860.1BL",
+      "type": "механический с автоподзаводом",
+      "dial": "синий",
+      "band": "каучуковый",
+      "waterproof": "200WR",
+      "dimensions": "D 43мм, толщина 15,8мм",
+      "typeWatch": "premium",
+      "sliderImages": [
+        {
+          "img": "https://www.alltime.ru/obj/catalog/watch/cuervo-y-sobrinos/img/big/2860-1BL.jpg"
+        },
+        {
+          "img": "https://www.alltime.ru/obj/catalog/watch/cuervo-y-sobrinos/img/big/2860-1BL__1.jpg"
+        },
+        {
+          "img": "https://www.alltime.ru/obj/catalog/watch/cuervo-y-sobrinos/img/big/2860-1BL__2.jpg"
+        },
+        {
+          "img": "https://www.alltime.ru/obj/catalog/watch/cuervo-y-sobrinos/img/big/2860-1BL__3.jpg"
+        }
+      ]
     }
   ],
   "cart": [
@@ -142,6 +177,13 @@
       "name": "Японские наручные часы Seiko SSB321P1 с хронографом",
       "sum": 1,
       "price": 37710
+    },
+    {
+      "id": 5,
+      "imageUrl": "https://www.alltime.ru/obj/catalog/watch/cuervo-y-sobrinos/img/big/2860-1BL.jpg",
+      "name": "Швейцарские механические наручные часы Cuervo y Sobrinos 2860.1BL",
+      "sum": 1,
+      "price": 351700
     }
   ],
   "favorite": [

@@ -18,6 +18,7 @@
   right: 0;
   background-color: rgba(0, 0, 0, 0.4);
   transform: scale(0);
+  z-index: 100;
   &.active {
     transform: scale(1);
   }

@@ -26,11 +26,13 @@ type Watch = {
 
 type Watches = {
   watches: Watch[],
+  premiumWatches: Watch[],
   status: string
 }
 
 const initialState: Watches = {
   watches: [],
+  premiumWatches: [],
   status: "pending"
 }
 
@@ -68,6 +70,9 @@ const getWatchesSlice = createSlice({
     builder.addCase(getAllWatches.fulfilled, (state, action) => {
       state.watches = action.payload
       state.status = "fullfilled"
+    })
+    builder.addCase(getPremiumWatches.fulfilled, (state, action) => {
+      state.premiumWatches = action.payload
     })
     builder.addCase(getAllWatches.pending, (state) => {
       state.watches = []
