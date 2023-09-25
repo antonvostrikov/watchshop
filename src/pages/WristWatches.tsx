@@ -5,7 +5,7 @@ import FilterItems from '../components/FilterItems/FilterItems'
 import WatchBlock from '../components/WatchBlock/WatchBlock'
 import Footer from '../components/Footer/Footer'
 
-import { useAppDispatch } from '../hooks/hook'
+import { useAppDispatch, useAppSelector } from '../hooks/hook'
 import { getAllWatches } from '../redux/slices/getWatchesSlice'
 
 const Watches:React.FC = () => {
@@ -14,6 +14,8 @@ const Watches:React.FC = () => {
   React.useEffect(() => {
     dispatch(getAllWatches())
   }, [])
+
+  const {watches, status} = useAppSelector(state => state.watches)
 
   return (
     <>
@@ -25,7 +27,7 @@ const Watches:React.FC = () => {
               <h1>наручные часы</h1>
             </div>
             <FilterItems />
-            <WatchBlock />
+            <WatchBlock watches={watches} status={status}/>
           </div>       
         </div>
       </section>

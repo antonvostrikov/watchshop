@@ -7,32 +7,34 @@ type imageSlider = {
 }
 
 type Watch = {
-  id: number,
-  sex: string,
-  name: string,
-  price: number,
-  imageUrl: string,
-  description: string,
-  country: string,
-  model: string,
-  type: string,
-  dial: string,
-  band: string,
-  waterproof: string,
-  dimensions: string,
-  typeWatch: string,
+  id: number
+  sex: string
+  name: string
+  price: number
+  imageUrl: string
+  description: string
+  country: string
+  model: string
+  type: string
+  dial: string
+  band: string
+  waterproof: string
+  dimensions: string
+  typeWatch: string
   sliderImages: imageSlider[]
 }
 
 type Watches = {
-  watches: Watch[],
-  premiumWatches: Watch[],
+  watches: Watch[]
+  premiumWatches: Watch[]
+  brand: Watch[]
   status: string
 }
 
 const initialState: Watches = {
   watches: [],
   premiumWatches: [],
+  brand: [],
   status: "pending"
 }
 
@@ -62,6 +64,19 @@ export const getPremiumWatches = createAsyncThunk<Watch[]>(
   }
 )
 
+export const getBrandWatches = createAsyncThunk<Watch[], string>(
+  'watches/getBrandWatches', 
+  async (brand) => {
+    try {
+      const { data } = await axios.get(`http://localhost:3001/wristWatches?brand=${brand}`)
+
+      return data
+    } catch (e) {
+      console.log(e)
+    }
+  }
+)
+
 const getWatchesSlice = createSlice({
   initialState,
   name: "watches",
@@ -69,10 +84,7 @@ const getWatchesSlice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(getAllWatches.fulfilled, (state, action) => {
       state.watches = action.payload
-      state.status = "fullfilled"
-    })
-    builder.addCase(getPremiumWatches.fulfilled, (state, action) => {
-      state.premiumWatches = action.payload
+      state.status = "fulfielled"
     })
     builder.addCase(getAllWatches.pending, (state) => {
       state.watches = []
@@ -82,6 +94,18 @@ const getWatchesSlice = createSlice({
       state.watches = []
       state.status = "rejected"
     }) 
+    builder.addCase(getPremiumWatches.fulfilled, (state, action) => {
+      state.premiumWatches = action.payload
+      state.status = "fulfielled"
+    })
+    builder.addCase(getPremiumWatches.pending, (state) => {
+      state.premiumWatches = []
+      state.status = "pending"
+    })
+    builder.addCase(getPremiumWatches.rejected, (state) => {
+      state.premiumWatches = []
+      state.status = "rejected"
+    })
   }
 })
 
