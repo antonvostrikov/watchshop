@@ -14,7 +14,7 @@ type Watch = {
   id: number,
   sex: string,
   name: string,
-  price: number,
+  price: string,
   imageUrl: string,
   description: string,
   country: string,

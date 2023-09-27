@@ -5,11 +5,12 @@ import { useAppDispatch, useAppSelector } from '../../hooks/hook'
 import heartBlack from '../../ímg/heart-black.svg'
 import heartWhite from '../../ímg/heart-white.svg'
 import { addToFavorite, deleteProductFromFavorite } from '../../redux/slices/favoriteSlice'
+import transformPrice from '../../hooks/priceHook'
 
 type WatchItem = {
   id: number,
   imageUrl: string,
-  price: number,
+  price: string,
   name: string
 }
 
@@ -46,7 +47,7 @@ const WatchItem:React.FC<WatchItem> = ({ id, imageUrl, price, name }) => {
       </div>
       <div className="watch-item__price">
         <Link to={`/product/${id}`}>
-          <span>{price} Р</span>
+          <span>{ transformPrice(price) }</span>
         </Link>  
       </div>
       <div className="watch-item__buy">

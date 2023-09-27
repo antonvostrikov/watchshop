@@ -7,7 +7,7 @@ type CartProduct = {
   imageUrl: string
   name: string
   sum: number
-  price: number
+  price: string
 }
 
 type Cart = {
@@ -130,10 +130,7 @@ const cartSlice = createSlice({
     builder.addCase(plusProductToCart.fulfilled, (state, action) => {
       const findProduct = state.cart.find(product => product.id === action.payload.id)
 
-      if (findProduct) {
-        findProduct.sum = action.payload.sum
-        findProduct.price = action.payload.price * action.payload.sum
-      }
+
     })
     builder.addCase(minusProductToCart.fulfilled, (state, action) => {
       const findProduct = state.cart.find(product => product.id === action.payload.id)

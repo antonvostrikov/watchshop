@@ -6,14 +6,14 @@ type FavoriteItem = {
   id: number
   imageUrl: string
   name: string
-  price: number
+  price: string
 }
 
 type Favorite = {
   favorite: FavoriteItem[]
 }
 
-export const addToFavorite = createAsyncThunk<FavoriteItem[], FavoriteItem, { state: RootState }>(
+export const addToFavorite = createAsyncThunk<FavoriteItem, FavoriteItem, { state: RootState }>(
   'favorite/addToFavorite',
   async (obj, { getState }) => {
     const findProduct = getState().favorite.favorite.find(product => product.id === obj.id)
@@ -65,6 +65,15 @@ const favoriteSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: (builder) => {
+    builder.addCase(addToFavorite.fulfilled, (state, action) => {
+      const findFavorite = state.favorite.find(favorite => favorite.id === action.payload.id)
+
+      if (findFavorite) {
+        state.favorite.filter(favorite => favorite.id !== findFavorite.id) 
+      } else {
+        state.favorite.push(action.payload)
+      }      
+    })
     builder.addCase(getProductsFromFavorite.fulfilled, (state, action) => {
       state.favorite = action.payload
     })

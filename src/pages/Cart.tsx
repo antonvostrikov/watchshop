@@ -11,7 +11,7 @@ const Cart:React.FC = () => {
 
   React.useEffect(() => {
     dispatch(getProductsFromCart())
-  })
+  }, [])
 
   const productsCart = useAppSelector(state => state.cart.cart)
 

@@ -22,10 +22,10 @@ const Menu:React.FC = () => {
                 <Link to="/watches/premium">часы люкс</Link>
               </li>
               <li>
-                <Link to="/">rolex</Link>
+                <Link to="/titoni">titoni</Link>
               </li>
               <li>
-                <Link to="/">casio</Link>
+                <Link to="/casio">casio</Link>
               </li>
               <li>
                 <Link to="/">аксессуары</Link>

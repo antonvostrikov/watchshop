@@ -6,13 +6,14 @@ import CloseSvg from '../../ímg/close.svg';
 
 import { deleteProductFromCart, minusProductToCart, plusProductToCart } from '../../redux/slices/cartSlice';
 import { useAppDispatch } from '../../hooks/hook';
+import transformPrice from '../../hooks/priceHook';
 
 type CartProduct = {
   id: number
   imageUrl: string
   name: string
   sum: number
-  price: number
+  price: string
 }
 
 const CartItem:React.FC<CartProduct> = ({ id, imageUrl, name, sum, price }) => {
@@ -57,7 +58,7 @@ const CartItem:React.FC<CartProduct> = ({ id, imageUrl, name, sum, price }) => {
       </div>
       <div className="wrapper-product__sum">
         <span className="sum-title">Итого</span>
-        <span>{price} Р</span>
+        <span>{ transformPrice(price) }</span>
       </div>
       <div className="wrapper-product__delete">
         <span onClick={() => onClickDeleteProduct()}><img src={CloseSvg} alt="" /></span>

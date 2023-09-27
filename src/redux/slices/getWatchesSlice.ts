@@ -10,7 +10,7 @@ type Watch = {
   id: number
   sex: string
   name: string
-  price: number
+  price: string
   imageUrl: string
   description: string
   country: string
@@ -105,6 +105,10 @@ const getWatchesSlice = createSlice({
     builder.addCase(getPremiumWatches.rejected, (state) => {
       state.premiumWatches = []
       state.status = "rejected"
+    })
+    builder.addCase(getBrandWatches.fulfilled, (state, action) => {
+      state.brand = action.payload
+      state.status = "fulfilled"
     })
   }
 })

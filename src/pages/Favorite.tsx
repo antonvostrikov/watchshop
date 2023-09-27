@@ -8,10 +8,6 @@ const Favorite: React.FC = () => {
 	const navigate = useNavigate()
 	const dispatch = useAppDispatch()
 
-	React.useEffect(() => {
-		dispatch(getProductsFromFavorite())
-	}, [])
-
 	const favoriteProducts = useAppSelector(state => state.favorite.favorite)
 
 	return (
