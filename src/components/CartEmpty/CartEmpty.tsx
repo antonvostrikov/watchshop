@@ -2,9 +2,9 @@ import React from 'react'
 
 const CartEmpty:React.FC = () => {
   return (
-    <>
-      Корзина пуста
-    </>
+    <div className="cart-empty">
+      <p>В коризине ничего нет</p>
+    </div>
   )
 }
 
