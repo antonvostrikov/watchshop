@@ -34,11 +34,43 @@
       align-items: center;
       .header-top__location {
         display: flex;
+        position: relative;
         span {
           font-family: $OpenSans;
           font-weight: 400;
           font-size: 16px;
           cursor: pointer;
+          user-select: none;
+          &:hover {
+            img {
+              margin: 0 0 3px 0;
+              transition: .3s ease-in-out;
+            }
+          }
+        }
+        .location-list {
+          display: none;
+          border: 1px solid #CCC;
+          position: absolute;
+          z-index: 1;
+          background: #FFF;
+          top: 40px;
+          &__ul {
+            list-style: none;
+            li {
+              padding: 15px 15px;
+              font-family: $Roboto;
+              font-size: 16px;
+              cursor: pointer;
+              &:hover {
+                background: #F8F8F8;
+                transition: .7s;
+              }
+            }
+          }
+          &.active {
+            display: block;
+          }
         }
       }
       .header-top__logo {

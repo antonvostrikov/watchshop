@@ -10,6 +10,8 @@ import Enter from '../Enter/Enter'
 
 const Header: React.FC = () => {
   const [enterPopup, setEnterPopup] = React.useState(false)
+  const [location, setLocation] = React.useState(false)
+  const [locationValue, setLocationValue] = React.useState('Москва')
 
   const onClickOpenPopup = () => {
     setEnterPopup(true)
@@ -17,6 +19,10 @@ const Header: React.FC = () => {
 
   const onClickClosePopup = () => {
     setEnterPopup(false)
+  }
+
+  const toggleLocation = () => {
+    setLocation(!location)
   }
 
   return (
@@ -35,7 +41,15 @@ const Header: React.FC = () => {
       <div className="header-top__main">
         <div className="container">
           <div className="header-top__location">
-            <span>Москва <img src={CityArrowSvg} alt="Город"/></span>
+            <span onClick={() => toggleLocation()}>Москва <img src={CityArrowSvg} alt="Город"/></span>
+            <div className={location ? `location-list active` : `location-list`}>
+              <ul className="location-list__ul">
+                <li>Москва</li>
+                <li>Санкт-Петербург</li>
+                <li>Казань</li>
+                <li>Владивосток</li>
+              </ul>
+            </div>
           </div>
           <div className="header-top__logo">
             <h1><Link to='/'>watchshop</Link></h1>
