@@ -8,10 +8,16 @@ import FavoriteSvg from '../../ímg/heart-white.svg'
 import { Link } from 'react-router-dom'
 import Enter from '../Enter/Enter'
 
+import ClickOutsideHook from '../../hooks/clickOutsideHook'
+
 const Header: React.FC = () => {
   const [enterPopup, setEnterPopup] = React.useState(false)
   const [location, setLocation] = React.useState(false)
   const [locationValue, setLocationValue] = React.useState('Москва')
+
+  const locationList = ClickOutsideHook(() => {
+    setLocation(false)
+  })
 
   const onClickOpenPopup = () => {
     setEnterPopup(true)
@@ -26,7 +32,7 @@ const Header: React.FC = () => {
   }
 
   return (
-    <header className="header-top">
+    <header className="header-top" >
       <div className="header-top__connection">
         <div className="header-top__phone">
           <span>8 (800) 000-00-00</span>
@@ -43,7 +49,7 @@ const Header: React.FC = () => {
           <div className="header-top__location">
             <span onClick={() => toggleLocation()}>Москва <img src={CityArrowSvg} alt="Город"/></span>
             <div className={location ? `location-list active` : `location-list`}>
-              <ul className="location-list__ul">
+              <ul className="location-list__ul" ref={locationList}>
                 <li>Москва</li>
                 <li>Санкт-Петербург</li>
                 <li>Казань</li>
