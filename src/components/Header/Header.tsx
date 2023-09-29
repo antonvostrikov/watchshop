@@ -9,11 +9,13 @@ import { Link } from 'react-router-dom'
 import Enter from '../Enter/Enter'
 
 import ClickOutsideHook from '../../hooks/clickOutsideHook'
+import { useAppDispatch, useAppSelector } from '../../hooks/hook'
 
 const Header: React.FC = () => {
   const [enterPopup, setEnterPopup] = React.useState(false)
   const [location, setLocation] = React.useState(false)
-  const [locationValue, setLocationValue] = React.useState('Москва')
+
+  const dispatch = useAppDispatch()
 
   const locationList = ClickOutsideHook(() => {
     setLocation(false)
@@ -50,10 +52,7 @@ const Header: React.FC = () => {
             <span onClick={() => toggleLocation()}>Москва <img src={CityArrowSvg} alt="Город"/></span>
             <div className={location ? `location-list active` : `location-list`}>
               <ul className="location-list__ul" ref={locationList}>
-                <li>Москва</li>
-                <li>Санкт-Петербург</li>
-                <li>Казань</li>
-                <li>Владивосток</li>
+                
               </ul>
             </div>
           </div>
