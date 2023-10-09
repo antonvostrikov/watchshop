@@ -196,10 +196,10 @@
       "name": "Наручные часы Quadro Melrose Daniel Wellington DW00100510"
     }
   ],
-  "countries": [
-    { "id": 1, "country": "Москва" },
-    { "id": 2, "country": "Санкт-Петербург" },
-    { "id": 3, "country": "Казань" },
-    { "id": 4, "country": "Владивосток" }
+  "cities": [
+    { "id": 1, "city": "Москва" },
+    { "id": 2, "city": "Санкт-Петербург" },
+    { "id": 3, "city": "Казань" },
+    { "id": 4, "city": "Владивосток" }
   ]
 }

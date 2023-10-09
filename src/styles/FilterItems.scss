@@ -19,6 +19,18 @@
         margin: 0;
       }
     }
+    .category-brand {
+      .dropdown {
+        .dropdown-content {
+          width: 150px;
+          &__list {
+            li {
+              padding: 15px 20px;
+            }
+          }
+        }
+      }
+    }
   }
   &__sort {
     .sort-item {

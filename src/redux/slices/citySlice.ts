@@ -1,24 +1,24 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
-type Country = {
+type City = {
   id: number
-  country: string
+  city: string
 }
 
-type Countries = {
-  countries: Country[]
+type Cities = {
+  cities: City[]
 }
 
-const initialState: Countries = {
-  countries: []
+const initialState: Cities = {
+  cities: []
 }
 
 export const getCountries = createAsyncThunk(
   'country/getCountries',
   async () => {
     try {
-      const { data } = await axios.get('http://localhost:3001/countries')
+      const { data } = await axios.get('http://localhost:3001/cities')
 
       return data
     } catch (e) {
@@ -33,7 +33,7 @@ const countrySlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder.addCase(getCountries.fulfilled, (state, action) => {
-      state.countries = action.payload
+      state.cities = action.payload
     })
   }
 })

@@ -12,6 +12,7 @@ import CityArrowSvg from '../../ímg/city-arrow.svg'
 import EnterSvg from '../../ímg/enter.svg'
 import BasketSvg from '../../ímg/basket.svg'
 import FavoriteSvg from '../../ímg/heart-white.svg'
+import { useAppSelector } from '../../hooks/hook'
 
 const Header: React.FC = () => {
   const [enterPopup, setEnterPopup] = React.useState(false)
@@ -24,6 +25,8 @@ const Header: React.FC = () => {
     setEnterPopup(false)
   }
   
+  const { cities } = useAppSelector(state => state.cities)
+
   return (
     <header className="header-top" >
       <div className="header-top__connection">
@@ -44,7 +47,7 @@ const Header: React.FC = () => {
               <DropdownButton>Москва <img src={CityArrowSvg} alt="Город"/></DropdownButton>
               <DropdownContent>
                 <DropdownList>
-                  <DropdownItem>asdas</DropdownItem>
+                  { cities.map(city => <DropdownItem>{city.city}</DropdownItem>) }
                 </DropdownList>
               </DropdownContent> 
             </Dropdown>

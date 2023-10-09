@@ -1,11 +1,14 @@
 import React from 'react'
 
-import FilterArrow from '../../ímg/arrow-sort.svg'
+import { useAppSelector } from '../../hooks/hook'
 
 import Dropdown from '../Dropdown/Dropdown'
 import DropdownButton from '../Dropdown/DropdownButton'
 import DropdownContent from '../Dropdown/DropdownContent'
-import { useAppSelector } from '../../hooks/hook'
+import DropdownList from '../Dropdown/DropdownList'
+import DropdownItem from '../Dropdown/DropdownItem'
+
+import FilterArrow from '../../ímg/arrow-sort.svg'
 
 const brandFilterItems: string[] = []
 const countryFilterItems: string[] = []
@@ -26,7 +29,16 @@ const FilterItems:React.FC = () => {
         <div className="filter-toolbar__category">
           <div className="category-item">Цена</div>
           <div className="category-item">Пол</div>
-          <div className="category-item">Бренд</div>
+          <div className="category-item category-brand">
+            <Dropdown>
+              <DropdownButton>Бренд</DropdownButton>
+              <DropdownContent>
+                <DropdownList>
+                  { brandsList.map(brand => <DropdownItem>{brand}</DropdownItem>) }
+                </DropdownList>
+              </DropdownContent>
+            </Dropdown>
+          </div>
           <div className="category-item">Страна</div>
         </div>
         <div className="filter-toolbar__sort">
