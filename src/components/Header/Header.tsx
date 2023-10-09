@@ -1,25 +1,20 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
+
+import Enter from '../Enter/Enter'
+import Dropdown from '../Dropdown/Dropdown'
+import DropdownButton from '../Dropdown/DropdownButton'
+import DropdownContent from '../Dropdown/DropdownContent'
+import DropdownList from '../Dropdown/DropdownList'
+import DropdownItem from '../Dropdown/DropdownItem'
 
 import CityArrowSvg from '../../ímg/city-arrow.svg'
 import EnterSvg from '../../ímg/enter.svg'
 import BasketSvg from '../../ímg/basket.svg'
 import FavoriteSvg from '../../ímg/heart-white.svg'
 
-import { Link } from 'react-router-dom'
-import Enter from '../Enter/Enter'
-
-import ClickOutsideHook from '../../hooks/clickOutsideHook'
-import { useAppDispatch, useAppSelector } from '../../hooks/hook'
-
 const Header: React.FC = () => {
   const [enterPopup, setEnterPopup] = React.useState(false)
-  const [location, setLocation] = React.useState(false)
-
-  const dispatch = useAppDispatch()
-
-  const locationList = ClickOutsideHook(() => {
-    setLocation(false)
-  })
 
   const onClickOpenPopup = () => {
     setEnterPopup(true)
@@ -28,11 +23,7 @@ const Header: React.FC = () => {
   const onClickClosePopup = () => {
     setEnterPopup(false)
   }
-
-  const toggleLocation = () => {
-    setLocation(!location)
-  }
-
+  
   return (
     <header className="header-top" >
       <div className="header-top__connection">
@@ -49,12 +40,14 @@ const Header: React.FC = () => {
       <div className="header-top__main">
         <div className="container">
           <div className="header-top__location">
-            <span onClick={() => toggleLocation()}>Москва <img src={CityArrowSvg} alt="Город"/></span>
-            <div className={location ? `location-list active` : `location-list`}>
-              <ul className="location-list__ul" ref={locationList}>
-                
-              </ul>
-            </div>
+            <Dropdown>
+              <DropdownButton>Москва <img src={CityArrowSvg} alt="Город"/></DropdownButton>
+              <DropdownContent>
+                <DropdownList>
+                  <DropdownItem>asdas</DropdownItem>
+                </DropdownList>
+              </DropdownContent> 
+            </Dropdown>
           </div>
           <div className="header-top__logo">
             <h1><Link to='/'>watchshop</Link></h1>

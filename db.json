@@ -187,14 +187,19 @@
       ]
     }
   ],
-  "cart": [
+  "cart": [],
+  "favorite": [
     {
       "id": 2,
       "imageUrl": "https://www.alltime.ru/obj/catalog/watch/daniel-wellington/img/big/DW00100510.jpg",
-      "name": "Наручные часы Quadro Melrose Daniel Wellington DW00100510",
-      "su": 1,
-      "price": "14620"
+      "price": "14620",
+      "name": "Наручные часы Quadro Melrose Daniel Wellington DW00100510"
     }
   ],
-  "favorite": []
+  "countries": [
+    { "id": 1, "country": "Москва" },
+    { "id": 2, "country": "Санкт-Петербург" },
+    { "id": 3, "country": "Казань" },
+    { "id": 4, "country": "Владивосток" }
+  ]
 }

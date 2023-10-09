@@ -14,12 +14,14 @@ import Cart from './pages/Cart';
 import Favorite from './pages/Favorite';
 import Casio from './pages/Casio';
 import Titoni from './pages/Titoni';
+import { getCountries } from './redux/slices/countrySlice';
 
 const App:React.FC = () => {
   const dispatch = useAppDispatch()
 
   React.useEffect(() => {
-		dispatch(getProductsFromFavorite())
+		dispatch(getProductsFromFavorite());
+    dispatch(getCountries());
 	}, [])
 
   return (

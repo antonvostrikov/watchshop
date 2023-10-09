@@ -2,7 +2,25 @@ import React from 'react'
 
 import FilterArrow from '../../ímg/arrow-sort.svg'
 
+import Dropdown from '../Dropdown/Dropdown'
+import DropdownButton from '../Dropdown/DropdownButton'
+import DropdownContent from '../Dropdown/DropdownContent'
+import { useAppSelector } from '../../hooks/hook'
+
+const brandFilterItems: string[] = []
+const countryFilterItems: string[] = []
+
 const FilterItems:React.FC = () => {
+  const { watches } = useAppSelector(state => state.watches)
+
+  watches.map(watch => {
+    brandFilterItems.push(watch.brand)
+    countryFilterItems.push(watch.country)
+  })
+
+  const brandsList = Array.from(new Set([...brandFilterItems]))
+  const countriesList = Array.from(new Set([...countryFilterItems]))
+
   return (
     <div className="filter-toolbar">
         <div className="filter-toolbar__category">

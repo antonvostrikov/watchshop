@@ -9,6 +9,7 @@ type imageSlider = {
 type Watch = {
   id: number
   sex: string
+  brand: string
   name: string
   price: string
   imageUrl: string
@@ -43,7 +44,7 @@ export const getAllWatches = createAsyncThunk<Watch[]>(
   async () => {
     try {
       const { data } = await axios.get('http://localhost:3001/wristWatches')
-
+      
       return data
     } catch (e) {
       console.log('Не удалось получить данные')
@@ -90,7 +91,7 @@ const getWatchesSlice = createSlice({
       state.watches = []
       state.status = "pending"
     })
-    builder.addCase(getAllWatches.rejected, (state) => {
+    builder.addCase(getAllWatches.rejected, (state, action) => {
       state.watches = []
       state.status = "rejected"
     }) 
