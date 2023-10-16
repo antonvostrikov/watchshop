@@ -1,12 +1,12 @@
 import React from 'react'
 
 import Menu from '../components/Menu/Menu'
-import FilterItems from '../components/FilterItems/FilterItems'
 import WatchBlock from '../components/WatchBlock/WatchBlock'
 import Footer from '../components/Footer/Footer'
 
 import { useAppDispatch, useAppSelector } from '../hooks/hook'
 import { getBrandWatches } from '../redux/slices/getWatchesSlice'
+import FilterItemsProduct from '../components/FilterItems/FIlterItemsProduct'
 
 const Titoni:React.FC = () => {
   const dispatch = useAppDispatch()
@@ -26,7 +26,7 @@ const Titoni:React.FC = () => {
             <div className="wrapper-watches__title">
               <h1>Titoni</h1>
             </div>
-            <FilterItems />
+            <FilterItemsProduct />
             <WatchBlock watches={brand} status={status}/>
           </div>       
         </div>

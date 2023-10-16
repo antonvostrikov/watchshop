@@ -10,39 +10,60 @@ import DropdownItem from '../Dropdown/DropdownItem'
 
 import FilterArrow from '../../ímg/arrow-sort.svg'
 
-const brandFilterItems: string[] = []
-const countryFilterItems: string[] = []
+type Filter = {
+  brands: string[]
+  countries: string[]
+}
 
-const FilterItems:React.FC = () => {
-  const { watches } = useAppSelector(state => state.watches)
+const sexListFilter = ['Мужской', 'Женский']
 
-  watches.map(watch => {
-    brandFilterItems.push(watch.brand)
-    countryFilterItems.push(watch.country)
-  })
-
-  const brandsList = Array.from(new Set([...brandFilterItems]))
-  const countriesList = Array.from(new Set([...countryFilterItems]))
-
+const FilterItems:React.FC<Filter> = ({ brands, countries }) => {
   return (
     <div className="filter-toolbar">
         <div className="filter-toolbar__category">
           <div className="category-item">Цена</div>
-          <div className="category-item">Пол</div>
+          <div className="category-item category-sex">
+            <Dropdown>
+              <DropdownButton>Пол</DropdownButton>
+              <DropdownContent>
+                <DropdownList>
+                  { sexListFilter.map(sex => <DropdownItem>{sex}</DropdownItem>) }
+                </DropdownList>
+              </DropdownContent>
+            </Dropdown>
+          </div>
           <div className="category-item category-brand">
             <Dropdown>
               <DropdownButton>Бренд</DropdownButton>
               <DropdownContent>
                 <DropdownList>
-                  { brandsList.map(brand => <DropdownItem>{brand}</DropdownItem>) }
+                  { brands.map(brand => <DropdownItem>{brand}</DropdownItem>) }
                 </DropdownList>
               </DropdownContent>
             </Dropdown>
           </div>
-          <div className="category-item">Страна</div>
+          <div className="category-item">
+            <Dropdown>
+              <DropdownButton>Страна</DropdownButton>
+              <DropdownContent>
+                <DropdownList>
+                  { countries.map(country => <DropdownItem>{country}</DropdownItem>) }
+                </DropdownList>
+              </DropdownContent>
+            </Dropdown>
+          </div>
         </div>
         <div className="filter-toolbar__sort">
-          <div className="sort-item">По полулярности <img src={FilterArrow} alt="Сортировка" /></div>
+          <Dropdown>
+            <DropdownButton>
+              <div className="sort-item">По популярности <img src={FilterArrow} alt="Сортировка" /></div>
+            </DropdownButton>
+            <DropdownContent>
+              <DropdownList>
+                { countries.map(country => <DropdownItem>{country}</DropdownItem>) }
+              </DropdownList>
+            </DropdownContent>
+          </Dropdown>
         </div>
     </div>
   )

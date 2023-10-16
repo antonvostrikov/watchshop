@@ -17,6 +17,17 @@ const Watches:React.FC = () => {
 
   const {watches, status} = useAppSelector(state => state.watches)
 
+  const brandsListWatches: string[] = []
+  const countriesListWatches: string[] = []
+
+  watches.map(watch => {
+    brandsListWatches.push(watch.brand)
+    countriesListWatches.push(watch.country)
+  })
+
+  const brandsListFilter = Array.from(new Set([...brandsListWatches]))
+  const countriesListFilter = Array.from(new Set([...countriesListWatches]))
+
   return (
     <>
     <Menu />
@@ -26,7 +37,7 @@ const Watches:React.FC = () => {
             <div className="wrapper-watches__title">
               <h1>наручные часы</h1>
             </div>
-            <FilterItems />
+            <FilterItems brands={brandsListFilter} countries={countriesListFilter}/>
             <WatchBlock watches={watches} status={status}/>
           </div>       
         </div>
