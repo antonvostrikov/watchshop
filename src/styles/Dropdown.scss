@@ -30,4 +30,9 @@
     user-select: none;
     font-family: $Roboto;
   }
+  &-right {
+    .dropdown-content {
+      width: 100%;
+    }
+  }
 }

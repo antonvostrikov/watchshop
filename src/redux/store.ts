@@ -4,13 +4,15 @@ import getWatchesSlice from "./slices/getWatchesSlice";
 import cartSlice from "./slices/cartSlice";
 import favoriteSlice from "./slices/favoriteSlice";
 import citySlice from "./slices/citySlice";
+import filterSlice from "./slices/filterSlice";
 
 const store = configureStore({
   reducer: {
     watches: getWatchesSlice,
     cart: cartSlice,
     favorite: favoriteSlice,
-    cities: citySlice
+    cities: citySlice,
+    filter: filterSlice
   }
 })
 

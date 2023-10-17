@@ -12,12 +12,12 @@ export const DropdownContext = React.createContext<DropdownContextType>({
   setDropdown: () => {}
 })
 
-const Dropdown:React.FC<any> = ({children}) => {
+const Dropdown:React.FC<any> = ({children, className}) => {
   const { setDropdown, dropdown, dropdownRef } = useDropdown()
 
   return (
     <DropdownContext.Provider value={{dropdown, setDropdown}}>
-      <div className="dropdown" ref={dropdownRef}>
+      <div className={`dropdown ${className}`} ref={dropdownRef}>
         {children}
       </div>
     </DropdownContext.Provider>

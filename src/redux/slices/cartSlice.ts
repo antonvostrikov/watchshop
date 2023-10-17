@@ -7,7 +7,7 @@ type CartProduct = {
   imageUrl: string
   name: string
   sum: number
-  price: string
+  price: number
 }
 
 type Cart = {

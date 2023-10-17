@@ -11,7 +11,7 @@ type Watch = {
   sex: string
   brand: string
   name: string
-  price: string
+  price: number
   imageUrl: string
   description: string
   country: string
@@ -22,7 +22,8 @@ type Watch = {
   waterproof: string
   dimensions: string
   typeWatch: string
-  sliderImages: imageSlider[]
+  sliderImages: imageSlider[],
+  rating: number
 }
 
 type Watches = {
@@ -39,11 +40,18 @@ const initialState: Watches = {
   status: "pending"
 }
 
-export const getAllWatches = createAsyncThunk<Watch[]>(
+type RequireAllWatches = {
+  sortBy: string
+  order: string
+}
+
+export const getAllWatches = createAsyncThunk<Watch[], RequireAllWatches>(
   'watches/getAllWatches',
-  async () => {
+  async (params) => {
+    const { sortBy, order } = params
+
     try {
-      const { data } = await axios.get('http://localhost:3001/wristWatches')
+      const { data } = await axios.get(`http://localhost:3001/wristWatches?_sort=${sortBy}&_order=${order}`)
       
       return data
     } catch (e) {

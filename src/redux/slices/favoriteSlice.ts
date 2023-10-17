@@ -6,7 +6,7 @@ type FavoriteItem = {
   id: number
   imageUrl: string
   name: string
-  price: string
+  price: number
 }
 
 type Favorite = {

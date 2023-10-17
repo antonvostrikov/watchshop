@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { useAppSelector } from '../../hooks/hook'
+import { useAppDispatch, useAppSelector } from '../../hooks/hook'
 
 import Dropdown from '../Dropdown/Dropdown'
 import DropdownButton from '../Dropdown/DropdownButton'
@@ -9,15 +9,35 @@ import DropdownList from '../Dropdown/DropdownList'
 import DropdownItem from '../Dropdown/DropdownItem'
 
 import FilterArrow from '../../ímg/arrow-sort.svg'
+import { setSort } from '../../redux/slices/filterSlice'
 
 type Filter = {
   brands: string[]
   countries: string[]
 }
 
+type FilterSort = {
+  name: string
+  sortProperty: string
+}
+
 const sexListFilter = ['Мужской', 'Женский']
 
+const filterItemsRight: FilterSort[] = [
+  { name: 'По популярности', sortProperty: 'rating' },
+  { name: 'От дорогих к дешевым', sortProperty: '-price' },
+  { name: 'От дешевых к дорогим', sortProperty: 'price' }
+]
+
 const FilterItems:React.FC<Filter> = ({ brands, countries }) => {
+  const dispatch = useAppDispatch()
+
+  const { sort } = useAppSelector(state => state.filter)
+
+  const toggleSortRight = (obj: FilterSort) => {
+    dispatch(setSort(obj))
+  }
+
   return (
     <div className="filter-toolbar">
         <div className="filter-toolbar__category">
@@ -33,7 +53,7 @@ const FilterItems:React.FC<Filter> = ({ brands, countries }) => {
             </Dropdown>
           </div>
           <div className="category-item category-brand">
-            <Dropdown>
+            <Dropdown className={'dropdown-brand'}>
               <DropdownButton>Бренд</DropdownButton>
               <DropdownContent>
                 <DropdownList>
@@ -43,7 +63,7 @@ const FilterItems:React.FC<Filter> = ({ brands, countries }) => {
             </Dropdown>
           </div>
           <div className="category-item">
-            <Dropdown>
+            <Dropdown className={'dropdown-country'}>
               <DropdownButton>Страна</DropdownButton>
               <DropdownContent>
                 <DropdownList>
@@ -54,13 +74,13 @@ const FilterItems:React.FC<Filter> = ({ brands, countries }) => {
           </div>
         </div>
         <div className="filter-toolbar__sort">
-          <Dropdown>
+          <Dropdown className={'dropdown-right'}>
             <DropdownButton>
-              <div className="sort-item">По популярности <img src={FilterArrow} alt="Сортировка" /></div>
+              <div className="sort-item">{sort.name} <img src={FilterArrow} alt="Сортировка" /></div>
             </DropdownButton>
             <DropdownContent>
               <DropdownList>
-                { countries.map(country => <DropdownItem>{country}</DropdownItem>) }
+                { filterItemsRight.map(item => <DropdownItem onChangeFilter={() => toggleSortRight(item)}>{item.name}</DropdownItem>) }
               </DropdownList>
             </DropdownContent>
           </Dropdown>

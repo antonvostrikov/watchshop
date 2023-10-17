@@ -11,11 +11,15 @@ import { getAllWatches } from '../redux/slices/getWatchesSlice'
 const Watches:React.FC = () => {
   const dispatch = useAppDispatch()
 
-  React.useEffect(() => {
-    dispatch(getAllWatches())
-  }, [])
-
   const {watches, status} = useAppSelector(state => state.watches)
+  const { sortProperty } = useAppSelector(state => state.filter.sort)
+
+  const sortBy = sortProperty.replace('-', '')
+  const order = sortProperty.includes('-') ? 'desc' : 'asc'
+
+  React.useEffect(() => {
+    dispatch(getAllWatches({ sortBy, order }))
+  }, [sortBy, order])
 
   const brandsListWatches: string[] = []
   const countriesListWatches: string[] = []

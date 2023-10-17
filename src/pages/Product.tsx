@@ -12,7 +12,7 @@ import SliderProduct from '../components/SliderProduct/SliderProduct'
 import FavoriteSvg from '../ímg/heart.svg'
 import { addProductToCart } from '../redux/slices/cartSlice'
 import { addToFavorite } from '../redux/slices/favoriteSlice'
-import transformPrice from '../hooks/priceHook'
+import useTransformPrice from '../hooks/useTransformPrice'
 
 type imageSlider = {
   img: string
@@ -23,7 +23,7 @@ type WatchProduct = {
   imageUrl: string
   name: string
   sex: string
-  price: string
+  price: number
   description: string
   sliderImages: imageSlider[]
 }
@@ -100,7 +100,7 @@ const Product:React.FC = () => {
                 <span>{watch.sex}</span>
               </div>
               <div className="product-aside__price">
-                <span>{ transformPrice(watch.price) }</span>
+                <span>{useTransformPrice(watch.price)}</span>
               </div>
               <div className="product-aside__buttons">
                 <button className="add-cart" onClick={() => onAddToCart()}>Добавить в корзину</button>

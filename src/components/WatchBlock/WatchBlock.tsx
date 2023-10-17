@@ -14,7 +14,7 @@ type Watch = {
   id: number,
   sex: string,
   name: string,
-  price: string,
+  price: number,
   imageUrl: string,
   description: string,
   country: string,
@@ -25,7 +25,8 @@ type Watch = {
   waterproof: string,
   dimensions: string,
   typeWatch: string,
-  sliderImages: imageSlider[]
+  sliderImages: imageSlider[],
+  rating: number
 }
 
 type Products = {
