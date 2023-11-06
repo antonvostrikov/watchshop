@@ -7,36 +7,38 @@ import DropdownButton from '../Dropdown/DropdownButton'
 import DropdownContent from '../Dropdown/DropdownContent'
 import DropdownList from '../Dropdown/DropdownList'
 import DropdownItem from '../Dropdown/DropdownItem'
+import DropdownItemSet from '../Dropdown/DropdownItemSet'
 
 import FilterArrow from '../../ímg/arrow-sort.svg'
-import { setSort } from '../../redux/slices/filterSlice'
+
+type FilterItems = {
+  id: number
+  filter: string
+}
 
 type Filter = {
-  brands: string[]
-  countries: string[]
+  brands: FilterItems[]
+  countries: FilterItems[]
+  sex: FilterItems[]
+  brandsFilters: FilterItems[]
+  countriesFilters: FilterItems[]
+  sexFilters: FilterItems[]
+  brandsFiltersHandler: (brandsFilters: any) => void
+  countriesFiltersHandler: (countriesFilters: any) => void
+  sexFiltersHandler: (sexFilters: any) => void
 }
 
-type FilterSort = {
-  name: string
-  sortProperty: string
-}
-
-const sexListFilter = ['Мужской', 'Женский']
-
-const filterItemsRight: FilterSort[] = [
-  { name: 'По популярности', sortProperty: 'rating' },
-  { name: 'От дорогих к дешевым', sortProperty: '-price' },
-  { name: 'От дешевых к дорогим', sortProperty: 'price' }
-]
-
-const FilterItems:React.FC<Filter> = ({ brands, countries }) => {
-  const dispatch = useAppDispatch()
-
-  const { sort } = useAppSelector(state => state.filter)
-
-  const toggleSortRight = (obj: FilterSort) => {
-    dispatch(setSort(obj))
-  }
+const FilterItems:React.FC<Filter> = ({ 
+  brands,
+  countries,
+  countriesFilters, 
+  brandsFilters, 
+  brandsFiltersHandler, 
+  countriesFiltersHandler,
+  sex,
+  sexFilters,
+  sexFiltersHandler
+  }) => {
 
   return (
     <div className="filter-toolbar">
@@ -47,7 +49,12 @@ const FilterItems:React.FC<Filter> = ({ brands, countries }) => {
               <DropdownButton>Пол</DropdownButton>
               <DropdownContent>
                 <DropdownList>
-                  { sexListFilter.map(sex => <DropdownItem>{sex}</DropdownItem>) }
+                  { sex.map(s => <DropdownItem
+                    filterList={sexFilters}
+                    filterHandler={sexFiltersHandler}
+                    filter={s.filter}
+                    filterID={s.id}
+                  ></DropdownItem>) }
                 </DropdownList>
               </DropdownContent>
             </Dropdown>
@@ -57,7 +64,12 @@ const FilterItems:React.FC<Filter> = ({ brands, countries }) => {
               <DropdownButton>Бренд</DropdownButton>
               <DropdownContent>
                 <DropdownList>
-                  { brands.map(brand => <DropdownItem>{brand}</DropdownItem>) }
+                  { brands.map(brand => <DropdownItem 
+                    filterList={brandsFilters} 
+                    filterHandler={brandsFiltersHandler} 
+                    filter={brand.filter} 
+                    filterID={brand.id}></DropdownItem>
+                  ) }
                 </DropdownList>
               </DropdownContent>
             </Dropdown>
@@ -67,7 +79,12 @@ const FilterItems:React.FC<Filter> = ({ brands, countries }) => {
               <DropdownButton>Страна</DropdownButton>
               <DropdownContent>
                 <DropdownList>
-                  { countries.map(country => <DropdownItem>{country}</DropdownItem>) }
+                  { countries.map(country => <DropdownItem 
+                    filterList={countriesFilters} 
+                    filterHandler={countriesFiltersHandler}
+                    filter={country.filter}
+                    filterID={country.id}></DropdownItem>
+                  ) }
                 </DropdownList>
               </DropdownContent>
             </Dropdown>
@@ -76,11 +93,11 @@ const FilterItems:React.FC<Filter> = ({ brands, countries }) => {
         <div className="filter-toolbar__sort">
           <Dropdown className={'dropdown-right'}>
             <DropdownButton>
-              <div className="sort-item">{sort.name} <img src={FilterArrow} alt="Сортировка" /></div>
+              <div className="sort-item"> <img src={FilterArrow} alt="Сортировка" /></div>
             </DropdownButton>
             <DropdownContent>
               <DropdownList>
-                { filterItemsRight.map(item => <DropdownItem onChangeFilter={() => toggleSortRight(item)}>{item.name}</DropdownItem>) }
+
               </DropdownList>
             </DropdownContent>
           </Dropdown>

@@ -47,7 +47,7 @@ const Header: React.FC = () => {
               <DropdownButton>Москва <img src={CityArrowSvg} alt="Город"/></DropdownButton>
               <DropdownContent>
                 <DropdownList>
-                  { cities.map(city => <DropdownItem>{city.city}</DropdownItem>) }
+                  
                 </DropdownList>
               </DropdownContent> 
             </Dropdown>

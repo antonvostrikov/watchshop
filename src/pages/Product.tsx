@@ -100,7 +100,7 @@ const Product:React.FC = () => {
                 <span>{watch.sex}</span>
               </div>
               <div className="product-aside__price">
-                <span>{useTransformPrice(watch.price)}</span>
+                <span>{watch.price}</span>
               </div>
               <div className="product-aside__buttons">
                 <button className="add-cart" onClick={() => onAddToCart()}>Добавить в корзину</button>

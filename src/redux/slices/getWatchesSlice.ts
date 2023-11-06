@@ -33,6 +33,11 @@ type Watches = {
   status: string
 }
 
+type Filter = {
+  id: number
+  filter: string
+}
+
 const initialState: Watches = {
   watches: [],
   premiumWatches: [],
@@ -41,17 +46,30 @@ const initialState: Watches = {
 }
 
 type RequireAllWatches = {
-  sortBy: string
-  order: string
+  brandsFilter: Filter[]
+  countriesFilter: Filter[]
+  sexFilter: Filter[]
 }
 
 export const getAllWatches = createAsyncThunk<Watch[], RequireAllWatches>(
   'watches/getAllWatches',
   async (params) => {
-    const { sortBy, order } = params
+    const { brandsFilter, countriesFilter, sexFilter } = params
+
+    const brandsList: string[] = []
+    const countriesList: string[] = []
+    const sexList: string[] = []
+
+    brandsFilter.map(brand => brandsList.push(brand.filter))
+    countriesFilter.map(country => countriesList.push(country.filter))
+    sexFilter.map(sex => sexList.push(sex.filter))
+    
+    const brand = brandsList.length === 0 ? '' : `&brand=${brandsList.join('&brand=')}`
+    const country = countriesList.length === 0 ? '' : `&country=${countriesList.join('&country=')}`
+    const sex = sexFilter.length === 0 ? '' : `&sex=${sexList.join('&sex=')}`
 
     try {
-      const { data } = await axios.get(`http://localhost:3001/wristWatches?_sort=${sortBy}&_order=${order}`)
+      const { data } = await axios.get(`http://localhost:3001/wristWatches?${brand}${country}${sex}`)
       
       return data
     } catch (e) {
@@ -60,13 +78,28 @@ export const getAllWatches = createAsyncThunk<Watch[], RequireAllWatches>(
   }
 )
 
-export const getPremiumWatches = createAsyncThunk<Watch[]>(
+export const getPremiumWatches = createAsyncThunk<Watch[], RequireAllWatches>(
   'watches/getPremiumWatches',
-  async () => {
-    try {
-      const response = await axios.get('http://localhost:3001/wristWatches?typeWatch=premium')
+  async (params) => {
+    const { brandsFilter, countriesFilter, sexFilter } = params
 
-      return response.data
+    const brandsList: string[] = []
+    const countriesList: string[] = []
+    const sexList: string[] = []
+
+    brandsFilter.map(brand => brandsList.push(brand.filter))
+    countriesFilter.map(country => countriesList.push(country.filter))
+    sexFilter.map(sex => sexList.push(sex.filter))
+    
+    
+    const brand = brandsList.length === 0 ? '' : `&brand=${brandsList.join('&brand=')}`
+    const country = countriesList.length === 0 ? '' : `&country=${countriesList.join('&country=')}`
+    const sex = sexList.length === 0 ? '' : `&sex=${sexList.join('&sex=')}`
+
+    try {
+      const { data } = await axios.get(`http://localhost:3001/wristWatches?typeWatch=premium${brand}${country}${sex}`)
+
+      return data
     } catch (e) {
       console.log('Не удалось получаить данные')
     }
