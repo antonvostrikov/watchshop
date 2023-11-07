@@ -50,7 +50,7 @@ const WatchItem:React.FC<WatchItem> = ({ id, imageUrl, price, name }) => {
         </Link>  
       </div>
       <div className="watch-item__buy">
-        <button><Link to="/">Купить</Link></button>
+        <button><Link to={`/product/${id}`}>Купить</Link></button>
       </div>
     </div>
   )

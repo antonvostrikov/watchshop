@@ -1,6 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 import axios from "axios";
+import { RootState } from "../store";
 
 type imageSlider = {
   img: string
@@ -49,12 +50,16 @@ type RequireAllWatches = {
   brandsFilter: Filter[]
   countriesFilter: Filter[]
   sexFilter: Filter[]
+  sortBy: string
+  order: string
+  minPrice: number
+  maxPrice: number
 }
 
-export const getAllWatches = createAsyncThunk<Watch[], RequireAllWatches>(
+export const getAllWatches = createAsyncThunk<Watch[], RequireAllWatches, { state: RootState }>(
   'watches/getAllWatches',
-  async (params) => {
-    const { brandsFilter, countriesFilter, sexFilter } = params
+  async (params, { getState }) => {
+    const { brandsFilter, countriesFilter, sexFilter, sortBy, order, minPrice, maxPrice } = params
 
     const brandsList: string[] = []
     const countriesList: string[] = []
@@ -67,9 +72,11 @@ export const getAllWatches = createAsyncThunk<Watch[], RequireAllWatches>(
     const brand = brandsList.length === 0 ? '' : `&brand=${brandsList.join('&brand=')}`
     const country = countriesList.length === 0 ? '' : `&country=${countriesList.join('&country=')}`
     const sex = sexFilter.length === 0 ? '' : `&sex=${sexList.join('&sex=')}`
+    const min = minPrice === 0 ? '' : `&price_gte=${minPrice}`
+    const max = maxPrice === 0 ? '' : `&price_lte=${maxPrice}`
 
     try {
-      const { data } = await axios.get(`http://localhost:3001/wristWatches?${brand}${country}${sex}`)
+      const { data } = await axios.get(`http://localhost:3001/wristWatches?${brand}${country}${sex}&_sort=${sortBy}&_order=${order}${min}${max}`)
       
       return data
     } catch (e) {
@@ -81,7 +88,7 @@ export const getAllWatches = createAsyncThunk<Watch[], RequireAllWatches>(
 export const getPremiumWatches = createAsyncThunk<Watch[], RequireAllWatches>(
   'watches/getPremiumWatches',
   async (params) => {
-    const { brandsFilter, countriesFilter, sexFilter } = params
+    const { brandsFilter, countriesFilter, sexFilter, sortBy, order, minPrice, maxPrice } = params
 
     const brandsList: string[] = []
     const countriesList: string[] = []
@@ -91,13 +98,14 @@ export const getPremiumWatches = createAsyncThunk<Watch[], RequireAllWatches>(
     countriesFilter.map(country => countriesList.push(country.filter))
     sexFilter.map(sex => sexList.push(sex.filter))
     
-    
     const brand = brandsList.length === 0 ? '' : `&brand=${brandsList.join('&brand=')}`
     const country = countriesList.length === 0 ? '' : `&country=${countriesList.join('&country=')}`
     const sex = sexList.length === 0 ? '' : `&sex=${sexList.join('&sex=')}`
+    const min = minPrice === 0 ? '' : `&price_gte=${minPrice}`
+    const max = maxPrice === 0 ? '' : `&price_lte=${maxPrice}`
 
     try {
-      const { data } = await axios.get(`http://localhost:3001/wristWatches?typeWatch=premium${brand}${country}${sex}`)
+      const { data } = await axios.get(`http://localhost:3001/wristWatches?typeWatch=premium${brand}${country}${sex}&_sort=${sortBy}&_order=${order}${min}${max}`)
 
       return data
     } catch (e) {

@@ -1,19 +1,12 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import axios from "axios";
 
-type FilterSort = {
-  name: string
-  sortProperty: string
-}
-
 type FiltersItems = {
   id: number
   filter: string
 }
 
 type Sort = {
-  sortMain: FilterSort
-  sortItems: FilterSort[]
   wristBrandsFilter: FiltersItems[]
   premiumBrandsFilter: FiltersItems[]
   wristCountriesFilter: FiltersItems[]
@@ -22,11 +15,6 @@ type Sort = {
 }
 
 const initialState: Sort = {
-  sortMain: {
-    name: 'По популярности',
-    sortProperty: 'rating'
-  },
-  sortItems: [],
   sexSort: [
     { "id": 1, "filter": "Мужские" },
     { "id": 2, "filter": "Женские" }
@@ -89,19 +77,6 @@ export const getPremiumCountriesFilter = createAsyncThunk(
   }
 )
 
-export const getSortItems = createAsyncThunk(
-  'filter/getSortItems',
-  async () => {
-    try {
-      const { data } = await axios.get('http://localhost:3001/sortItems')
-
-      return data
-    } catch (e) {
-      console.log(e)
-    }
-  }
-)
-
 const filterSlice = createSlice({
   name: 'filter',
   initialState,
@@ -118,9 +93,6 @@ const filterSlice = createSlice({
     })
     builder.addCase(getPremiumCountriesFilter.fulfilled, (state, action) => {
       state.premiumCountriesFilter = action.payload
-    })
-    builder.addCase(getSortItems.fulfilled, (state, action) => {
-      state.sortItems = action.payload
     })
   }
 })

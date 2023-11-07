@@ -218,11 +218,6 @@
     { "id": 1, "filter": "Китай" },
     { "id": 2, "filter": "Швейцария" }
   ],
-  "sortItems": [
-    { "name": "По популярности", "sortProperty": "rating" },
-    { "name": "От дорогих к дешевым", "sortProperty": "-price" },
-    { "name": "От дешевых к дорогим", "sortProperty": "price" }
-  ],
   "cities": [
     {
       "id": 1,

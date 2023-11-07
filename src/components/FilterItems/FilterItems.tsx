@@ -1,7 +1,5 @@
 import React from 'react'
 
-import { useAppDispatch, useAppSelector } from '../../hooks/hook'
-
 import Dropdown from '../Dropdown/Dropdown'
 import DropdownButton from '../Dropdown/DropdownButton'
 import DropdownContent from '../Dropdown/DropdownContent'
@@ -10,10 +8,16 @@ import DropdownItem from '../Dropdown/DropdownItem'
 import DropdownItemSet from '../Dropdown/DropdownItemSet'
 
 import FilterArrow from '../../ímg/arrow-sort.svg'
+import DropdownItemPrice from '../Dropdown/DropdownItemPrice'
 
 type FilterItems = {
   id: number
   filter: string
+}
+
+type SortItems = {
+  name: string
+  sortProperty: string
 }
 
 type Filter = {
@@ -26,6 +30,13 @@ type Filter = {
   brandsFiltersHandler: (brandsFilters: any) => void
   countriesFiltersHandler: (countriesFilters: any) => void
   sexFiltersHandler: (sexFilters: any) => void
+  sort: SortItems[]
+  sortMain: SortItems
+  sortMainHandler: (sort: any) => void
+  minPrice: number
+  maxPrice: number
+  minPriceHandler: (minPrice: number) => void
+  maxPriceHandler: (maxPrice: number) => void
 }
 
 const FilterItems:React.FC<Filter> = ({ 
@@ -37,13 +48,27 @@ const FilterItems:React.FC<Filter> = ({
   countriesFiltersHandler,
   sex,
   sexFilters,
-  sexFiltersHandler
+  sexFiltersHandler,
+  sort,
+  sortMain,
+  sortMainHandler,
+  minPrice,
+  maxPrice,
+  minPriceHandler,
+  maxPriceHandler
   }) => {
 
   return (
     <div className="filter-toolbar">
         <div className="filter-toolbar__category">
-          <div className="category-item">Цена</div>
+          <div className="category-item category-price">
+            <Dropdown>
+              <DropdownButton>Цена</DropdownButton>
+              <DropdownContent>
+                <DropdownItemPrice minHandler={minPriceHandler} maxHandler={maxPriceHandler} />
+              </DropdownContent>
+            </Dropdown>
+          </div>
           <div className="category-item category-sex">
             <Dropdown>
               <DropdownButton>Пол</DropdownButton>
@@ -93,11 +118,15 @@ const FilterItems:React.FC<Filter> = ({
         <div className="filter-toolbar__sort">
           <Dropdown className={'dropdown-right'}>
             <DropdownButton>
-              <div className="sort-item"> <img src={FilterArrow} alt="Сортировка" /></div>
+              <div className="sort-item">{sortMain.name} <img src={FilterArrow} alt="Сортировка" /></div>
             </DropdownButton>
             <DropdownContent>
               <DropdownList>
-
+                { sort.map(sortItem => <DropdownItemSet
+                  sortName={sortItem.name}
+                  sortProperty={sortItem.sortProperty}
+                  sortHandler={sortMainHandler}
+                ></DropdownItemSet>) }
               </DropdownList>
             </DropdownContent>
           </Dropdown>
