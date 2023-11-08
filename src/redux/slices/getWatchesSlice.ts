@@ -58,7 +58,7 @@ type RequireAllWatches = {
 
 export const getAllWatches = createAsyncThunk<Watch[], RequireAllWatches, { state: RootState }>(
   'watches/getAllWatches',
-  async (params, { getState }) => {
+  async (params) => {
     const { brandsFilter, countriesFilter, sexFilter, sortBy, order, minPrice, maxPrice } = params
 
     const brandsList: string[] = []

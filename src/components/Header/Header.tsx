@@ -6,13 +6,13 @@ import Dropdown from '../Dropdown/Dropdown'
 import DropdownButton from '../Dropdown/DropdownButton'
 import DropdownContent from '../Dropdown/DropdownContent'
 import DropdownList from '../Dropdown/DropdownList'
-import DropdownItem from '../Dropdown/DropdownItem'
 
 import CityArrowSvg from '../../ímg/city-arrow.svg'
 import EnterSvg from '../../ímg/enter.svg'
 import BasketSvg from '../../ímg/basket.svg'
 import FavoriteSvg from '../../ímg/heart-white.svg'
 import { useAppSelector } from '../../hooks/hook'
+import DropdownItemCity from '../Dropdown/DropdownItemCity'
 
 const Header: React.FC = () => {
   const [enterPopup, setEnterPopup] = React.useState(false)
@@ -25,8 +25,8 @@ const Header: React.FC = () => {
     setEnterPopup(false)
   }
   
-  const { cities } = useAppSelector(state => state.cities)
-
+  const { cities, mainCity } = useAppSelector(state => state.cities)
+  console.log(mainCity)
   return (
     <header className="header-top" >
       <div className="header-top__connection">
@@ -44,10 +44,10 @@ const Header: React.FC = () => {
         <div className="container">
           <div className="header-top__location">
             <Dropdown>
-              <DropdownButton>Москва <img src={CityArrowSvg} alt="Город"/></DropdownButton>
+              <DropdownButton>{mainCity.map(city => city.city)} <img src={CityArrowSvg} alt="Город"/></DropdownButton>
               <DropdownContent>
                 <DropdownList>
-
+                  { cities.map(city => <DropdownItemCity id={city.id} city={city.city} />) }
                 </DropdownList>
               </DropdownContent> 
             </Dropdown>

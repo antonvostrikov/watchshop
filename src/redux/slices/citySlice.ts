@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+import { RootState } from "../store";
 
 type City = {
   id: number
@@ -16,8 +17,8 @@ const initialState: Cities = {
   mainCity: []
 }
 
-export const getCountries = createAsyncThunk(
-  'cities/getCountries',
+export const getCities = createAsyncThunk(
+  'cities/getCities',
   async () => {
     try {
       const { data } = await axios.get('http://localhost:3001/cities')
@@ -42,15 +43,33 @@ export const getMainCity = createAsyncThunk(
   }
 )
 
+export const changeMainCity = createAsyncThunk<City[], City>(
+  'cities/changeMainCity',
+  async (params) => {
+    const { id, city } = params
+
+    try {
+      const { data } = await axios.put('http://localhost:3001/mainCity', [{ id: id, city: city }])
+
+      return data
+    } catch (e) {
+      console.log(e)
+    }
+  }
+)
+
 const countrySlice = createSlice({
-  name: 'countries',
+  name: 'cities',
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(getCountries.fulfilled, (state, action) => {
+    builder.addCase(getMainCity.fulfilled, (state, action) => {
+      state.mainCity = action.payload
+    })
+    builder.addCase(getCities.fulfilled, (state, action) => {
       state.cities = action.payload
     })
-    builder.addCase(getMainCity.fulfilled, (state, action) => {
+    builder.addCase(changeMainCity.fulfilled, (state, action) => {
       state.mainCity = action.payload
     })
   }

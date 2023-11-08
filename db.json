@@ -196,30 +196,78 @@
   "cart": [],
   "favorite": [],
   "wristBrandsFilter": [
-    { "id": 1, "filter": "Seiko" },
-    { "id": 2, "filter": "Titoni" },
-    { "id": 3, "filter": "Giga" },
-    { "id": 4, "filter": "Quadro" },
-    { "id": 5, "filter": "Casio" },
-    { "id": 6, "filter": "Ceurvo" }
+    {
+      "id": 1,
+      "filter": "Seiko"
+    },
+    {
+      "id": 2,
+      "filter": "Titoni"
+    },
+    {
+      "id": 3,
+      "filter": "Giga"
+    },
+    {
+      "id": 4,
+      "filter": "Quadro"
+    },
+    {
+      "id": 5,
+      "filter": "Casio"
+    },
+    {
+      "id": 6,
+      "filter": "Ceurvo"
+    }
   ],
   "premiumBrandsFilter": [
-    { "id": 1, "filter": "Giga" },
-    { "id": 2, "filter": "Cuervo" },
-    { "id": 3, "filter": "Titoni" }
+    {
+      "id": 1,
+      "filter": "Giga"
+    },
+    {
+      "id": 2,
+      "filter": "Cuervo"
+    },
+    {
+      "id": 3,
+      "filter": "Titoni"
+    }
   ],
   "wristCountriesFilter": [
-    { "id": 1, "filter": "Япония" },
-    { "id": 2, "filter": "Швейцария" },
-    { "id": 3, "filter": "Китай" },
-    { "id": 4, "filter": "Швеция" }
+    {
+      "id": 1,
+      "filter": "Япония"
+    },
+    {
+      "id": 2,
+      "filter": "Швейцария"
+    },
+    {
+      "id": 3,
+      "filter": "Китай"
+    },
+    {
+      "id": 4,
+      "filter": "Швеция"
+    }
   ],
   "premiumCountriesFilter": [
-    { "id": 1, "filter": "Китай" },
-    { "id": 2, "filter": "Швейцария" }
+    {
+      "id": 1,
+      "filter": "Китай"
+    },
+    {
+      "id": 2,
+      "filter": "Швейцария"
+    }
   ],
   "mainCity": [
-    { "id": 1, "city": "Москва" }
+    {
+      "id": 4,
+      "city": "Владивосток"
+    }
   ],
   "cities": [
     {

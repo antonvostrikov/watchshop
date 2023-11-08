@@ -24,8 +24,6 @@ const Watches:React.FC = () => {
   const [minPrice, setMinPrice] = React.useState(0)
   const [maxPrice, setMaxPrice] = React.useState(0)
 
-  console.log(minPrice, maxPrice)
-
   const { watches, status } = useAppSelector(state => state.watches)
 
   const order = sortMain.sortProperty.includes('-') ? 'desc' : 'asc'
