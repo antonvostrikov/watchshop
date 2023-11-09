@@ -9,13 +9,29 @@ import { getBrandWatches } from '../redux/slices/getWatchesSlice'
 import FilterItemsProduct from '../components/FilterItems/FIlterItemsProduct'
 
 const Casio:React.FC = () => {
+  const [sexFilter, setSexFilter] = React.useState([])
+  const [sortMain, setSortMain] = React.useState({ "name": "По популярности", "sortProperty": "rating" })
+  const [sortItems, setSortItems] = React.useState([
+    { "name": "По популярности", "sortProperty": "rating" },
+    { "name": "От дорогих к дешевым", "sortProperty": "-price" },
+    { "name": "От дешевых к дорогим", "sortProperty": "price" }
+  ])
+  const [minPrice, setMinPrice] = React.useState(0)
+  const [maxPrice, setMaxPrice] = React.useState(0)
+
   const dispatch = useAppDispatch()
 
+  const brandPage = 'Casio'
+
+  const sortBy = sortMain.sortProperty.replace('-', '')
+  const order = sortMain.sortProperty.includes('-') ? 'desc' : 'asc'
+
   React.useEffect(() => {
-    dispatch(getBrandWatches('Casio'))
-  }, [])
+    dispatch(getBrandWatches({ brandPage, sexFilter, minPrice, maxPrice, sortBy, order }))
+  }, [sexFilter, minPrice, maxPrice, sortBy, order])
 
   const { brand, status } = useAppSelector(state => state.watches)
+  const { sexSort } = useAppSelector(state => state.filter)
 
   return (
     <>
@@ -26,7 +42,16 @@ const Casio:React.FC = () => {
             <div className="wrapper-watches__title">
               <h1>Casio</h1>
             </div>
-            <FilterItemsProduct />
+            <FilterItemsProduct 
+              sex={sexSort}
+              sexFilters={sexFilter}
+              sexFiltersHandler={setSexFilter}
+              sort={sortItems}
+              sortMain={sortMain}
+              sortMainHandler={setSortMain}
+              minPriceHandler={setMinPrice}
+              maxPriceHandler={setMaxPrice}
+            />
             <WatchBlock watches={brand} status={status}/>
           </div>       
         </div>

@@ -24,9 +24,7 @@ const Header: React.FC = () => {
   const onClickClosePopup = () => {
     setEnterPopup(false)
   }
-  
-  const { cities, mainCity } = useAppSelector(state => state.cities)
-  console.log(mainCity)
+ 
   return (
     <header className="header-top" >
       <div className="header-top__connection">
@@ -44,10 +42,10 @@ const Header: React.FC = () => {
         <div className="container">
           <div className="header-top__location">
             <Dropdown>
-              <DropdownButton>{mainCity.map(city => city.city)} <img src={CityArrowSvg} alt="Город"/></DropdownButton>
+              <DropdownButton>Москва <img src={CityArrowSvg} alt="Город"/></DropdownButton>
               <DropdownContent>
                 <DropdownList>
-                  { cities.map(city => <DropdownItemCity id={city.id} city={city.city} />) }
+                
                 </DropdownList>
               </DropdownContent> 
             </Dropdown>

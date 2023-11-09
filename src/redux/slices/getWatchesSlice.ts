@@ -56,6 +56,15 @@ type RequireAllWatches = {
   maxPrice: number
 }
 
+type RequireBrandWatches = {
+  brandPage: string
+  sexFilter: Filter[]
+  minPrice: number
+  maxPrice: number
+  sortBy: string
+  order: string
+}
+
 export const getAllWatches = createAsyncThunk<Watch[], RequireAllWatches, { state: RootState }>(
   'watches/getAllWatches',
   async (params) => {
@@ -114,11 +123,21 @@ export const getPremiumWatches = createAsyncThunk<Watch[], RequireAllWatches>(
   }
 )
 
-export const getBrandWatches = createAsyncThunk<Watch[], string>(
+export const getBrandWatches = createAsyncThunk<Watch[], RequireBrandWatches>(
   'watches/getBrandWatches', 
-  async (brand) => {
+  async (params) => {
+    const { brandPage, sexFilter, minPrice, maxPrice, sortBy, order } = params
+
+    const sexList: string[] = []
+
+    sexFilter.map(sex => sexList.push(sex.filter))
+
+    const sex = sexList.length === 0 ? '' : `&sex=${sexList.join('&sex=')}`
+    const min = minPrice === 0 ? '' : `&price_gte=${minPrice}`
+    const max = maxPrice === 0 ? '' : `&price_lte=${maxPrice}`
+
     try {
-      const { data } = await axios.get(`http://localhost:3001/wristWatches?brand=${brand}`)
+      const { data } = await axios.get(`http://localhost:3001/wristWatches?brand=${brandPage}${sex}&_sort=${sortBy}&_order=${order}${min}${max}`)
 
       return data
     } catch (e) {

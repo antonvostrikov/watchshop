@@ -20,10 +20,18 @@ type imageSlider = {
 
 type WatchProduct = {
   id: number
-  imageUrl: string
-  name: string
   sex: string
+  brand: string
+  name: string
   price: number
+  country: string
+  model: string
+  type: string
+  dial: string
+  band: string
+  waterproof: string
+  dimensions: string
+  imageUrl: string
   description: string
   sliderImages: imageSlider[]
 }
@@ -112,8 +120,34 @@ const Product:React.FC = () => {
             <div className="product-description__title">
               <h3>Описание</h3>
             </div>
-            <div className="product-description__text">
-              <p>{watch.description}</p>
+            <div className="product-description__section">
+              <div className="product-description__text">
+                <p>{watch.description}</p>
+              </div>
+              <div className="product-description__characteristics">
+                <div className="product-description__row-list">
+                  <ul className="description-list">
+                    <li>Артикул/модель</li>
+                    <li>Страна</li>
+                    <li>Тип механизма</li>
+                    <li>Циферблат</li>
+                    <li>Браслет</li>
+                    <li>Водозащита</li>
+                    <li>Габаритные размеры</li>
+                  </ul>
+                </div>
+                <div className="product-description__row-list">
+                  <ul className="description-list">
+                    <li>{watch.model}</li>
+                    <li>{watch.country}</li>
+                    <li>{watch.type}</li>
+                    <li>{watch.band}</li>
+                    <li>{watch.dial}</li>
+                    <li>{watch.waterproof}</li>
+                    <li>{watch.dimensions}</li>
+                  </ul>
+                </div>
+              </div>
             </div>
           </div>
         </div>

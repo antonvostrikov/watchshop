@@ -86,13 +86,37 @@
         font-size: 22px;
       }
     }
-    .product-description__text {
-      p {
-        font-family: $OpenSans;
-        font-size: 16px;
-        font-weight: 400;
-        line-height: 27px;
+    .product-description__section {
+      display: flex;
+      justify-content: space-between;
+      .product-description__text {
+        padding: 0 20px 0 0;
+        max-width: 600px;
+        p {
+          font-family: $OpenSans;
+          font-size: 16px;
+          font-weight: 400;
+          line-height: 27px;
+        }
+      }
+      .product-description__characteristics {
+        display: flex;
+        max-width: 400px;
+        .product-description__row-list {
+          &:first-child {
+            margin: 0 60px 0 0;
+          }
+          .description-list {
+            list-style: none;
+            li {
+              font-size: 16px;
+              font-family: $OpenSans;
+              margin: 0 0 15px 0;
+            }
+          }
+        }
       }
     }
+    
   }
 }

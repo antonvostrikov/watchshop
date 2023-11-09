@@ -193,8 +193,23 @@
       "rating": 2
     }
   ],
-  "cart": [],
-  "favorite": [],
+  "cart": [
+    {
+      "id": 6,
+      "imageUrl": "https://www.alltime.ru/obj/catalog/watch/titoni/img/big/797-S-697.jpg",
+      "name": "Швейцарские механические наручные часы Titoni 797-S-697",
+      "sum": 1,
+      "price": 115310
+    }
+  ],
+  "favorite": [
+    {
+      "id": 6,
+      "imageUrl": "https://www.alltime.ru/obj/catalog/watch/titoni/img/big/797-S-697.jpg",
+      "name": "Швейцарские механические наручные часы Titoni 797-S-697",
+      "price": 115310
+    }
+  ],
   "wristBrandsFilter": [
     {
       "id": 1,
