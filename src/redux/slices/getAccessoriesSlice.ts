@@ -5,6 +5,7 @@ type AccessoriesName = {
   id: number
   name: string
   type: string
+  count: number
 }
 
 type AccessoriesState = {

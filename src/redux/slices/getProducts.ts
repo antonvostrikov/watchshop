@@ -47,7 +47,7 @@ type RequireAllWatches = {
   brandPage?: string
   brandsFilter?: Filter[]
   countriesFilter?: Filter[]
-  sexFilter: Filter[]
+  sexFilter?: Filter[]
   sortBy: string
   order: string
   minPrice: number
@@ -65,11 +65,11 @@ export const getProducts = createAsyncThunk<Watch[], RequireAllWatches>(
 
     brandsFilter && brandsFilter.map(brand => brandsList.push(brand.filter))
     countriesFilter && countriesFilter.map(country => countriesList.push(country.filter))
-    sexFilter.map(sex => sexList.push(sex.filter))
+    sexFilter && sexFilter.map(sex => sexList.push(sex.filter))
     
     const brand = brandsList.length === 0 ? '' : `&brand=${brandsList.join('&brand=')}`
     const country = countriesList.length === 0 ? '' : `&country=${countriesList.join('&country=')}`
-    const sex = sexFilter.length === 0 ? '' : `&sex=${sexList.join('&sex=')}`
+    const sex = sexList.length === 0 ? '' : `&sex=${sexList.join('&sex=')}`
     const min = minPrice === 0 ? '' : `&price_gte=${minPrice}`
     const max = maxPrice === 0 ? '' : `&price_lte=${maxPrice}`
     
@@ -90,7 +90,7 @@ const getWatchesSlice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(getProducts.fulfilled, (state, action) => {
       state.products = action.payload
-      state.status = "fulfilled"
+      state.status = "fulfielled"
     })
     builder.addCase(getProducts.pending, (state) => {
       state.products = []

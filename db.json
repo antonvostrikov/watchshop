@@ -252,12 +252,14 @@
     {
       "id": 1,
       "name": "Ремни",
-      "type": "belts"
+      "type": "belts",
+      "count": 3
     },
     {
       "id": 2,
       "name": "Чехлы",
-      "type": "covers"
+      "type": "covers",
+      "count": 1
     }
   ],
   "cart": [],
