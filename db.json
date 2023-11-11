@@ -1,5 +1,5 @@
 {
-  "wristWatches": [
+  "products": [
     {
       "id": 1,
       "sex": "Мужские",
@@ -15,7 +15,7 @@
       "band": "пластиковый",
       "waterproof": "200WR",
       "dimensions": "48,9x42,8мм, толщина 13,4мм, вес 60г",
-      "typeWatch": "default",
+      "categoryType": "default",
       "sliderImages": [
         {
           "img": "https://www.alltime.ru/obj/catalog/watch/casio/img/big/DW-5600BB-1E__1.jpg"
@@ -47,7 +47,7 @@
       "band": "стальной миланский с розовым PVD покрытием",
       "waterproof": "30WR",
       "dimensions": "48,9x42,8мм, толщина 13,4мм, вес 60г",
-      "typeWatch": "default",
+      "categoryType": "default",
       "sliderImages": [
         {
           "img": "https://www.alltime.ru/obj/catalog/watch/daniel-wellington/img/big/DW00100650.jpg"
@@ -79,7 +79,7 @@
       "band": "стальной",
       "waterproof": "100WR",
       "dimensions": "D 43,9мм",
-      "typeWatch": "default",
+      "categoryType": "default",
       "sliderImages": [
         {
           "img": "https://www.alltime.ru/obj/catalog/watch/seiko/img/big/SSB321P1.jpg"
@@ -111,7 +111,7 @@
       "band": "керамический",
       "waterproof": "30WR",
       "dimensions": "D 43мм, толщина 15,5мм, ширина браслета 20мм",
-      "typeWatch": "premium",
+      "categoryType": "premium",
       "sliderImages": [
         {
           "img": "https://www.alltime.ru/obj/catalog/watch/ciga-design/img/big/U032-WU01-W5W7W.jpg"
@@ -143,7 +143,7 @@
       "band": "каучуковый",
       "waterproof": "200WR",
       "dimensions": "D 43мм, толщина 15,8мм",
-      "typeWatch": "premium",
+      "categoryType": "premium",
       "sliderImages": [
         {
           "img": "https://www.alltime.ru/obj/catalog/watch/cuervo-y-sobrinos/img/big/2860-1BL.jpg"
@@ -175,7 +175,7 @@
       "band": "стальной 316L",
       "waterproof": "100WR",
       "dimensions": "D 40мм, толщина 11,45мм",
-      "typeWatch": "premium",
+      "categoryType": "premium",
       "sliderImages": [
         {
           "img": "https://www.alltime.ru/obj/catalog/watch/titoni/img/big/797-S-697.jpg"
@@ -191,23 +191,82 @@
         }
       ],
       "rating": 2
-    }
-  ],
-  "cart": [
+    },
     {
-      "id": 6,
-      "imageUrl": "https://www.alltime.ru/obj/catalog/watch/titoni/img/big/797-S-697.jpg",
-      "name": "Швейцарские механические наручные часы Titoni 797-S-697",
-      "sum": 1,
-      "price": 115310
+      "id": 7,
+      "sex": "Мужской",
+      "brand": "Piquadro",
+      "name": "Мужской кожаный ремень Piquadro CU6279W118/TM",
+      "price": 14200,
+      "imageUrl": "https://static.alltime.ru/obj/catalog/presents/piquadro/img/normal2020/CU6279W118-TM.jpg",
+      "description": "Мужской ремень из натуральной кожи.",
+      "model": "Piquadro CU6279W118/TM",
+      "material": "натуральная телячья кожа",
+      "color": "темно-коричневый",
+      "dimensions": "125x3,5см",
+      "categoryType": "belt"
+    },
+    {
+      "id": 8,
+      "sex": "Мужской",
+      "brand": "Piquadro",
+      "name": "Мужской кожаный ремень Piquadro CU2619B2/NBLU2",
+      "price": 17600,
+      "imageUrl": "https://static.alltime.ru/obj/catalog/presents/piquadro/img/big/CU2619B2-NBLU2.jpg",
+      "description": "Двухсторонний ремень с вращающейся стандартной пряжкой. Изготовлен из высококачественной телячьей кожи с голубой окантовкой.",
+      "model": "Piquadro CU2619B2/NBLU2",
+      "material": "натуральная телячья кожа",
+      "color": "синий, черный",
+      "dimensions": "175x3,5см, вес 190г",
+      "categoryType": "belt"
+    },
+    {
+      "id": 9,
+      "sex": "Женский",
+      "brand": "Piquadro",
+      "name": "Женский кожаный ремень Piquadro CU6179W92/R3",
+      "price": 11900,
+      "imageUrl": "https://static.alltime.ru/obj/catalog/presents/piquadro/img/big/CU6179W92-R3.jpg",
+      "description": "Ремень женский из коллекции Circle. Изготовлен из натуральной телячьей кожи.",
+      "model": "Piquadro CU6179W92/R3",
+      "material": "натуральная телячья кожа",
+      "color": "красный",
+      "dimensions": "110x2,5см, вес 95г",
+      "categoryType": "belt"
+    },
+    {
+      "id": 10,
+      "brand": "Montblanc",
+      "name": "Кожаный чехол Montblanc MB124128",
+      "price": 64120,
+      "imageUrl": "https://static.alltime.ru/obj/catalog/presents/montblanc/img/big/MB124128.jpg",
+      "description": "Чехол для планшетного компьютера из натуральной кожи синего цвета. Внутри: одно основное отделение для тонкого ноутбука или планшета, 3 отделения для кредитных карт, дополнительные карманы для блокнота и пишущих инструментов. Эмблема Montblanc, кольцо с палладиевым напылением.",
+      "model": "Montblanc MB124128",
+      "material": "натуральная кожа",
+      "color": "синий",
+      "dimensions": "20х23,5х2,5см",
+      "categoryType": "cover"
     }
   ],
+  "accessoriesName": [
+    {
+      "id": 1,
+      "name": "Ремни",
+      "type": "belts"
+    },
+    {
+      "id": 2,
+      "name": "Чехлы",
+      "type": "covers"
+    }
+  ],
+  "cart": [],
   "favorite": [
     {
-      "id": 6,
-      "imageUrl": "https://www.alltime.ru/obj/catalog/watch/titoni/img/big/797-S-697.jpg",
-      "name": "Швейцарские механические наручные часы Titoni 797-S-697",
-      "price": 115310
+      "id": 4,
+      "imageUrl": "https://www.alltime.ru/obj/catalog/watch/ciga-design/img/big/U032-WU01-W5W7W.jpg",
+      "price": 162010,
+      "name": "Механические керамические наручные часы CIGA Design U032-WU01-W5W7W"
     }
   ],
   "wristBrandsFilter": [

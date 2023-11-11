@@ -28,7 +28,7 @@ const Menu:React.FC = () => {
                 <Link to="/casio">casio</Link>
               </li>
               <li>
-                <Link to="/">аксессуары</Link>
+                <Link to="/accessories">аксессуары</Link>
               </li>
               <li>
                 <Link to="/">бренды</Link>

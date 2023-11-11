@@ -1,18 +1,20 @@
 import { configureStore } from "@reduxjs/toolkit";
 
-import getWatchesSlice from "./slices/getWatchesSlice";
 import cartSlice from "./slices/cartSlice";
 import favoriteSlice from "./slices/favoriteSlice";
 import citySlice from "./slices/citySlice";
 import filterSlice from "./slices/filterSlice";
+import getAccessoriesSlice from "./slices/getAccessoriesSlice";
+import getProducts from "./slices/getProducts";
 
 const store = configureStore({
   reducer: {
-    watches: getWatchesSlice,
+    products: getProducts,
     cart: cartSlice,
     favorite: favoriteSlice,
     cities: citySlice,
-    filter: filterSlice
+    filter: filterSlice,
+    accessories: getAccessoriesSlice
   }
 })
 

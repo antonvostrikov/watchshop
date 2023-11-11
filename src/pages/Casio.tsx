@@ -5,8 +5,8 @@ import WatchBlock from '../components/WatchBlock/WatchBlock'
 import Footer from '../components/Footer/Footer'
 
 import { useAppDispatch, useAppSelector } from '../hooks/hook'
-import { getBrandWatches } from '../redux/slices/getWatchesSlice'
 import FilterItemsProduct from '../components/FilterItems/FIlterItemsProduct'
+import { getProducts } from '../redux/slices/getProducts'
 
 const Casio:React.FC = () => {
   const [sexFilter, setSexFilter] = React.useState([])
@@ -18,6 +18,7 @@ const Casio:React.FC = () => {
   ])
   const [minPrice, setMinPrice] = React.useState(0)
   const [maxPrice, setMaxPrice] = React.useState(0)
+  const [brandsFilter, setBrandsFilter] = React.useState([{ id: 1, filter: 'Casio' }])
 
   const dispatch = useAppDispatch()
 
@@ -27,10 +28,10 @@ const Casio:React.FC = () => {
   const order = sortMain.sortProperty.includes('-') ? 'desc' : 'asc'
 
   React.useEffect(() => {
-    dispatch(getBrandWatches({ brandPage, sexFilter, minPrice, maxPrice, sortBy, order }))
+    dispatch(getProducts({ brandsFilter, sexFilter, minPrice, maxPrice, sortBy, order }))
   }, [sexFilter, minPrice, maxPrice, sortBy, order])
 
-  const { brand, status } = useAppSelector(state => state.watches)
+  const { products, status } = useAppSelector(state => state.products)
   const { sexSort } = useAppSelector(state => state.filter)
 
   return (
@@ -52,7 +53,7 @@ const Casio:React.FC = () => {
               minPriceHandler={setMinPrice}
               maxPriceHandler={setMaxPrice}
             />
-            <WatchBlock watches={brand} status={status}/>
+            <WatchBlock watches={products} status={status} />
           </div>       
         </div>
       </section>

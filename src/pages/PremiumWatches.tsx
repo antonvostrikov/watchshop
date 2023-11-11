@@ -6,7 +6,7 @@ import FilterItems from "../components/FilterItems/FilterItems";
 import WatchBlock from "../components/WatchBlock/WatchBlock";
 
 import { useAppDispatch, useAppSelector } from "../hooks/hook";
-import { getPremiumWatches } from "../redux/slices/getWatchesSlice";
+import { getProducts } from "../redux/slices/getProducts";
 import { getPremiumBrandsFilter, getPremiumCountriesFilter } from "../redux/slices/filterSlice";
 
 const PremiumWatches: React.FC = () => { 
@@ -28,13 +28,15 @@ const PremiumWatches: React.FC = () => {
   const sortBy = sortMain.sortProperty.replace('-', '')
 
   React.useEffect(() => {
-    dispatch(getPremiumWatches({ brandsFilter, countriesFilter, sexFilter, sortBy, order, minPrice, maxPrice }))
+    dispatch(getProducts({ brandsFilter, countriesFilter, sexFilter, sortBy, order, minPrice, maxPrice }))
     dispatch(getPremiumBrandsFilter())
     dispatch(getPremiumCountriesFilter())
   }, [brandsFilter, countriesFilter, sexFilter, sortBy, order, minPrice, maxPrice])
 
-  const { premiumWatches, status } = useAppSelector(state => state.watches)
+  const { products, status } = useAppSelector(state => state.products)
   const { premiumBrandsFilter, premiumCountriesFilter, sexSort } = useAppSelector(state => state.filter)
+
+  const productsPremium = products.filter(product => product.categoryType === 'premium')
 
   return (
     <>
@@ -63,7 +65,7 @@ const PremiumWatches: React.FC = () => {
               minPriceHandler={setMinPrice}
               maxPriceHandler={setMaxPrice}
             />
-            <WatchBlock watches={premiumWatches} status={status}/>
+            <WatchBlock watches={productsPremium} status={status}/>
           </div>       
         </div>
       </section>

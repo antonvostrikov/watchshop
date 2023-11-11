@@ -14,6 +14,9 @@ import Cart from './pages/Cart';
 import Favorite from './pages/Favorite';
 import Casio from './pages/Casio';
 import Titoni from './pages/Titoni';
+import Accessories from './pages/Accessories';
+import Belts from './pages/Belts';
+import Covers from './pages/Covers';
 
 const App:React.FC = () => {
   const dispatch = useAppDispatch()
@@ -34,6 +37,9 @@ const App:React.FC = () => {
         <Route path="cart" element={<Cart />} />
         <Route path="casio" element={<Casio />} />
         <Route path="titoni" element={<Titoni />} />
+        <Route path="accessories" element={<Accessories />} />
+        <Route path="accessories/belts" element={<Belts />} />
+        <Route path="accessories/covers" element={<Covers />} />
       </Routes>
     </div>
   )

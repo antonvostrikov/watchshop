@@ -11,22 +11,24 @@ type imageSlider = {
 }
 
 type Watch = {
-  id: number,
-  sex: string,
-  name: string,
-  price: number,
-  imageUrl: string,
-  description: string,
-  country: string,
-  model: string,
-  type: string,
-  dial: string,
-  band: string,
-  waterproof: string,
-  dimensions: string,
-  typeWatch: string,
-  sliderImages: imageSlider[],
-  rating: number
+  id: number
+  sex?: string
+  name: string
+  price: number
+  imageUrl: string
+  description: string
+  country?: string
+  model: string
+  type?: string
+  dial?: string
+  band?: string
+  waterproof?: string
+  dimensions: string
+  typeWatch?: string
+  sliderImages?: imageSlider[]
+  rating?: number
+  color?: string
+  material?: string
 }
 
 type Products = {

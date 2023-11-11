@@ -21,13 +21,15 @@ body {
   margin: 0 auto;
 }
 
-.container-watches {
+.container-watches,
+.container-accessories {
   max-width: 1150px;
   padding: 0 15px;
   margin: 0 auto;
 }
 
-.wrapper-watches {
+.wrapper-watches,
+.wrapper-accessories {
   border-top: 1px solid #979797;
   padding: 100px 0 0 0;
   &__title {
@@ -57,4 +59,5 @@ body {
 @import "./styles/Favorite.scss";
 @import "./styles/Enter.scss";
 @import "./styles/CartEmpty.scss";
-@import './styles/Dropdown.scss'
+@import './styles/Dropdown.scss';
+@import './styles/Accessories.scss';

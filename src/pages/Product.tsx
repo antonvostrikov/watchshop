@@ -73,7 +73,7 @@ const Product:React.FC = () => {
   React.useEffect(() => {
     async function getWatch() {
       try {
-        const { data } = await axios.get('http://localhost:3001/wristWatches/' + id)
+        const { data } = await axios.get('http://localhost:3001/products/' + id)
 
         setWatch(data)
       } catch (e) {

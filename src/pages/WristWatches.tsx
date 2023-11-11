@@ -6,7 +6,7 @@ import WatchBlock from '../components/WatchBlock/WatchBlock'
 import Footer from '../components/Footer/Footer'
 
 import { useAppDispatch, useAppSelector } from '../hooks/hook'
-import { getAllWatches } from '../redux/slices/getWatchesSlice'
+import { getProducts } from '../redux/slices/getProducts'
 import { getWristBrandsFilter, getWristCountriesFilter } from '../redux/slices/filterSlice'
 
 const Watches:React.FC = () => {
@@ -24,19 +24,21 @@ const Watches:React.FC = () => {
   const [minPrice, setMinPrice] = React.useState(0)
   const [maxPrice, setMaxPrice] = React.useState(0)
 
-  const { watches, status } = useAppSelector(state => state.watches)
 
   const order = sortMain.sortProperty.includes('-') ? 'desc' : 'asc'
   const sortBy = sortMain.sortProperty.replace('-', '')
 
   React.useEffect(() => {
-    dispatch(getAllWatches({ brandsFilter, countriesFilter, sexFilter, sortBy, order, minPrice, maxPrice }))
+    dispatch(getProducts({ brandsFilter, countriesFilter, sexFilter, sortBy, order, minPrice, maxPrice }))
     dispatch(getWristBrandsFilter())
     dispatch(getWristCountriesFilter())
   }, [brandsFilter, countriesFilter, sexFilter, sortBy, order, minPrice, maxPrice])
 
   const { wristBrandsFilter, wristCountriesFilter, sexSort } = useAppSelector(state => state.filter)
-  
+  const { products, status } = useAppSelector(state => state.products)
+
+  const productsWrist = products.filter(product => product.categoryType === 'default' || product.categoryType === 'premium')
+
   return (
     <>
     <Menu />
@@ -64,7 +66,7 @@ const Watches:React.FC = () => {
               minPriceHandler={setMinPrice}
               maxPriceHandler={setMaxPrice}
             />
-            <WatchBlock watches={watches} status={status}/>
+            <WatchBlock watches={productsWrist} status={status}/>
           </div>       
         </div>
       </section>
