@@ -6,7 +6,7 @@ import WatchBlock from '../components/WatchBlock/WatchBlock'
 import Footer from '../components/Footer/Footer'
 
 import { useAppDispatch, useAppSelector } from '../hooks/hook'
-import { getProducts } from '../redux/slices/getProducts'
+import { getProducts } from '../redux/slices/getProductsSlice'
 import { getWristBrandsFilter, getWristCountriesFilter } from '../redux/slices/filterSlice'
 
 const Watches:React.FC = () => {

@@ -6,7 +6,7 @@ import Footer from '../components/Footer/Footer'
 
 import { useAppDispatch, useAppSelector } from '../hooks/hook'
 import FilterItemsProduct from '../components/FilterItems/FIlterItemsProduct'
-import { getProducts } from '../redux/slices/getProducts'
+import { getProducts } from '../redux/slices/getProductsSlice'
 
 const Casio:React.FC = () => {
   const [sexFilter, setSexFilter] = React.useState([])

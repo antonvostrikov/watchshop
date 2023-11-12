@@ -5,7 +5,7 @@ import WatchBlock from '../components/WatchBlock/WatchBlock'
 import Footer from '../components/Footer/Footer'
 
 import { useAppDispatch, useAppSelector } from '../hooks/hook'
-import { getProducts } from '../redux/slices/getProducts'
+import { getProducts } from '../redux/slices/getProductsSlice'
 import FilterItemsProduct from '../components/FilterItems/FIlterItemsProduct'
 
 const Titoni:React.FC = () => {

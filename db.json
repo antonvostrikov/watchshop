@@ -204,7 +204,15 @@
       "material": "натуральная телячья кожа",
       "color": "темно-коричневый",
       "dimensions": "125x3,5см",
-      "categoryType": "belt"
+      "categoryType": "belt",
+      "sliderImages": [
+        {
+          "img": "https://static.alltime.ru/obj/catalog/presents/piquadro/img/normal2020/CU6279W118-TM.jpg"
+        },
+        {
+          "img": "https://static.alltime.ru/obj/catalog/presents/piquadro/img/big/CU6279W118-TM__1.jpg"
+        }
+      ]
     },
     {
       "id": 8,
@@ -218,7 +226,18 @@
       "material": "натуральная телячья кожа",
       "color": "синий, черный",
       "dimensions": "175x3,5см, вес 190г",
-      "categoryType": "belt"
+      "categoryType": "belt",
+      "sliderImages": [
+        {
+          "img": "https://static.alltime.ru/obj/catalog/presents/piquadro/img/big/CU2619B2-NBLU2.jpg"
+        },
+        {
+          "img": "https://static.alltime.ru/obj/catalog/presents/piquadro/img/big/CU2619B2-NBLU2__1.jpg"
+        },
+        {
+          "img": "https://static.alltime.ru/obj/catalog/presents/piquadro/img/big/CU2619B2-NBLU2__2.jpg"
+        }
+      ]
     },
     {
       "id": 9,
@@ -232,10 +251,19 @@
       "material": "натуральная телячья кожа",
       "color": "красный",
       "dimensions": "110x2,5см, вес 95г",
-      "categoryType": "belt"
+      "categoryType": "belt",
+      "sliderImages": [
+        {
+          "img": "https://static.alltime.ru/obj/catalog/presents/piquadro/img/big/CU6179W92-R3.jpg"
+        },
+        {
+          "img": "https://static.alltime.ru/obj/catalog/presents/piquadro/img/big/CU6179W92-R3__1.jpg"
+        }
+      ]
     },
     {
       "id": 10,
+      "sex": "Мужской",
       "brand": "Montblanc",
       "name": "Кожаный чехол Montblanc MB124128",
       "price": 64120,
@@ -245,7 +273,15 @@
       "material": "натуральная кожа",
       "color": "синий",
       "dimensions": "20х23,5х2,5см",
-      "categoryType": "cover"
+      "categoryType": "cover",
+      "sliderImages": [
+        {
+          "img": "https://static.alltime.ru/obj/catalog/presents/montblanc/img/big/MB124128.jpg"
+        },
+        {
+          "img": "https://static.alltime.ru/obj/catalog/presents/montblanc/img/big/MB124128__1.jpg"
+        }
+      ]
     }
   ],
   "accessoriesName": [

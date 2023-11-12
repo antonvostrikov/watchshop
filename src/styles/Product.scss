@@ -90,7 +90,7 @@
       display: flex;
       justify-content: space-between;
       .product-description__text {
-        padding: 0 20px 0 0;
+        padding: 0 130px 0 0;
         max-width: 600px;
         p {
           font-family: $OpenSans;
@@ -100,19 +100,18 @@
         }
       }
       .product-description__characteristics {
-        display: flex;
-        max-width: 400px;
-        .product-description__row-list {
-          &:first-child {
-            margin: 0 60px 0 0;
+        dl {
+          dt {
+            float: left;
+            clear: both;
+            width: 200px;
+            font-family: $OpenSans;
+            margin: 0 0 15px 0;
           }
-          .description-list {
-            list-style: none;
-            li {
-              font-size: 16px;
-              font-family: $OpenSans;
-              margin: 0 0 15px 0;
-            }
+          dd {
+            display: flex;
+            font-family: $OpenSans;
+            margin: 0 0 15px 0;
           }
         }
       }

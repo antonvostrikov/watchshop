@@ -5,11 +5,11 @@ import favoriteSlice from "./slices/favoriteSlice";
 import citySlice from "./slices/citySlice";
 import filterSlice from "./slices/filterSlice";
 import getAccessoriesSlice from "./slices/getAccessoriesSlice";
-import getProducts from "./slices/getProducts";
+import getProductsSlice from "./slices/getProductsSlice";
 
 const store = configureStore({
   reducer: {
-    products: getProducts,
+    products: getProductsSlice,
     cart: cartSlice,
     favorite: favoriteSlice,
     cities: citySlice,

@@ -6,7 +6,7 @@ import FilterItems from "../components/FilterItems/FilterItems";
 import WatchBlock from "../components/WatchBlock/WatchBlock";
 
 import { useAppDispatch, useAppSelector } from "../hooks/hook";
-import { getProducts } from "../redux/slices/getProducts";
+import { getProducts } from "../redux/slices/getProductsSlice";
 import { getPremiumBrandsFilter, getPremiumCountriesFilter } from "../redux/slices/filterSlice";
 
 const PremiumWatches: React.FC = () => { 

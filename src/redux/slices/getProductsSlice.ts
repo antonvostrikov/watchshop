@@ -6,7 +6,7 @@ type imageSlider = {
   img: string
 }
 
-type Watch = {
+type Product = {
   id: number
   sex: string
   brand: string
@@ -22,14 +22,15 @@ type Watch = {
   waterproof?: string
   dimensions: string
   categoryType: string
-  sliderImages?: imageSlider[],
+  sliderImages: imageSlider[],
   rating?: number
   color?: string
   material?: string
 }
 
 type Watches = {
-  products: Watch[]
+  products: Product[]
+  product: Product[]
   status: string
 }
 
@@ -40,6 +41,7 @@ type Filter = {
 
 const initialState: Watches = {
   products: [],
+  product: [],
   status: "pending"
 }
 
@@ -54,8 +56,8 @@ type RequireAllWatches = {
   maxPrice: number
 }
 
-export const getProducts = createAsyncThunk<Watch[], RequireAllWatches>(
-  'watches/getProducts',
+export const getProducts = createAsyncThunk<Product[], RequireAllWatches>(
+  'products/getProducts',
   async (params) => {
     const { brandsFilter, countriesFilter, sexFilter, sortBy, order, minPrice, maxPrice } = params
 
@@ -83,14 +85,27 @@ export const getProducts = createAsyncThunk<Watch[], RequireAllWatches>(
   }
 )
 
-const getWatchesSlice = createSlice({
+export const getProduct = createAsyncThunk<Product, number>(
+  'produts/getProducts',
+  async (id) => {
+    try {
+      const { data } = await axios.get(`http://localhost:3001/products/${id}`)
+
+      return data
+    } catch (e) {
+      console.log(e)
+    }
+  }
+)
+
+const getProductsSlice = createSlice({
   initialState,
-  name: "watches",
+  name: "products",
   reducers: {},
   extraReducers: (builder) => {
     builder.addCase(getProducts.fulfilled, (state, action) => {
       state.products = action.payload
-      state.status = "fulfielled"
+      state.status = "fulfilled"
     })
     builder.addCase(getProducts.pending, (state) => {
       state.products = []
@@ -100,7 +115,11 @@ const getWatchesSlice = createSlice({
       state.products = []
       state.status = "rejected"
     }) 
+    builder.addCase(getProduct.fulfilled, (state, action) => {
+      state.product = []
+      state.product.push(action.payload)
+    })
   }
 })
 
-export default getWatchesSlice.reducer
+export default getProductsSlice.reducer

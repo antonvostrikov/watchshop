@@ -3,7 +3,7 @@ import Footer from '../components/Footer/Footer'
 import Menu from '../components/Menu/Menu'
 import WatchBlock from '../components/WatchBlock/WatchBlock'
 import { useAppDispatch, useAppSelector } from '../hooks/hook'
-import { getProducts } from '../redux/slices/getProducts'
+import { getProducts } from '../redux/slices/getProductsSlice'
 
 const Covers:React.FC = () => {
   const dispatch = useAppDispatch()
