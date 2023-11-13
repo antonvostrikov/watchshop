@@ -23,7 +23,7 @@ type Watch = {
   dial?: string
   band?: string
   waterproof?: string
-  dimensions: string
+  dimensions?: string
   typeWatch?: string
   sliderImages?: imageSlider[]
   rating?: number

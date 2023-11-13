@@ -20,7 +20,7 @@ type Product = {
   dial?: string
   band?: string
   waterproof?: string
-  dimensions: string
+  dimensions?: string
   categoryType: string
   sliderImages: imageSlider[],
   rating?: number

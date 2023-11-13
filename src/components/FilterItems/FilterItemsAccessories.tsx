@@ -1,14 +1,12 @@
 import React from 'react'
 
-import { useAppSelector } from '../../hooks/hook'
-
 import Dropdown from '../Dropdown/Dropdown'
 import DropdownButton from '../Dropdown/DropdownButton'
 import DropdownContent from '../Dropdown/DropdownContent'
 import DropdownList from '../Dropdown/DropdownList'
 import DropdownItem from '../Dropdown/DropdownItem'
-import DropdownItemPrice from '../Dropdown/DropdownItemPrice'
 import DropdownItemSet from '../Dropdown/DropdownItemSet'
+import DropdownItemPrice from '../Dropdown/DropdownItemPrice'
 
 import FilterArrow from '../../ímg/arrow-sort.svg'
 
@@ -26,6 +24,12 @@ type Filter = {
   sex: FilterItems[]
   sexFilters: FilterItems[]
   sexFiltersHandler: (sexFilters: any) => void
+  brandsFilter: FilterItems[]
+  brandsFilterHandler: (brandsFilter: any) => void
+  materialsFilter: FilterItems[]
+  materialsFilterHandler: (materialsFilter: any) => void
+  colorsFilter: FilterItems[]
+  colorsFilterHandler: (colorsFilter: any) => void 
   sort: SortItems[]
   sortMain: SortItems
   sortMainHandler: (sort: any) => void
@@ -33,15 +37,21 @@ type Filter = {
   maxPriceHandler: (maxPrice: number) => void
 }
 
-const FilterItemsProduct:React.FC<Filter> = ({ 
+const FilterItemsAccessories:React.FC<Filter> = ({
   sex, 
   sexFilters, 
   sexFiltersHandler,
+  brandsFilter,
+  brandsFilterHandler,
+  materialsFilter,
+  materialsFilterHandler,
+  colorsFilter,
+  colorsFilterHandler,
   sort, 
   sortMain,
   sortMainHandler,
   minPriceHandler,
-  maxPriceHandler 
+  maxPriceHandler
   }) => {
 
   return (
@@ -70,6 +80,21 @@ const FilterItemsProduct:React.FC<Filter> = ({
             </DropdownContent>
           </Dropdown>
         </div>
+        <div className="category-item">
+        <Dropdown>
+            <DropdownButton>Материал</DropdownButton>
+            <DropdownContent>
+              <DropdownList>
+                { sex.map(s => <DropdownItem
+                  filterList={materialsFilter}
+                  filterHandler={materialsFilterHandler}
+                  filter={s.filter}
+                  filterID={s.id}
+                ></DropdownItem>) }
+              </DropdownList>
+            </DropdownContent>
+          </Dropdown>
+        </div>
       </div>
       <div className="filter-toolbar__sort">
         <Dropdown className={'dropdown-right'}>
@@ -91,4 +116,4 @@ const FilterItemsProduct:React.FC<Filter> = ({
   )
 }
 
-export default FilterItemsProduct
+export default FilterItemsAccessories

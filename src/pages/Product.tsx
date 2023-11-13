@@ -26,7 +26,7 @@ const Product:React.FC = () => {
   }, [])
 
   const { product } = useAppSelector(state => state.products)
-  
+
   return (
     <>
       <Menu />

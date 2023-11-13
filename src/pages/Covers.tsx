@@ -4,11 +4,15 @@ import Menu from '../components/Menu/Menu'
 import WatchBlock from '../components/WatchBlock/WatchBlock'
 import { useAppDispatch, useAppSelector } from '../hooks/hook'
 import { getProducts } from '../redux/slices/getProductsSlice'
+import FilterItemsAccessories from '../components/FilterItems/FilterItemsAccessories'
 
 const Covers:React.FC = () => {
   const dispatch = useAppDispatch()
 
+  const [sexFilter, setSexFilter] = React.useState([])
   const [brandsFilter, setBrandsFilter] = React.useState([])
+  const [colorsFilter, setColorsFilter] = React.useState([])
+  const [materialsFilter, setMaterialsFilter] = React.useState([])
   const [sortMain, setSortMain] = React.useState({ "name": "По популярности", "sortProperty": "rating" })
   const [sortItems, setSortItems] = React.useState([
     { "name": "По популярности", "sortProperty": "rating" },
@@ -26,9 +30,10 @@ const Covers:React.FC = () => {
   }, [])
 
   const { products, status } = useAppSelector(state => state.products)
+  const { sexSort } = useAppSelector(state => state.filter)
 
   const accessoriesProducts = products.filter(product => product.categoryType === 'cover')
-  console.log(accessoriesProducts)
+ 
   return (
     <>
       <Menu />
@@ -38,6 +43,22 @@ const Covers:React.FC = () => {
             <div className="wrapper-watches__title">
               <h1>Чехлы</h1>
             </div>
+            <FilterItemsAccessories 
+              sex={sexSort}
+              sexFilters={sexFilter}
+              sexFiltersHandler={setSexFilter}
+              brandsFilter={brandsFilter}
+              brandsFilterHandler={setBrandsFilter}
+              materialsFilter={materialsFilter}
+              materialsFilterHandler={setMaterialsFilter}
+              colorsFilter={colorsFilter}
+              colorsFilterHandler={setColorsFilter}
+              sort={sortItems}
+              sortMain={sortMain}
+              sortMainHandler={setSortMain}
+              minPriceHandler={setMinPrice}
+              maxPriceHandler={setMaxPrice}
+            />
             <WatchBlock watches={accessoriesProducts} status={status} />
           </div>
         </div>
