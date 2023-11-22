@@ -30,9 +30,6 @@ const Menu:React.FC = () => {
               <li>
                 <Link to="/accessories">аксессуары</Link>
               </li>
-              <li>
-                <Link to="/">бренды</Link>
-              </li>
             </ul>
           </nav>
         </div>

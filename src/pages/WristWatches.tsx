@@ -15,9 +15,9 @@ const Watches:React.FC = () => {
   const [brandsFilter, setBrandsFilter] = React.useState([])
   const [countriesFilter, setCountriesFilter] = React.useState([])
   const [sexFilter, setSexFilter] = React.useState([])
-  const [sortMain, setSortMain] = React.useState({ "name": "По популярности", "sortProperty": "rating" })
+  const [sortMain, setSortMain] = React.useState({ "name": "По популярности", "sortProperty": "-rating" })
   const [sortItems, setSortItems] = React.useState([
-    { "name": "По популярности", "sortProperty": "rating" },
+    { "name": "По популярности", "sortProperty": "-rating" },
     { "name": "От дорогих к дешевым", "sortProperty": "-price" },
     { "name": "От дешевых к дорогим", "sortProperty": "price" }
   ])
@@ -27,6 +27,8 @@ const Watches:React.FC = () => {
   const order = sortMain.sortProperty.includes('-') ? 'desc' : 'asc'
   const sortBy = sortMain.sortProperty.replace('-', '')
 
+  const { cart } = useAppSelector(state => state.cart)
+  
   React.useEffect(() => {
     dispatch(getProducts({ brandsFilter, countriesFilter, sexFilter, sortBy, order, minPrice, maxPrice }))
     dispatch(getWristBrandsFilter())

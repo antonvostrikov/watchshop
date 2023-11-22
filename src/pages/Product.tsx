@@ -1,6 +1,8 @@
 import React from 'react'
 import Menu from '../components/Menu/Menu'
 import Footer from '../components/Footer/Footer'
+import ProductAccessoriesList from '../components/ProductLists/ProductAccessoriesList'
+import ProductWatchesList from '../components/ProductLists/ProductWatchesList'
 
 import { useAppDispatch, useAppSelector } from '../hooks/hook'
 import { useNavigate, useParams } from 'react-router-dom'
@@ -10,9 +12,34 @@ import SliderProduct from '../components/SliderProduct/SliderProduct'
 
 import FavoriteSvg from '../ímg/heart.svg'
 import { getProduct } from '../redux/slices/getProductsSlice'
+import { addProductToCart } from '../redux/slices/cartSlice'
+import { addToFavorite } from '../redux/slices/favoriteSlice'
+
 
 type imageSlider = {
   img: string
+}
+
+type Product = {
+  id: number
+  sex: string
+  brand: string
+  name: string
+  price: number
+  imageUrl: string
+  description: string
+  country?: string
+  model: string
+  type?: string
+  dial?: string
+  band?: string
+  waterproof?: string
+  dimensions?: string
+  categoryType: string
+  sliderImages: imageSlider[],
+  rating?: number
+  color?: string
+  material?: string
 }
 
 const Product:React.FC = () => {
@@ -26,6 +53,47 @@ const Product:React.FC = () => {
   }, [])
 
   const { product } = useAppSelector(state => state.products)
+
+  const addToCartHandler = (item: Product) => {
+    const productToCart = {
+      id: Number(id),
+      imageUrl: item.imageUrl,
+      name: item.name,
+      sum: 1,
+      price: item.price
+    }
+
+    dispatch(addProductToCart(productToCart))
+  }
+
+  const addToFavoriteHandler = (item: Product) => {
+    const productToFavorite = {
+      id: Number(id),
+      imageUrl: item.imageUrl,
+      name: item.name,
+      sum: 1,
+      price: item.price
+    }
+
+    dispatch(addToFavorite(productToFavorite))
+  }
+
+  const renderListsProduct = (type: string, items: any) => {
+    switch (type) {
+      case 'premium':
+        return <ProductWatchesList {...items}/>
+        break
+      case 'default':
+        return <ProductWatchesList {...items}/>
+        break
+      case 'belt':
+        return <ProductAccessoriesList {...items} />
+        break
+      case 'cover':
+        return <ProductAccessoriesList {...items}/>
+        break     
+    }
+  }
 
   return (
     <>
@@ -52,8 +120,8 @@ const Product:React.FC = () => {
                   <span>{item.price}</span>
                 </div>
                 <div className="product-aside__buttons">
-                  <button className="add-cart">Добавить в корзину</button>
-                  <button className="add-favorite"><img src={FavoriteSvg} alt="" /></button>
+                  <button className="add-cart" onClick={() => addToCartHandler(item)}>Добавить в корзину</button>
+                  <button className="add-favorite" onClick={() => addToFavoriteHandler(item)}><img src={FavoriteSvg} alt="" /></button>
                 </div>
               </div>
             </div>
@@ -67,41 +135,7 @@ const Product:React.FC = () => {
                 </div>
                 <div className="product-description__characteristics">
                   <dl>
-                    
-                      { item.categoryType === 'default' || item.categoryType === 'premium' ? (
-                        <>
-                          <dt>Артикул/модель</dt>
-                          <dd>{item.model}</dd>
-                          <dt>Бренд</dt>
-                          <dd>{item.brand}</dd>
-                          <dt>Страна</dt>
-                          <dd>{item.country}</dd>
-                          <dt>Тип механизма</dt>
-                          <dd>{item.type}</dd>
-                          <dt>Циферблат</dt>
-                          <dd>{item.dial}</dd>
-                          <dt>Браслет</dt>
-                          <dd>{item.band}</dd>
-                          <dt>Водозащита</dt>
-                          <dd>{item.waterproof}</dd>
-                          <dt>Габаритные размеры</dt>
-                          <dd>{item.dimensions}</dd>
-                        </>
-                      ) : (
-                        <>
-                          <dt>Артикул/модель</dt>
-                          <dd>{item.model}</dd>
-                          <dt>Бренд</dt>
-                          <dd>{item.brand}</dd>
-                          <dt>Материал</dt>
-                          <dd>{item.material}</dd>
-                          <dt>Цвет</dt>
-                          <dd>{item.color}</dd>
-                          <dt>Габаритные размеры</dt>
-                          <dd>{item.dimensions}</dd>
-                        </>
-                      )}
-                    
+                    { renderListsProduct(item.categoryType, item) }
                   </dl>
                 </div>
               </div>

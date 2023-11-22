@@ -1,17 +1,23 @@
 import React from 'react'
 import Footer from '../components/Footer/Footer'
 import Menu from '../components/Menu/Menu'
-import { useAppDispatch, useAppSelector } from '../hooks/hook'
 import WatchBlock from '../components/WatchBlock/WatchBlock'
+import FilterItemsAccessories from '../components/FilterItems/FilterItemsAccessories'
+
+import { useAppDispatch, useAppSelector } from '../hooks/hook'
 import { getProducts } from '../redux/slices/getProductsSlice'
+import { getBrandsBeltsFilter, getColorsBeltsFilter, getMaterialsBeltsFilter } from '../redux/slices/filterSlice'
 
 const Belts:React.FC = () => {
   const dispatch = useAppDispatch()
 
+  const [sexFilter, setSexFilter] = React.useState([])
   const [brandsFilter, setBrandsFilter] = React.useState([])
-  const [sortMain, setSortMain] = React.useState({ "name": "По популярности", "sortProperty": "rating" })
+  const [colorsFilter, setColorsFilter] = React.useState([])
+  const [materialsFilter, setMaterialsFilter] = React.useState([])
+  const [sortMain, setSortMain] = React.useState({ "name": "По популярности", "sortProperty": "-rating" })
   const [sortItems, setSortItems] = React.useState([
-    { "name": "По популярности", "sortProperty": "rating" },
+    { "name": "По популярности", "sortProperty": "-rating" },
     { "name": "От дорогих к дешевым", "sortProperty": "-price" },
     { "name": "От дешевых к дорогим", "sortProperty": "price" }
   ])
@@ -22,13 +28,17 @@ const Belts:React.FC = () => {
   const sortBy = sortMain.sortProperty.replace('-', '')
 
   React.useEffect(() => {
-    dispatch(getProducts({ brandsFilter, sortBy, order, minPrice, maxPrice }))
-  }, [])
+    dispatch(getProducts({ brandsFilter, colorsFilter, materialsFilter, sortBy, order, minPrice, maxPrice, sexFilter }))
+    dispatch(getColorsBeltsFilter());
+    dispatch(getBrandsBeltsFilter());
+    dispatch(getMaterialsBeltsFilter());
+  }, [brandsFilter, colorsFilter, materialsFilter, sortBy, order, minPrice, maxPrice, sexFilter])
 
   const { products, status } = useAppSelector(state => state.products)
+  const { sexSortAccessories, beltsColorsFilter, beltsBrandsFilter, beltsMaterialsFilter } = useAppSelector(state => state.filter)
 
   const accessoriesProducts = products.filter(product => product.categoryType === 'belt')
-  console.log(accessoriesProducts)
+  
   return (
     <>
       <Menu />
@@ -38,6 +48,25 @@ const Belts:React.FC = () => {
             <div className="wrapper-watches__title">
               <h1>Ремни</h1>
             </div>
+            <FilterItemsAccessories 
+              sex={sexSortAccessories}
+              sexFilters={sexFilter}
+              sexFiltersHandler={setSexFilter}
+              brands={beltsBrandsFilter}
+              brandsFilter={brandsFilter}
+              brandsFilterHandler={setBrandsFilter}
+              materials={beltsMaterialsFilter}
+              materialsFilter={materialsFilter}
+              materialsFilterHandler={setMaterialsFilter}
+              colors={beltsColorsFilter}
+              colorsFilter={colorsFilter}
+              colorsFilterHandler={setColorsFilter}
+              sort={sortItems}
+              sortMain={sortMain}
+              sortMainHandler={setSortMain}
+              minPriceHandler={setMinPrice}
+              maxPriceHandler={setMaxPrice}
+            />
             <WatchBlock watches={accessoriesProducts} status={status} />
           </div>
         </div>

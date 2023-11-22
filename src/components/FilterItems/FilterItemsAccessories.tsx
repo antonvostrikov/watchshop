@@ -21,13 +21,16 @@ type SortItems = {
 }
 
 type Filter = {
-  sex: FilterItems[]
-  sexFilters: FilterItems[]
-  sexFiltersHandler: (sexFilters: any) => void
+  sex?: FilterItems[]
+  sexFilters?: FilterItems[]
+  sexFiltersHandler?: (sexFilters: any) => void
+  brands: FilterItems[]
   brandsFilter: FilterItems[]
   brandsFilterHandler: (brandsFilter: any) => void
+  materials: FilterItems[]
   materialsFilter: FilterItems[]
   materialsFilterHandler: (materialsFilter: any) => void
+  colors: FilterItems[]
   colorsFilter: FilterItems[]
   colorsFilterHandler: (colorsFilter: any) => void 
   sort: SortItems[]
@@ -41,10 +44,13 @@ const FilterItemsAccessories:React.FC<Filter> = ({
   sex, 
   sexFilters, 
   sexFiltersHandler,
+  brands,
   brandsFilter,
   brandsFilterHandler,
+  materials,
   materialsFilter,
   materialsFilterHandler,
+  colors,
   colorsFilter,
   colorsFilterHandler,
   sort, 
@@ -53,7 +59,7 @@ const FilterItemsAccessories:React.FC<Filter> = ({
   minPriceHandler,
   maxPriceHandler
   }) => {
-
+    
   return (
     <div className="filter-toolbar">
       <div className="filter-toolbar__category">
@@ -70,7 +76,7 @@ const FilterItemsAccessories:React.FC<Filter> = ({
             <DropdownButton>Пол</DropdownButton>
             <DropdownContent>
               <DropdownList>
-                { sex.map(s => <DropdownItem
+                { sex && sex.map(s => <DropdownItem
                   filterList={sexFilters}
                   filterHandler={sexFiltersHandler}
                   filter={s.filter}
@@ -81,11 +87,41 @@ const FilterItemsAccessories:React.FC<Filter> = ({
           </Dropdown>
         </div>
         <div className="category-item">
-        <Dropdown>
+          <Dropdown>
+            <DropdownButton>Бренд</DropdownButton>
+            <DropdownContent>
+              <DropdownList>
+                { brands.map(s => <DropdownItem
+                  filterList={brandsFilter}
+                  filterHandler={brandsFilterHandler}
+                  filter={s.filter}
+                  filterID={s.id}
+                ></DropdownItem>) }
+              </DropdownList>
+            </DropdownContent>
+          </Dropdown>
+        </div>
+        <div className="category-item">
+          <Dropdown>
+            <DropdownButton>Цвет</DropdownButton>
+            <DropdownContent>
+              <DropdownList>
+                { colors.map(s => <DropdownItem
+                  filterList={colorsFilter}
+                  filterHandler={colorsFilterHandler}
+                  filter={s.filter}
+                  filterID={s.id}
+                ></DropdownItem>) }
+              </DropdownList>
+            </DropdownContent>
+          </Dropdown>
+        </div>
+        <div className="category-item">
+          <Dropdown>
             <DropdownButton>Материал</DropdownButton>
             <DropdownContent>
               <DropdownList>
-                { sex.map(s => <DropdownItem
+                { materials.map(s => <DropdownItem
                   filterList={materialsFilter}
                   filterHandler={materialsFilterHandler}
                   filter={s.filter}

@@ -49,6 +49,8 @@ type RequireAllWatches = {
   brandPage?: string
   brandsFilter?: Filter[]
   countriesFilter?: Filter[]
+  colorsFilter?: Filter[]
+  materialsFilter?: Filter[]
   sexFilter?: Filter[]
   sortBy: string
   order: string
@@ -59,24 +61,30 @@ type RequireAllWatches = {
 export const getProducts = createAsyncThunk<Product[], RequireAllWatches>(
   'products/getProducts',
   async (params) => {
-    const { brandsFilter, countriesFilter, sexFilter, sortBy, order, minPrice, maxPrice } = params
+    const { brandsFilter, countriesFilter, colorsFilter, materialsFilter, sexFilter, sortBy, order, minPrice, maxPrice } = params
 
+    const materialsList: string[] = []
+    const colorsList: string[] = []
     const brandsList: string[] = []
     const countriesList: string[] = []
     const sexList: string[] = []
 
+    materialsFilter && materialsFilter.map(material => materialsList.push(material.filter))
+    colorsFilter && colorsFilter.map(color => colorsList.push(color.filter))
     brandsFilter && brandsFilter.map(brand => brandsList.push(brand.filter))
     countriesFilter && countriesFilter.map(country => countriesList.push(country.filter))
     sexFilter && sexFilter.map(sex => sexList.push(sex.filter))
     
+    const material = materialsList.length === 0 ? '' : `&material=${materialsList.join('&material=')}`
+    const color = colorsList.length === 0 ? '' : `&color=${colorsList.join('&color=')}`
     const brand = brandsList.length === 0 ? '' : `&brand=${brandsList.join('&brand=')}`
     const country = countriesList.length === 0 ? '' : `&country=${countriesList.join('&country=')}`
     const sex = sexList.length === 0 ? '' : `&sex=${sexList.join('&sex=')}`
     const min = minPrice === 0 ? '' : `&price_gte=${minPrice}`
     const max = maxPrice === 0 ? '' : `&price_lte=${maxPrice}`
-    
+    console.log(sex)
     try {
-      const { data } = await axios.get(`http://localhost:3001/products?${brand}${country}${sex}&_sort=${sortBy}&_order=${order}${min}${max}`)
+      const { data } = await axios.get(`http://localhost:3001/products?${brand}${country}${sex}&_sort=${sortBy}&_order=${order}${min}${max}${material}${color}`)
       
       return data
     } catch (e) {

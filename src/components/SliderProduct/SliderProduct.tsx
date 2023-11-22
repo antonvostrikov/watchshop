@@ -11,34 +11,37 @@ type WatchImages = {
 }
 
 const SliderProduct:React.FC<WatchImages> = ({ sliderImages }) => {
-  const sliderSettings = {
-    customPaging: function(i: number) {
-      return (
-        <a>
-          <img src={`https://www.alltime.ru/obj/catalog/watch/casio/img/big/DW-5600BB-1E__${i + 1}.jpg`} />
-        </a>
-      );
-    },
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    autoplay: true,
-    autoplaySpeed: 2000,
-  }
+  const [nav1, setNav1] = React.useState()
+  const [nav2, setNav2] = React.useState()
+  const slider1 = React.useRef(null)
+  const slider2 = React.useRef(null)
+
+  React.useEffect(() => {
+    slider1.current && setNav1(slider1.current)
+    slider2.current && setNav2(slider2.current)
+  }, [])
 
   return (
-    <Slider {...sliderSettings}>
-      {sliderImages.map(image => {
-        return (
-          <div className="slider-image">
-            <img src={image.img} alt="" />
-          </div>
-        )
-      })}
-      
+    <>
+      <Slider
+        ref={slider1}
+        slidesToScroll={1}
+        slidesToShow={1}
+        swipeToSlide={true}
+        autoplay={true}
+        infinite={true}
+      >
+      { sliderImages && sliderImages.map(slider => <div><img src={slider.img} /></div>) }
     </Slider>
+    <Slider
+      slidesToShow={3}
+      ref={slider2}
+      swipeToSlide={true}
+      focusOnSelect={true}
+    >
+      { sliderImages && sliderImages.map(slider => <div><img src={slider.img} /></div>) }
+    </Slider>
+    </>
   )
 }
 

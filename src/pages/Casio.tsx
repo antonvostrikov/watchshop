@@ -10,9 +10,9 @@ import { getProducts } from '../redux/slices/getProductsSlice'
 
 const Casio:React.FC = () => {
   const [sexFilter, setSexFilter] = React.useState([])
-  const [sortMain, setSortMain] = React.useState({ "name": "По популярности", "sortProperty": "rating" })
+  const [sortMain, setSortMain] = React.useState({ "name": "По популярности", "sortProperty": "-rating" })
   const [sortItems, setSortItems] = React.useState([
-    { "name": "По популярности", "sortProperty": "rating" },
+    { "name": "По популярности", "sortProperty": "-rating" },
     { "name": "От дорогих к дешевым", "sortProperty": "-price" },
     { "name": "От дешевых к дорогим", "sortProperty": "price" }
   ])

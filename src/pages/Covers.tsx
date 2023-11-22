@@ -1,10 +1,14 @@
 import React from 'react'
+
+import { useAppDispatch, useAppSelector } from '../hooks/hook'
+import { getProducts } from '../redux/slices/getProductsSlice'
+
 import Footer from '../components/Footer/Footer'
 import Menu from '../components/Menu/Menu'
 import WatchBlock from '../components/WatchBlock/WatchBlock'
-import { useAppDispatch, useAppSelector } from '../hooks/hook'
-import { getProducts } from '../redux/slices/getProductsSlice'
 import FilterItemsAccessories from '../components/FilterItems/FilterItemsAccessories'
+
+import { getBrandsCoversFilter, getColorsCoversFilter, getMaterialsCoversFilter } from '../redux/slices/filterSlice'
 
 const Covers:React.FC = () => {
   const dispatch = useAppDispatch()
@@ -13,9 +17,9 @@ const Covers:React.FC = () => {
   const [brandsFilter, setBrandsFilter] = React.useState([])
   const [colorsFilter, setColorsFilter] = React.useState([])
   const [materialsFilter, setMaterialsFilter] = React.useState([])
-  const [sortMain, setSortMain] = React.useState({ "name": "По популярности", "sortProperty": "rating" })
+  const [sortMain, setSortMain] = React.useState({ "name": "По популярности", "sortProperty": "-rating" })
   const [sortItems, setSortItems] = React.useState([
-    { "name": "По популярности", "sortProperty": "rating" },
+    { "name": "По популярности", "sortProperty": "-rating" },
     { "name": "От дорогих к дешевым", "sortProperty": "-price" },
     { "name": "От дешевых к дорогим", "sortProperty": "price" }
   ])
@@ -26,14 +30,17 @@ const Covers:React.FC = () => {
   const sortBy = sortMain.sortProperty.replace('-', '')
 
   React.useEffect(() => {
-    dispatch(getProducts({ brandsFilter, sortBy, order, minPrice, maxPrice }))
-  }, [])
+    dispatch(getProducts({ brandsFilter, sortBy, order, minPrice, maxPrice, colorsFilter, materialsFilter, sexFilter }));
+    dispatch(getBrandsCoversFilter());
+    dispatch(getColorsCoversFilter());
+    dispatch(getMaterialsCoversFilter());
+  }, [brandsFilter, sortBy, order, minPrice, maxPrice, colorsFilter, materialsFilter, sexFilter])
 
   const { products, status } = useAppSelector(state => state.products)
-  const { sexSort } = useAppSelector(state => state.filter)
+  const { sexSortAccessories, coversBrandsFilter, coversColorsFilter, coversMaterialsFilter } = useAppSelector(state => state.filter)
 
   const accessoriesProducts = products.filter(product => product.categoryType === 'cover')
- 
+  
   return (
     <>
       <Menu />
@@ -44,13 +51,16 @@ const Covers:React.FC = () => {
               <h1>Чехлы</h1>
             </div>
             <FilterItemsAccessories 
-              sex={sexSort}
+              sex={sexSortAccessories}
               sexFilters={sexFilter}
               sexFiltersHandler={setSexFilter}
+              brands={coversBrandsFilter}
               brandsFilter={brandsFilter}
               brandsFilterHandler={setBrandsFilter}
+              materials={coversMaterialsFilter}
               materialsFilter={materialsFilter}
               materialsFilterHandler={setMaterialsFilter}
+              colors={coversColorsFilter}
               colorsFilter={colorsFilter}
               colorsFilterHandler={setColorsFilter}
               sort={sortItems}
