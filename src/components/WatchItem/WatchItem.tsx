@@ -6,14 +6,9 @@ import heartBlack from '../../ímg/heart-black.svg'
 import heartWhite from '../../ímg/heart-white.svg'
 import { addToFavorite, deleteProductFromFavorite } from '../../redux/slices/favoriteSlice'
 
-type WatchItem = {
-  id: number,
-  imageUrl: string,
-  price: number,
-  name: string
-}
+import { IProductItemProps } from '../../interfaces/product.interface'
 
-const WatchItem:React.FC<WatchItem> = ({ id, imageUrl, price, name }) => {
+const WatchItem:React.FC<IProductItemProps> = ({ id, imageUrl, price, name }) => {
   const dispatch = useAppDispatch()
   const findFavoriteProducts = useAppSelector(state => state.favorite.favorite)
 

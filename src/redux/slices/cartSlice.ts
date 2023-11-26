@@ -2,20 +2,9 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import { RootState } from "../store";
 
-type CartProduct = {
-  id: number
-  imageUrl: string
-  name: string
-  sum: number
-  price: number
-}
+import { ICart, ICartProduct } from '../../interfaces/cart.interface'
 
-type Cart = {
-  cart: CartProduct[]
-  total: number
-}
-
-export const addProductToCart = createAsyncThunk<CartProduct, CartProduct, { state: RootState }>(
+export const addProductToCart = createAsyncThunk<ICartProduct, ICartProduct, { state: RootState }>(
   'cart/addToCart',
   async (obj, { getState }) => {
     const findProduct = getState().cart.cart.find(product => product.id === obj.id)
@@ -38,7 +27,7 @@ export const addProductToCart = createAsyncThunk<CartProduct, CartProduct, { sta
   }  
 )
 
-export const getProductsFromCart = createAsyncThunk<CartProduct[]>(
+export const getProductsFromCart = createAsyncThunk<ICartProduct[]>(
   'cart/getDataFromCart',
   async () => {
     try {
@@ -64,7 +53,7 @@ export const deleteProductFromCart = createAsyncThunk<number, number>(
   }
 )
 
-export const plusProductToCart = createAsyncThunk<CartProduct, number, { state: RootState }>(
+export const plusProductToCart = createAsyncThunk<ICartProduct, number, { state: RootState }>(
   'cart/plusProductToCart',
   async (id, { getState }) => {
     const findProduct = getState().cart.cart.find(product => product.id === id)
@@ -83,7 +72,7 @@ export const plusProductToCart = createAsyncThunk<CartProduct, number, { state: 
   }
 )
 
-export const minusProductToCart = createAsyncThunk<CartProduct, number, { state: RootState }>(
+export const minusProductToCart = createAsyncThunk<ICartProduct, number, { state: RootState }>(
   'cart/minusProductToCart',
   async (id, { getState }) => {
     const findProduct = getState().cart.cart.find(product => product.id === id)
@@ -102,7 +91,7 @@ export const minusProductToCart = createAsyncThunk<CartProduct, number, { state:
   }
 )
 
-const initialState: Cart = {
+const initialState: ICart = {
   cart: [],
   total: 0
 }

@@ -2,12 +2,9 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 import { RootState } from "../store";
 
-type City = {
-  id: number
-  city: string
-}
+import { ICity } from '../../interfaces/city.interface'
 
-const initialState: City = {
+const initialState: ICity = {
   id: 1,
   city: 'Москва'
 }

@@ -1,8 +1,7 @@
 import React from 'react'
 import WatchItem from '../components/WatchItem/WatchItem'
 import { useNavigate } from 'react-router-dom'
-import { useAppDispatch, useAppSelector } from '../hooks/hook'
-import { getProductsFromFavorite } from '../redux/slices/favoriteSlice'
+import { useAppSelector } from '../hooks/hook'
 import FavoriteEmpty from '../components/FavoriteEmpty/FavoriteEmpty'
 
 const Favorite: React.FC = () => {

@@ -2,63 +2,15 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 import axios from "axios";
 
-type imageSlider = {
-  img: string
-}
+import {RequireAllProducts, IProduct, IProducts} from '../../interfaces/product.interface'
 
-type Product = {
-  id: number
-  sex: string
-  brand: string
-  name: string
-  price: number
-  imageUrl: string
-  description: string
-  country?: string
-  model: string
-  type?: string
-  dial?: string
-  band?: string
-  waterproof?: string
-  dimensions?: string
-  categoryType: string
-  sliderImages: imageSlider[],
-  rating?: number
-  color?: string
-  material?: string
-}
-
-type Watches = {
-  products: Product[]
-  product: Product[]
-  status: string
-}
-
-type Filter = {
-  id: number
-  filter: string
-}
-
-const initialState: Watches = {
+const initialState: IProducts = {
   products: [],
   product: [],
   status: "pending"
 }
 
-type RequireAllWatches = {
-  brandPage?: string
-  brandsFilter?: Filter[]
-  countriesFilter?: Filter[]
-  colorsFilter?: Filter[]
-  materialsFilter?: Filter[]
-  sexFilter?: Filter[]
-  sortBy: string
-  order: string
-  minPrice: number
-  maxPrice: number
-}
-
-export const getProducts = createAsyncThunk<Product[], RequireAllWatches>(
+export const getProducts = createAsyncThunk<IProduct[], RequireAllProducts>(
   'products/getProducts',
   async (params) => {
     const { brandsFilter, countriesFilter, colorsFilter, materialsFilter, sexFilter, sortBy, order, minPrice, maxPrice } = params
@@ -93,8 +45,8 @@ export const getProducts = createAsyncThunk<Product[], RequireAllWatches>(
   }
 )
 
-export const getProduct = createAsyncThunk<Product, number>(
-  'produts/getProducts',
+export const getProduct = createAsyncThunk<IProduct, number>(
+  'produts/getProduct',
   async (id) => {
     try {
       const { data } = await axios.get(`http://localhost:3001/products/${id}`)

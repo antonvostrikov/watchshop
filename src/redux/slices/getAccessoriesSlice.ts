@@ -1,24 +1,13 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
-type AccessoriesName = {
-  id: number
-  name: string
-  type: string
-  count: number
-}
-
-type AccessoriesState = {
-  accessoriesName: AccessoriesName[]
-  status: string
-}
-
-const initialState: AccessoriesState = {
+import { IAccessoriesName, IAccessoriesState } from "../../interfaces/accessories.interface";
+const initialState: IAccessoriesState = {
   accessoriesName: [],
   status: 'pending'
 }
 
-export const getAccessoriesName = createAsyncThunk<AccessoriesName[]>(
+export const getAccessoriesName = createAsyncThunk<IAccessoriesName[]>(
   'accessories/getAccessoriesName',
   async () => {
     try {

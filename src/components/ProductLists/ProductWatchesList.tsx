@@ -1,18 +1,6 @@
-import React from 'react'
+import { IProductWatchesListProps } from '../../interfaces/product.interface'
 
-type WatchesList = {
-  model: string
-  sex: string
-  brand: string
-  country: string
-  type: string
-  dial: string
-  band: string
-  waterproof: string
-  dimensions: string
-}
-
-const ProductWatchesList = (item: WatchesList) => {
+const ProductWatchesList = (item: IProductWatchesListProps) => {
   return (
     <>
       <dt>Артикул/модель</dt>

@@ -10,36 +10,9 @@ import DropdownItemSet from '../Dropdown/DropdownItemSet'
 import FilterArrow from '../../ímg/arrow-sort.svg'
 import DropdownItemPrice from '../Dropdown/DropdownItemPrice'
 
-type FilterItems = {
-  id: number
-  filter: string
-}
+import { IFilterSort } from '../../interfaces/filter.interface'
 
-type SortItems = {
-  name: string
-  sortProperty: string
-}
-
-type Filter = {
-  brands: FilterItems[]
-  countries: FilterItems[]
-  sex: FilterItems[]
-  brandsFilters: FilterItems[]
-  countriesFilters: FilterItems[]
-  sexFilters: FilterItems[]
-  brandsFiltersHandler: (brandsFilters: any) => void
-  countriesFiltersHandler: (countriesFilters: any) => void
-  sexFiltersHandler: (sexFilters: any) => void
-  sort: SortItems[]
-  sortMain: SortItems
-  sortMainHandler: (sort: any) => void
-  minPrice: number
-  maxPrice: number
-  minPriceHandler: (minPrice: number) => void
-  maxPriceHandler: (maxPrice: number) => void
-}
-
-const FilterItems:React.FC<Filter> = ({ 
+const FilterItems:React.FC<IFilterSort> = ({ 
   brands,
   countries,
   countriesFilters, 
@@ -52,8 +25,6 @@ const FilterItems:React.FC<Filter> = ({
   sort,
   sortMain,
   sortMainHandler,
-  minPrice,
-  maxPrice,
   minPriceHandler,
   maxPriceHandler
   }) => {

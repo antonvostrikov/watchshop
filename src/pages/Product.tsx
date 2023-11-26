@@ -16,31 +16,7 @@ import { addProductToCart } from '../redux/slices/cartSlice'
 import { addToFavorite } from '../redux/slices/favoriteSlice'
 
 
-type imageSlider = {
-  img: string
-}
-
-type Product = {
-  id: number
-  sex: string
-  brand: string
-  name: string
-  price: number
-  imageUrl: string
-  description: string
-  country?: string
-  model: string
-  type?: string
-  dial?: string
-  band?: string
-  waterproof?: string
-  dimensions?: string
-  categoryType: string
-  sliderImages: imageSlider[],
-  rating?: number
-  color?: string
-  material?: string
-}
+import { IProduct } from '../interfaces/product.interface'
 
 const Product:React.FC = () => {
   const navigate = useNavigate()
@@ -52,9 +28,9 @@ const Product:React.FC = () => {
     dispatch(getProduct(Number(id)))
   }, [])
 
-  const { product } = useAppSelector(state => state.products)
+  const { product, status } = useAppSelector(state => state.products)
 
-  const addToCartHandler = (item: Product) => {
+  const addToCartHandler = (item: IProduct) => {
     const productToCart = {
       id: Number(id),
       imageUrl: item.imageUrl,
@@ -66,7 +42,7 @@ const Product:React.FC = () => {
     dispatch(addProductToCart(productToCart))
   }
 
-  const addToFavoriteHandler = (item: Product) => {
+  const addToFavoriteHandler = (item: IProduct) => {
     const productToFavorite = {
       id: Number(id),
       imageUrl: item.imageUrl,
@@ -100,14 +76,14 @@ const Product:React.FC = () => {
       <Menu />
       <section className="section-product">
         <div className="container-watches">
-          { product.map(item => (
+          { status &&  product.map(item => (
             <>
             <div className="section-product__back">
               <span onClick={() => navigate(-1)}><img src={LeftArrowSvg} alt="" />Назад</span>
             </div>
             <div className="section-product__main">
-              <div className="product-photos">
-                <SliderProduct {...item}/>
+              <div className="product-slider">
+                <SliderProduct sliderImages={item.sliderImages}/>
               </div>
               <div className="product-aside">
                 <div className="product-aside__title">

@@ -8,11 +8,16 @@ $Roboto: 'Roboto', sans-serif;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  outline: none;
 }
 
 body {
   width: 100%;
   height: 100%;
+}
+
+.modal-body {
+  overflow: hidden;
 }
 
 .container {
@@ -53,11 +58,12 @@ body {
 @import './styles/FilterItems.scss';
 @import './styles/Product.scss';
 @import './styles/SliderProduct.scss';
-@import "~slick-carousel/slick/slick.css"; 
-@import "~slick-carousel/slick/slick-theme.css";
+@import "slick-carousel/slick/slick.css"; 
+@import "slick-carousel/slick/slick-theme.css";
 @import "./styles/Cart.scss";
 @import "./styles/Favorite.scss";
 @import "./styles/Enter.scss";
 @import "./styles/CartEmpty.scss";
 @import './styles/Dropdown.scss';
 @import './styles/Accessories.scss';
+@import './styles/Modal.scss';

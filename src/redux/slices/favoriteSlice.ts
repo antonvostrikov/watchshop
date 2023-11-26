@@ -2,18 +2,9 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 import { RootState } from "../store";
 
-type FavoriteItem = {
-  id: number
-  imageUrl: string
-  name: string
-  price: number
-}
+import { IFavorite, IFavoriteItem } from "../../interfaces/favorite.interface";
 
-type Favorite = {
-  favorite: FavoriteItem[]
-}
-
-export const addToFavorite = createAsyncThunk<FavoriteItem, FavoriteItem, { state: RootState }>(
+export const addToFavorite = createAsyncThunk<IFavoriteItem, IFavoriteItem, { state: RootState }>(
   'favorite/addToFavorite',
   async (obj, { getState }) => {
     const findProduct = getState().favorite.favorite.find(product => product.id === obj.id)
@@ -43,7 +34,7 @@ export const deleteProductFromFavorite = createAsyncThunk<number, number, { reje
   }
 )
 
-export const getProductsFromFavorite = createAsyncThunk<FavoriteItem[]>(
+export const getProductsFromFavorite = createAsyncThunk<IFavoriteItem[]>(
   'favorite/getProductsFromFavorite',
   async () => {
     try {
@@ -56,7 +47,7 @@ export const getProductsFromFavorite = createAsyncThunk<FavoriteItem[]>(
   }
 )
 
-const initialState: Favorite = {
+const initialState: IFavorite = {
   favorite: []
 }
 

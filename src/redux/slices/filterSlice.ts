@@ -1,28 +1,10 @@
-import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 import FilterItems from "../../components/FilterItems/FilterItems";
 
-type FiltersItems = {
-  id: number
-  filter: string
-}
+import { ISort } from "../../interfaces/filter.interface";
 
-type Sort = {
-  wristBrandsFilter: FiltersItems[]
-  premiumBrandsFilter: FiltersItems[]
-  wristCountriesFilter: FiltersItems[]
-  premiumCountriesFilter: FiltersItems[]
-  sexSort: FiltersItems[]
-  sexSortAccessories: FilterItems[]
-  beltsBrandsFilter: FilterItems[]
-  beltsColorsFilter: FilterItems[]
-  beltsMaterialsFilter: FilterItems[]
-  coversBrandsFilter: FilterItems[]
-  coversColorsFilter: FilterItems[]
-  coversMaterialsFilter: FilterItems[]
-}
-
-const initialState: Sort = {
+const initialState: ISort = {
   sexSort: [
     { "id": 1, "filter": "Мужские" },
     { "id": 2, "filter": "Женские" }

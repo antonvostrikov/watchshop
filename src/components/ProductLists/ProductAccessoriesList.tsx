@@ -1,15 +1,6 @@
-import React from 'react'
+import { IProductAccessoriesListProps } from "../../interfaces/accessories.interface"
 
-type CoversList = {
-  model: string
-  brand: string
-  material: string
-  color: string
-  sex: string
-  dimensions?: string
-}
-
-const ProductAccessoriesList = (item: CoversList) => {
+const ProductAccessoriesList = (item: IProductAccessoriesListProps) => {
   return (
     <>
       <dt>Артикул/модель</dt>
