@@ -43,7 +43,6 @@ const Covers:React.FC = () => {
   
   return (
     <>
-      <Menu />
       <section className="watches">
         <div className="wrapper-watches">
           <div className="container-watches">
@@ -55,14 +54,14 @@ const Covers:React.FC = () => {
               sexFilters={sexFilter}
               sexFiltersHandler={setSexFilter}
               brands={coversBrandsFilter}
-              brandsFilter={brandsFilter}
-              brandsFilterHandler={setBrandsFilter}
+              brandsFilters={brandsFilter}
+              brandsFiltersHandler={setBrandsFilter}
               materials={coversMaterialsFilter}
               materialsFilter={materialsFilter}
-              materialsFilterHandler={setMaterialsFilter}
+              materialsFiltersHandler={setMaterialsFilter}
               colors={coversColorsFilter}
-              colorsFilter={colorsFilter}
-              colorsFilterHandler={setColorsFilter}
+              colorsFilters={colorsFilter}
+              colorsFiltersHandler={setColorsFilter}
               sort={sortItems}
               sortMain={sortMain}
               sortMainHandler={setSortMain}

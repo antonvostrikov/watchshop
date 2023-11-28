@@ -13,9 +13,12 @@ import BasketSvg from '../../ímg/basket.svg'
 import FavoriteSvg from '../../ímg/heart-white.svg'
 import { useAppSelector } from '../../hooks/hook'
 import DropdownItemCity from '../Dropdown/DropdownItemCity'
+import Menu from '../Menu/Menu'
 
 const Header: React.FC = () => {
   const [enterPopup, setEnterPopup] = React.useState(false)
+  const [isOpen, setIsOpen] = React.useState(false)
+  const [searchValue, setSearchValue] = React.useState<string>()
 
   const onClickOpenPopup = () => {
     setEnterPopup(true)
@@ -79,6 +82,7 @@ const Header: React.FC = () => {
           </div>
         </div>
       </div>
+      <Menu />
       { enterPopup && <Enter popup={enterPopup} closePopup={onClickClosePopup}/> }
       
     </header>

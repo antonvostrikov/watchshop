@@ -73,7 +73,6 @@ const Product:React.FC = () => {
 
   return (
     <>
-      <Menu />
       <section className="section-product">
         <div className="container-watches">
           { status &&  product.map(item => (

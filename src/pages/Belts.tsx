@@ -41,7 +41,6 @@ const Belts:React.FC = () => {
   
   return (
     <>
-      <Menu />
       <section className="watches">
         <div className="wrapper-watches">
           <div className="container-watches">
@@ -53,14 +52,14 @@ const Belts:React.FC = () => {
               sexFilters={sexFilter}
               sexFiltersHandler={setSexFilter}
               brands={beltsBrandsFilter}
-              brandsFilter={brandsFilter}
-              brandsFilterHandler={setBrandsFilter}
+              brandsFilters={brandsFilter}
+              brandsFiltersHandler={setBrandsFilter}
               materials={beltsMaterialsFilter}
               materialsFilter={materialsFilter}
-              materialsFilterHandler={setMaterialsFilter}
+              materialsFiltersHandler={setMaterialsFilter}
               colors={beltsColorsFilter}
-              colorsFilter={colorsFilter}
-              colorsFilterHandler={setColorsFilter}
+              colorsFilters={colorsFilter}
+              colorsFiltersHandler={setColorsFilter}
               sort={sortItems}
               sortMain={sortMain}
               sortMainHandler={setSortMain}

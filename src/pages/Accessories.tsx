@@ -17,7 +17,6 @@ const Accessories:React.FC = () => {
 
   return (
     <>
-      <Menu />
       <section className="accessories">
         <div className="wrapper-accessories">
           <div className="container-accessories">

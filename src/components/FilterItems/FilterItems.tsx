@@ -45,7 +45,7 @@ const FilterItems:React.FC<IFilterSort> = ({
               <DropdownButton>Пол</DropdownButton>
               <DropdownContent>
                 <DropdownList>
-                  { sex.map(s => <DropdownItem
+                  { sex && sex.map(s => <DropdownItem
                     filterList={sexFilters}
                     filterHandler={sexFiltersHandler}
                     filter={s.filter}
@@ -60,7 +60,7 @@ const FilterItems:React.FC<IFilterSort> = ({
               <DropdownButton>Бренд</DropdownButton>
               <DropdownContent>
                 <DropdownList>
-                  { brands.map(brand => <DropdownItem 
+                  { brands && brands.map(brand => <DropdownItem 
                     filterList={brandsFilters} 
                     filterHandler={brandsFiltersHandler} 
                     filter={brand.filter} 
@@ -75,7 +75,7 @@ const FilterItems:React.FC<IFilterSort> = ({
               <DropdownButton>Страна</DropdownButton>
               <DropdownContent>
                 <DropdownList>
-                  { countries.map(country => <DropdownItem 
+                  { countries && countries.map(country => <DropdownItem 
                     filterList={countriesFilters} 
                     filterHandler={countriesFiltersHandler}
                     filter={country.filter}

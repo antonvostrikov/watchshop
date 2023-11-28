@@ -40,7 +40,6 @@ const PremiumWatches: React.FC = () => {
 
   return (
     <>
-      <Menu />
       <section className="watches">
         <div className="wrapper-watches">
           <div className="container-watches">

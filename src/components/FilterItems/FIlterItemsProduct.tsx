@@ -1,7 +1,5 @@
 import React from 'react'
 
-import { useAppSelector } from '../../hooks/hook'
-
 import Dropdown from '../Dropdown/Dropdown'
 import DropdownButton from '../Dropdown/DropdownButton'
 import DropdownContent from '../Dropdown/DropdownContent'
@@ -12,28 +10,9 @@ import DropdownItemSet from '../Dropdown/DropdownItemSet'
 
 import FilterArrow from '../../ímg/arrow-sort.svg'
 
-type FilterItems = {
-  id: number
-  filter: string
-}
+import { IFilterSort } from '../../interfaces/filter.interface'
 
-type SortItems = {
-  name: string
-  sortProperty: string
-}
-
-type Filter = {
-  sex: FilterItems[]
-  sexFilters: FilterItems[]
-  sexFiltersHandler: (sexFilters: any) => void
-  sort: SortItems[]
-  sortMain: SortItems
-  sortMainHandler: (sort: any) => void
-  minPriceHandler: (minPrice: number) => void
-  maxPriceHandler: (maxPrice: number) => void
-}
-
-const FilterItemsProduct:React.FC<Filter> = ({ 
+const FilterItemsProduct:React.FC<IFilterSort> = ({ 
   sex, 
   sexFilters, 
   sexFiltersHandler,
@@ -60,7 +39,7 @@ const FilterItemsProduct:React.FC<Filter> = ({
             <DropdownButton>Пол</DropdownButton>
             <DropdownContent>
               <DropdownList>
-                { sex.map(s => <DropdownItem
+                { sex && sex.map(s => <DropdownItem
                   filterList={sexFilters}
                   filterHandler={sexFiltersHandler}
                   filter={s.filter}
@@ -78,7 +57,7 @@ const FilterItemsProduct:React.FC<Filter> = ({
           </DropdownButton>
           <DropdownContent>
             <DropdownList>
-              { sort.map(sortItem => <DropdownItemSet
+              { sort && sort.map(sortItem => <DropdownItemSet
                 sortName={sortItem.name}
                 sortProperty={sortItem.sortProperty}
                 sortHandler={sortMainHandler}

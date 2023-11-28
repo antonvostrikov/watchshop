@@ -25,7 +25,15 @@ const settingsSliderNav = {
   swipeToSlide: true,
   vertical: true,
   verticalSwiping: true,
-  autoplay: false
+  autoplay: true
+}
+
+const settingsModalSlider = {
+  infinite: true,
+  swipeToSlide: true,
+  focusOnSelect: true,
+  slidesToShow: 1,
+  slidesToScroll: 1
 }
 
 const SliderProduct:React.FC<ISliderProductPropos> = ({ sliderImages }) => {
@@ -77,14 +85,6 @@ const SliderProduct:React.FC<ISliderProductPropos> = ({ sliderImages }) => {
   
   const handlePrevSlide = () => {
     slider1.current && slider1.current.slickPrev()
-  }
-
-  const settingsModalSlider = {
-    infinite: true,
-    swipeToSlide: true,
-    focusOnSelect: true,
-    slidesToShow: 1,
-    slidesToScroll: 1
   }
 
   const NextSliderArrow = () => {

@@ -6,17 +6,10 @@ import CloseSvg from '../../ímg/close.svg';
 
 import { deleteProductFromCart, minusProductToCart, plusProductToCart } from '../../redux/slices/cartSlice';
 import { useAppDispatch } from '../../hooks/hook';
-import transformPrice from '../../hooks/useTransformPrice';
 
-type CartProduct = {
-  id: number
-  imageUrl: string
-  name: string
-  sum: number
-  price: number
-}
+import { ICartProduct } from '../../interfaces/cart.interface';
 
-const CartItem:React.FC<CartProduct> = ({ id, imageUrl, name, sum, price }) => {
+const CartItem:React.FC<ICartProduct> = ({ id, imageUrl, name, sum, price }) => {
   const [number, setNumber] = React.useState(sum)
   const dispatch = useAppDispatch()
 

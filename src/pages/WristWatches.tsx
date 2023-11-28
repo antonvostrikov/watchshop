@@ -26,8 +26,6 @@ const Watches:React.FC = () => {
 
   const order = sortMain.sortProperty.includes('-') ? 'desc' : 'asc'
   const sortBy = sortMain.sortProperty.replace('-', '')
-
-  const { cart } = useAppSelector(state => state.cart)
   
   React.useEffect(() => {
     dispatch(getProducts({ brandsFilter, countriesFilter, sexFilter, sortBy, order, minPrice, maxPrice }))
@@ -42,7 +40,6 @@ const Watches:React.FC = () => {
 
   return (
     <>
-    <Menu />
       <section className="watches">
         <div className="wrapper-watches">
           <div className="container-watches">

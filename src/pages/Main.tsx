@@ -6,7 +6,6 @@ import Menu from '../components/Menu/Menu'
 const Main: React.FC = () => {
   return (
     <div className="wrapper">
-      <Menu />
       <Landing />
       <Footer />
     </div>

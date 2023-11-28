@@ -22,8 +22,6 @@ const Casio:React.FC = () => {
 
   const dispatch = useAppDispatch()
 
-  const brandPage = 'Casio'
-
   const sortBy = sortMain.sortProperty.replace('-', '')
   const order = sortMain.sortProperty.includes('-') ? 'desc' : 'asc'
 
@@ -36,7 +34,6 @@ const Casio:React.FC = () => {
 
   return (
     <>
-    <Menu />
       <section className="watches">
         <div className="wrapper-watches">
           <div className="container-watches">

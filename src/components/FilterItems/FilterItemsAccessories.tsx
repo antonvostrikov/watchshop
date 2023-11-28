@@ -10,49 +10,21 @@ import DropdownItemPrice from '../Dropdown/DropdownItemPrice'
 
 import FilterArrow from '../../ímg/arrow-sort.svg'
 
-type FilterItems = {
-  id: number
-  filter: string
-}
+import { IFilterSort } from '../../interfaces/filter.interface'
 
-type SortItems = {
-  name: string
-  sortProperty: string
-}
-
-type Filter = {
-  sex?: FilterItems[]
-  sexFilters?: FilterItems[]
-  sexFiltersHandler?: (sexFilters: any) => void
-  brands: FilterItems[]
-  brandsFilter: FilterItems[]
-  brandsFilterHandler: (brandsFilter: any) => void
-  materials: FilterItems[]
-  materialsFilter: FilterItems[]
-  materialsFilterHandler: (materialsFilter: any) => void
-  colors: FilterItems[]
-  colorsFilter: FilterItems[]
-  colorsFilterHandler: (colorsFilter: any) => void 
-  sort: SortItems[]
-  sortMain: SortItems
-  sortMainHandler: (sort: any) => void
-  minPriceHandler: (minPrice: number) => void
-  maxPriceHandler: (maxPrice: number) => void
-}
-
-const FilterItemsAccessories:React.FC<Filter> = ({
+const FilterItemsAccessories:React.FC<IFilterSort> = ({
   sex, 
   sexFilters, 
   sexFiltersHandler,
   brands,
-  brandsFilter,
-  brandsFilterHandler,
+  brandsFilters,
+  brandsFiltersHandler,
   materials,
   materialsFilter,
-  materialsFilterHandler,
+  materialsFiltersHandler,
   colors,
-  colorsFilter,
-  colorsFilterHandler,
+  colorsFilters,
+  colorsFiltersHandler,
   sort, 
   sortMain,
   sortMainHandler,
@@ -76,7 +48,7 @@ const FilterItemsAccessories:React.FC<Filter> = ({
             <DropdownButton>Пол</DropdownButton>
             <DropdownContent>
               <DropdownList>
-                { sex && sex.map(s => <DropdownItem
+                { sex && sex && sex.map(s => <DropdownItem
                   filterList={sexFilters}
                   filterHandler={sexFiltersHandler}
                   filter={s.filter}
@@ -91,9 +63,9 @@ const FilterItemsAccessories:React.FC<Filter> = ({
             <DropdownButton>Бренд</DropdownButton>
             <DropdownContent>
               <DropdownList>
-                { brands.map(s => <DropdownItem
-                  filterList={brandsFilter}
-                  filterHandler={brandsFilterHandler}
+                { brands && brands.map(s => <DropdownItem
+                  filterList={brandsFilters}
+                  filterHandler={brandsFiltersHandler}
                   filter={s.filter}
                   filterID={s.id}
                 ></DropdownItem>) }
@@ -106,9 +78,9 @@ const FilterItemsAccessories:React.FC<Filter> = ({
             <DropdownButton>Цвет</DropdownButton>
             <DropdownContent>
               <DropdownList>
-                { colors.map(s => <DropdownItem
-                  filterList={colorsFilter}
-                  filterHandler={colorsFilterHandler}
+                { colors && colors.map(s => <DropdownItem
+                  filterList={colorsFilters}
+                  filterHandler={colorsFiltersHandler}
                   filter={s.filter}
                   filterID={s.id}
                 ></DropdownItem>) }
@@ -121,9 +93,9 @@ const FilterItemsAccessories:React.FC<Filter> = ({
             <DropdownButton>Материал</DropdownButton>
             <DropdownContent>
               <DropdownList>
-                { materials.map(s => <DropdownItem
+                { materials && materials.map(s => <DropdownItem
                   filterList={materialsFilter}
-                  filterHandler={materialsFilterHandler}
+                  filterHandler={materialsFiltersHandler}
                   filter={s.filter}
                   filterID={s.id}
                 ></DropdownItem>) }
@@ -139,7 +111,7 @@ const FilterItemsAccessories:React.FC<Filter> = ({
           </DropdownButton>
           <DropdownContent>
             <DropdownList>
-              { sort.map(sortItem => <DropdownItemSet
+              { sort && sort.map(sortItem => <DropdownItemSet
                 sortName={sortItem.name}
                 sortProperty={sortItem.sortProperty}
                 sortHandler={sortMainHandler}

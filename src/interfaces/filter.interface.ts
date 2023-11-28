@@ -29,20 +29,26 @@ interface ISortItems {
 }
 
 export interface IFilterSort  {
-  brands: IFilterItems[]
-  countries: IFilterItems[]
-  sex: IFilterItems[]
-  brandsFilters: IFilterItems[]
-  countriesFilters: IFilterItems[]
-  sexFilters: IFilterItems[]
-  brandsFiltersHandler: (brandsFilters: any) => void
-  countriesFiltersHandler: (countriesFilters: any) => void
-  sexFiltersHandler: (sexFilters: any) => void
+  sex?: IFilterItems[]
+  sexFilters?: IFilterItems[]
+  sexFiltersHandler?: (sexFilters: any) => void
+  brands?: IFilterItems[]
+  brandsFilters?: IFilterItems[]
+  brandsFiltersHandler?: (brandsFilter: any) => void
+  materials?: IFilterItems[]
+  materialsFilter?: IFilterItems[]
+  materialsFiltersHandler?: (materialsFilter: any) => void
+  colors?: IFilterItems[]
+  colorsFilters?: IFilterItems[]
+  colorsFiltersHandler?: (colorsFilter: any) => void 
+  countries?: IFilterItems[]
+  countriesFilters?: IFilterItems[] 
+  countriesFiltersHandler?: (countriesFilters: any) => void
   sort: ISortItems[]
   sortMain: ISortItems
   sortMainHandler: (sort: any) => void
-  minPrice: number
-  maxPrice: number
+  minPrice?: number
+  maxPrice?: number
   minPriceHandler: (minPrice: number) => void
   maxPriceHandler: (maxPrice: number) => void
 }
