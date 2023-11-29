@@ -11,23 +11,36 @@ import CityArrowSvg from '../../ímg/city-arrow.svg'
 import EnterSvg from '../../ímg/enter.svg'
 import BasketSvg from '../../ímg/basket.svg'
 import FavoriteSvg from '../../ímg/heart-white.svg'
-import { useAppSelector } from '../../hooks/hook'
+import { useAppSelector, useAppDispatch } from '../../hooks/hook'
 import DropdownItemCity from '../Dropdown/DropdownItemCity'
 import Menu from '../Menu/Menu'
+import SearchSection from '../SearchSection/SearchSection'
+
+import { IProduct } from '../../interfaces/product.interface'
+import { getProductsSearch } from '../../redux/slices/getProductsSlice'
 
 const Header: React.FC = () => {
   const [enterPopup, setEnterPopup] = React.useState(false)
   const [isOpen, setIsOpen] = React.useState(false)
-  const [searchValue, setSearchValue] = React.useState<string>()
+  const [searchValue, setSearchValue] = React.useState<string>('')
+  const [resultSearch, setResultSearch] = React.useState<string>()
+
+  const dispatch = useAppDispatch()
 
   const onClickOpenPopup = () => {
     setEnterPopup(true)
-  }
+  } 
 
   const onClickClosePopup = () => {
     setEnterPopup(false)
   }
  
+  React.useEffect(() => {
+    if (resultSearch) {
+      dispatch(getProductsSearch(resultSearch))
+    }
+  }, [resultSearch])
+  
   return (
     <header className="header-top" >
       <div className="header-top__connection">
@@ -82,9 +95,18 @@ const Header: React.FC = () => {
           </div>
         </div>
       </div>
-      <Menu />
+      <Menu 
+        handlerSearch={setSearchValue} 
+        searchValue={searchValue} 
+        handlerResult={setResultSearch}
+        handlerOpenSearchSection={setIsOpen}
+      />
       { enterPopup && <Enter popup={enterPopup} closePopup={onClickClosePopup}/> }
-      
+      { resultSearch && <SearchSection 
+        handlerSearchValue={setSearchValue} 
+        isOpen={isOpen} 
+        handleOpenSearch={setIsOpen} /> 
+      }
     </header>
   )
 }

@@ -39,12 +39,13 @@ export interface IProductItemProps {
 export interface IProducts {
   products: IProduct[]
   product: IProduct[]
+  searchProducts: IProduct[]
   status: string
 }
 
 export interface IProductsListProps {
-  watches: IProduct[]
-  status: string
+  products: IProduct[]
+  status?: string
 }
 
 export interface IProductWatchesListProps {

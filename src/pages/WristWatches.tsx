@@ -1,6 +1,5 @@
 import React from 'react'
 
-import Menu from '../components/Menu/Menu'
 import FilterItems from '../components/FilterItems/FilterItems'
 import WatchBlock from '../components/WatchBlock/WatchBlock'
 import Footer from '../components/Footer/Footer'
@@ -64,7 +63,7 @@ const Watches:React.FC = () => {
               minPriceHandler={setMinPrice}
               maxPriceHandler={setMaxPrice}
             />
-            <WatchBlock watches={productsWrist} status={status}/>
+            <WatchBlock products={productsWrist} status={status}/>
           </div>       
         </div>
       </section>

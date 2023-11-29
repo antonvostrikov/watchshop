@@ -64,7 +64,7 @@ const PremiumWatches: React.FC = () => {
               minPriceHandler={setMinPrice}
               maxPriceHandler={setMaxPrice}
             />
-            <WatchBlock watches={productsPremium} status={status}/>
+            <WatchBlock products={productsPremium} status={status}/>
           </div>       
         </div>
       </section>

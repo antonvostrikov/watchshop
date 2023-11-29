@@ -31,7 +31,7 @@ const WatchItem:React.FC<IProductItemProps> = ({ id, imageUrl, price, name }) =>
       </div>
       <div className="watch-item__image">
         <Link to={`/product/${id}`}>
-          <img src={imageUrl} alt="Watch" />
+          <img src={imageUrl} alt="Product" />
         </Link>  
       </div>
       <div className="watch-item__title">

@@ -50,7 +50,7 @@ const Titoni:React.FC = () => {
               minPriceHandler={setMinPrice}
               maxPriceHandler={setMaxPrice}
             />
-            <WatchBlock watches={products} status={status}/>
+            <WatchBlock products={products} status={status}/>
           </div>       
         </div>
       </section>

@@ -66,7 +66,7 @@ const Belts:React.FC = () => {
               minPriceHandler={setMinPrice}
               maxPriceHandler={setMaxPrice}
             />
-            <WatchBlock watches={accessoriesProducts} status={status} />
+            <WatchBlock products={accessoriesProducts} status={status} />
           </div>
         </div>
       </section>

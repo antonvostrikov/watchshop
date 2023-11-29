@@ -7,6 +7,7 @@ import {RequireAllProducts, IProduct, IProducts} from '../../interfaces/product.
 const initialState: IProducts = {
   products: [],
   product: [],
+  searchProducts: [],
   status: "pending"
 }
 
@@ -46,10 +47,23 @@ export const getProducts = createAsyncThunk<IProduct[], RequireAllProducts>(
 )
 
 export const getProduct = createAsyncThunk<IProduct, number>(
-  'produts/getProduct',
+  'products/getProduct',
   async (id) => {
     try {
       const { data } = await axios.get(`http://localhost:3001/products/${id}`)
+
+      return data
+    } catch (e) {
+      console.log(e)
+    }
+  }
+)
+
+export const getProductsSearch = createAsyncThunk<IProduct[], string>(
+  'products/getProductsSearch', 
+  async (findSearch) => {
+    try {
+      const { data } = await axios.get(`http://localhost:3001/products?q=${findSearch}`)
 
       return data
     } catch (e) {
@@ -78,6 +92,9 @@ const getProductsSlice = createSlice({
     builder.addCase(getProduct.fulfilled, (state, action) => {
       state.product = []
       state.product.push(action.payload)
+    })
+    builder.addCase(getProductsSearch.fulfilled, (state, action) => {
+      state.searchProducts = action.payload
     })
   }
 })
