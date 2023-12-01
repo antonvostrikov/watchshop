@@ -29,7 +29,7 @@ const SearchSection:React.FC<ISearchSectionProps> = ({
     document.addEventListener('mousedown', handleClickOutside)
 
     return () => {
-      document.addEventListener('mousedown', handleClickOutside)
+      document.removeEventListener('mousedown', handleClickOutside)
     }
   }, [searchRef])
 

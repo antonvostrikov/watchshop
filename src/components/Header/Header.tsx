@@ -6,22 +6,24 @@ import Dropdown from '../Dropdown/Dropdown'
 import DropdownButton from '../Dropdown/DropdownButton'
 import DropdownContent from '../Dropdown/DropdownContent'
 import DropdownList from '../Dropdown/DropdownList'
+import Menu from '../Menu/Menu'
+import SearchSection from '../SearchSection/SearchSection'
 
 import CityArrowSvg from '../../ímg/city-arrow.svg'
 import EnterSvg from '../../ímg/enter.svg'
 import BasketSvg from '../../ímg/basket.svg'
 import FavoriteSvg from '../../ímg/heart-white.svg'
-import { useAppSelector, useAppDispatch } from '../../hooks/hook'
-import DropdownItemCity from '../Dropdown/DropdownItemCity'
-import Menu from '../Menu/Menu'
-import SearchSection from '../SearchSection/SearchSection'
 
-import { IProduct } from '../../interfaces/product.interface'
+import { useAppDispatch } from '../../hooks/hook'
 import { getProductsSearch } from '../../redux/slices/getProductsSlice'
 
-const Header: React.FC = () => {
+interface IHeaderProps {
+  isOpen: boolean
+  setIsOpen: (isOpen: boolean) => void
+}
+
+const Header: React.FC<IHeaderProps> = ({ isOpen, setIsOpen }) => {
   const [enterPopup, setEnterPopup] = React.useState(false)
-  const [isOpen, setIsOpen] = React.useState(false)
   const [searchValue, setSearchValue] = React.useState<string>('')
   const [resultSearch, setResultSearch] = React.useState<string>()
 

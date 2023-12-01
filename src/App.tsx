@@ -25,15 +25,17 @@ const App:React.FC = () => {
 		dispatch(getProductsFromFavorite());
 	}, [])
 
+  const [isOpen, setIsOpen] = React.useState(false)
+
   return (
     <div className="App">
-      <Header />
+      <Header isOpen={isOpen} setIsOpen={setIsOpen}/>
       <Routes>
         <Route path="/" element={<Main />} />
         <Route path="watches" element={<WristWatches />} />
         <Route path="watches/premium" element={<PremiumWatches />} />
         <Route path="favorite" element={<Favorite />} />
-        <Route path="product/:id" element={<Product />} />
+        <Route path="product/:id" element={<Product setIsOpen={setIsOpen} />} />
         <Route path="cart" element={<Cart />} />
         <Route path="casio" element={<Casio />} />
         <Route path="titoni" element={<Titoni />} />
