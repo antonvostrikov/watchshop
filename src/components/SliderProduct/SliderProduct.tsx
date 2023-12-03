@@ -15,7 +15,7 @@ const settingsSlider = {
   infinite: true,
   focusOnSelect: true,
   swipeToSlide: true,
-  autoplay: false
+  autoplay: true
 }
 
 const settingsSliderNav = {
@@ -25,7 +25,7 @@ const settingsSliderNav = {
   swipeToSlide: true,
   vertical: true,
   verticalSwiping: true,
-  autoplay: false
+  autoplay: true
 }
 
 const settingsModalSlider = {
@@ -121,7 +121,6 @@ const SliderProduct:React.FC<ISliderProductPropos> = ({ sliderImages }) => {
             {...settingsModalSlider}
             nextArrow={<NextSliderArrow />}
             prevArrow={<PrevSliderArrow />}
-            autoplay={false}
           >
           { sliderImages && sliderImages.map((slide, index) => <div>
             <img src={slide.img} alt={`Слайд ${index}`} />

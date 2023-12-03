@@ -4,19 +4,17 @@ import { DropdownContext } from './Dropdown'
 import { useAppDispatch } from '../../hooks/hook'
 
 type DropdownCity = {
-  id: number
-  oldID: number
   city: string
 }
 
-const DropdownItemCity:React.FC<DropdownCity> = ({ id, city, oldID }) => {
+const DropdownItemCity:React.FC<DropdownCity> = ({ city }) => {
   const { setDropdown, dropdown } = React.useContext(DropdownContext)
 
   const dispatch = useAppDispatch()
-  
+
   const changeCityHandler = () => {
-    
-    
+ 
+
     setDropdown(!dropdown)
   }
 

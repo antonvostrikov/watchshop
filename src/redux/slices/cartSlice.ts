@@ -15,7 +15,7 @@ export const addProductToCart = createAsyncThunk<ICartProduct, ICartProduct, { s
         imageUrl: findProduct.imageUrl,
         name: findProduct.name,
         sum: findProduct.sum+1,
-        price: findProduct.price
+        price: findProduct.price + obj.price
       })
 
       return data
@@ -82,7 +82,7 @@ export const minusProductToCart = createAsyncThunk<ICartProduct, number, { state
         id: id,
         imageUrl: findProduct.imageUrl,
         name: findProduct.name,
-        sum: findProduct.sum-1,
+        sum: findProduct.sum - 1,
         price: findProduct.price,
       })
 
@@ -106,6 +106,8 @@ const cartSlice = createSlice({
 
       if (findProduct) {
         findProduct.sum = findProduct.sum+1
+
+        findProduct.price = action.payload.price
       } else {
         state.cart.push(action.payload)
       }
@@ -119,7 +121,9 @@ const cartSlice = createSlice({
     builder.addCase(plusProductToCart.fulfilled, (state, action) => {
       const findProduct = state.cart.find(product => product.id === action.payload.id)
 
-
+      if (findProduct) {
+        findProduct.sum = action.payload.sum
+      }
     })
     builder.addCase(minusProductToCart.fulfilled, (state, action) => {
       const findProduct = state.cart.find(product => product.id === action.payload.id)

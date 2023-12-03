@@ -11,6 +11,7 @@ import { ICartProduct } from '../../interfaces/cart.interface';
 
 const CartItem:React.FC<ICartProduct> = ({ id, imageUrl, name, sum, price }) => {
   const [number, setNumber] = React.useState(sum)
+  const [transformPrice, setTransformPrice] = React.useState('')
   const dispatch = useAppDispatch()
 
   const onClickMinus = () => {
@@ -21,13 +22,25 @@ const CartItem:React.FC<ICartProduct> = ({ id, imageUrl, name, sum, price }) => 
   }
 
   const onClickPlus = () => {
-    setNumber(prev => prev +1)
+    setNumber(prev => prev + 1)
     dispatch(plusProductToCart(id))
   }
 
   const onClickDeleteProduct = () => {
     dispatch(deleteProductFromCart(id))
   }
+
+  React.useEffect(() => {
+    const priceString = price.toString()
+
+    if (priceString.length === 6) {
+      setTransformPrice(`${priceString.slice(0, 3)} ${priceString.slice(3)} Р`)
+    } else if(priceString.length === 5) {
+      setTransformPrice(`${priceString.slice(0, 2)} ${priceString.slice(2)} Р`)
+    } else {
+      setTransformPrice(`${priceString.slice(0, 1)} ${priceString.slice(1, 4)} ${priceString.slice(4, 7)} Р`)
+    } 
+  }, [price])
 
   return (
     <div className="wrapper-product">
@@ -51,7 +64,7 @@ const CartItem:React.FC<ICartProduct> = ({ id, imageUrl, name, sum, price }) => 
       </div>
       <div className="wrapper-product__sum">
         <span className="sum-title">Итого</span>
-        <span>{price}</span>
+        <span>{transformPrice}</span>
       </div>
       <div className="wrapper-product__delete">
         <span onClick={() => onClickDeleteProduct()}><img src={CloseSvg} alt="" /></span>

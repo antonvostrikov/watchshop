@@ -1,5 +1,4 @@
 import React from 'react'
-import Menu from '../components/Menu/Menu'
 import Footer from '../components/Footer/Footer'
 import ProductAccessoriesList from '../components/ProductLists/ProductAccessoriesList'
 import ProductWatchesList from '../components/ProductLists/ProductWatchesList'
@@ -15,7 +14,6 @@ import { getProduct } from '../redux/slices/getProductsSlice'
 import { addProductToCart } from '../redux/slices/cartSlice'
 import { addToFavorite } from '../redux/slices/favoriteSlice'
 
-
 import { IProduct } from '../interfaces/product.interface'
 
 interface IProductProps {
@@ -25,6 +23,8 @@ interface IProductProps {
 const Product:React.FC<IProductProps> = ({ setIsOpen }) => {
   const navigate = useNavigate()
   const { id } = useParams()
+
+  const [transformPrice, setTransformPrice] = React.useState('')
 
   const dispatch = useAppDispatch()
 
@@ -76,11 +76,24 @@ const Product:React.FC<IProductProps> = ({ setIsOpen }) => {
     }
   }
 
+  React.useEffect(() => {
+    product.map(item => {
+      const priceString = item.price.toString()
+
+      if (priceString.length === 6) {
+        setTransformPrice(`${priceString.slice(0, 3)} ${priceString.slice(3)} Р`)
+      } else {
+        setTransformPrice(`${priceString.slice(0, 2)} ${priceString.slice(2)} Р`)
+      }
+    }) 
+
+  }, [product])
+  
   return (
     <>
       <section className="section-product">
         <div className="container-watches">
-          { status &&  product.map(item => (
+          { status && product.map(item => (
             <>
             <div className="section-product__back">
               <span onClick={() => navigate(-1)}><img src={LeftArrowSvg} alt="" />Назад</span>
@@ -97,7 +110,7 @@ const Product:React.FC<IProductProps> = ({ setIsOpen }) => {
                   <span>{item.sex}</span>
                 </div>
                 <div className="product-aside__price">
-                  <span>{item.price}</span>
+                  <span>{transformPrice}</span>
                 </div>
                 <div className="product-aside__buttons">
                   <button className="add-cart" onClick={() => addToCartHandler(item)}>Добавить в корзину</button>
