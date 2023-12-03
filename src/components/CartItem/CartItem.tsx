@@ -9,13 +9,17 @@ import { useAppDispatch } from '../../hooks/hook';
 
 import { ICartProduct } from '../../interfaces/cart.interface';
 
-const CartItem:React.FC<ICartProduct> = ({ id, imageUrl, name, sum, price }) => {
+import { Link } from 'react-router-dom';
+import useTransformPrice from '../../hooks/useTransformPrice';
+
+const CartItem:React.FC<ICartProduct> = ({ id, imageUrl, name, sum, total }) => {
   const [number, setNumber] = React.useState(sum)
-  const [transformPrice, setTransformPrice] = React.useState('')
+  const { transformPrice } = useTransformPrice(total.toString())
+
   const dispatch = useAppDispatch()
 
   const onClickMinus = () => {
-    if (number === 0) return 
+    if (number === 1) return 
 
     setNumber(prev => prev - 1)
     dispatch(minusProductToCart(id))
@@ -30,25 +34,14 @@ const CartItem:React.FC<ICartProduct> = ({ id, imageUrl, name, sum, price }) => 
     dispatch(deleteProductFromCart(id))
   }
 
-  React.useEffect(() => {
-    const priceString = price.toString()
-
-    if (priceString.length === 6) {
-      setTransformPrice(`${priceString.slice(0, 3)} ${priceString.slice(3)} Р`)
-    } else if(priceString.length === 5) {
-      setTransformPrice(`${priceString.slice(0, 2)} ${priceString.slice(2)} Р`)
-    } else {
-      setTransformPrice(`${priceString.slice(0, 1)} ${priceString.slice(1, 4)} ${priceString.slice(4, 7)} Р`)
-    } 
-  }, [price])
 
   return (
     <div className="wrapper-product">
       <div className="wrapper-product__image">
-        <img src={imageUrl} alt="" />
+        <Link to={`/product/${id}`}><img src={imageUrl} alt="" /></Link>
       </div>
       <div className="wrapper-product__name">
-        <h3>{name}</h3>
+        <h3><Link to={`/product/${id}`}>{name}</Link></h3>
       </div>
       <div className="wrapper-product__count">
         <span className="count-title">Количество</span>

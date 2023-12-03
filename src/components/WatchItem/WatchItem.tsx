@@ -7,9 +7,13 @@ import heartWhite from '../../ímg/heart-white.svg'
 import { addToFavorite, deleteProductFromFavorite } from '../../redux/slices/favoriteSlice'
 
 import { IProductItemProps } from '../../interfaces/product.interface'
+import useTransformPrice from '../../hooks/useTransformPrice'
 
 const WatchItem:React.FC<IProductItemProps> = ({ id, imageUrl, price, name }) => {
+  const { transformPrice } = useTransformPrice(price.toString())
+  
   const dispatch = useAppDispatch()
+  
   const findFavoriteProducts = useAppSelector(state => state.favorite.favorite)
 
   const isProductInFavorite = (id: number) => {
@@ -41,7 +45,7 @@ const WatchItem:React.FC<IProductItemProps> = ({ id, imageUrl, price, name }) =>
       </div>
       <div className="watch-item__price">
         <Link to={`/product/${id}`}>
-          <span>{price}</span>
+          <span>{transformPrice}</span>
         </Link>  
       </div>
       <div className="watch-item__buy">

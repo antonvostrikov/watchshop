@@ -14,8 +14,9 @@ export const addProductToCart = createAsyncThunk<ICartProduct, ICartProduct, { s
         id: findProduct.id,
         imageUrl: findProduct.imageUrl,
         name: findProduct.name,
-        sum: findProduct.sum+1,
-        price: findProduct.price + obj.price
+        sum: findProduct.sum + 1,
+        price: findProduct.price + obj.price,
+        total: findProduct.price * findProduct.sum
       })
 
       return data
@@ -65,6 +66,7 @@ export const plusProductToCart = createAsyncThunk<ICartProduct, number, { state:
         name: findProduct.name,
         sum: findProduct.sum+1,
         price: findProduct.price,
+        total: (findProduct.price * findProduct.sum) + findProduct.price
       })
      
       return data
@@ -84,6 +86,7 @@ export const minusProductToCart = createAsyncThunk<ICartProduct, number, { state
         name: findProduct.name,
         sum: findProduct.sum - 1,
         price: findProduct.price,
+        total: findProduct.total - findProduct.price
       })
 
       return data
@@ -93,7 +96,8 @@ export const minusProductToCart = createAsyncThunk<ICartProduct, number, { state
 
 const initialState: ICart = {
   cart: [],
-  total: 0
+  total: 0,
+  count: 0
 }
 
 const cartSlice = createSlice({
@@ -114,8 +118,18 @@ const cartSlice = createSlice({
     })
     builder.addCase(getProductsFromCart.fulfilled, (state, action) => {
       state.cart = action.payload
+
+      state.count = action.payload.length
+      state.total = state.cart.reduce((sum, obj) => (obj.price * obj.sum) + sum, 0)
     })
     builder.addCase(deleteProductFromCart.fulfilled, (state, action) => {
+      const findProduct = state.cart.find(item => item.id === action.payload) 
+
+      if (findProduct) {
+        state.total = state.total - findProduct.total
+        state.count = state.count - findProduct.sum
+      }
+
       state.cart = state.cart.filter(product => product.id !== action.payload)
     })
     builder.addCase(plusProductToCart.fulfilled, (state, action) => {
@@ -123,6 +137,9 @@ const cartSlice = createSlice({
 
       if (findProduct) {
         findProduct.sum = action.payload.sum
+        findProduct.total = action.payload.total
+
+        state.total = state.total + action.payload.price
       }
     })
     builder.addCase(minusProductToCart.fulfilled, (state, action) => {
@@ -130,6 +147,9 @@ const cartSlice = createSlice({
 
       if (findProduct) {
         findProduct.sum = action.payload.sum
+        findProduct.total = action.payload.total
+
+        state.total = state.total - action.payload.price
       }
     })
   }

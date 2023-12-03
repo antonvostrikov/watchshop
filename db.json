@@ -345,18 +345,28 @@
       "id": 5,
       "imageUrl": "https://www.alltime.ru/obj/catalog/watch/cuervo-y-sobrinos/img/big/2860-1BL.jpg",
       "name": "Швейцарские механические наручные часы Cuervo y Sobrinos 2860.1BL",
+      "sum": 2,
+      "price": 703400,
+      "total": 351700
+    },
+    {
+      "id": 1,
+      "imageUrl": "https://www.alltime.ru/obj/catalog/watch/casio/img/big/DW-5600BB-1E.jpg",
+      "name": "Японские наручные часы Casio G-SHOCK DW-5600BB-1E с хронографом",
       "sum": 1,
-      "price": 351700
+      "price": 10230,
+      "total": 10230
+    },
+    {
+      "id": 3,
+      "imageUrl": "https://www.alltime.ru/obj/catalog/watch/seiko/img/big/SSB321P1.jpg",
+      "name": "Японские наручные часы Seiko SSB321P1 с хронографом",
+      "sum": 1,
+      "price": 37710,
+      "total": 37710
     }
   ],
   "favorite": [
-    {
-      "id": 5,
-      "imageUrl": "https://www.alltime.ru/obj/catalog/watch/cuervo-y-sobrinos/img/big/2860-1BL.jpg",
-      "name": "Швейцарские механические наручные часы Cuervo y Sobrinos 2860.1BL",
-      "sum": 1,
-      "price": 351700
-    },
     {
       "id": 1,
       "imageUrl": "https://www.alltime.ru/obj/catalog/watch/casio/img/big/DW-5600BB-1E.jpg",
