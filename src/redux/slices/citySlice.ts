@@ -4,11 +4,11 @@ import axios from "axios";
 import { ICity, ICityState } from '../../interfaces/city.interface'
 
 const initialState: ICityState = {
-  mainCity: [{ id: 4, city: 'Владивосток' }],
+  mainCity: [],
   cities: []
 }
 
-export const getMainCity = createAsyncThunk(
+export const getMainCity = createAsyncThunk<ICity[]>(
   'cities/getMainCity', 
   async () => {
     try {
@@ -33,7 +33,6 @@ export const getCities = createAsyncThunk(
     }
   }
 )
-
 
 const countrySlice = createSlice({
   name: 'cities',

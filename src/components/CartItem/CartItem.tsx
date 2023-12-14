@@ -34,7 +34,6 @@ const CartItem:React.FC<ICartProduct> = ({ id, imageUrl, name, sum, total }) => 
     dispatch(deleteProductFromCart(id))
   }
 
-
   return (
     <div className="wrapper-product">
       <div className="wrapper-product__image">

@@ -119,7 +119,6 @@ const cartSlice = createSlice({
     builder.addCase(getProductsFromCart.fulfilled, (state, action) => {
       state.cart = action.payload
 
-      state.count = action.payload.length
       state.total = state.cart.reduce((sum, obj) => (obj.price * obj.sum) + sum, 0)
     })
     builder.addCase(deleteProductFromCart.fulfilled, (state, action) => {

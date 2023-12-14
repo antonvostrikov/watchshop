@@ -114,7 +114,7 @@ const SliderProduct:React.FC<ISliderProductPropos> = ({ sliderImages }) => {
         </Modal.Header>
         <Modal.Content>
           <Slider
-            afterChange={handleSliderAfterChange}
+            afterChange={() => handleSliderAfterChange(currentSlide)}
             initialSlide={currentSlide}
             asNavFor={nav2}
             ref={sliderModalRef}
@@ -133,7 +133,7 @@ const SliderProduct:React.FC<ISliderProductPropos> = ({ sliderImages }) => {
         ref={slider1}
         asNavFor={nav2}
         initialSlide={currentSlide}
-        afterChange={handleSliderAfterChange}
+        afterChange={() => handleSliderAfterChange(currentSlide)}
       >
         { sliderImages && sliderImages.map((slide, index) => <div className="slide-product__main" onClick={handleOpenModal}>
           <img src={slide.img} alt={`Слайд ${index}`} />
@@ -146,7 +146,7 @@ const SliderProduct:React.FC<ISliderProductPropos> = ({ sliderImages }) => {
         ref={slider2}
         asNavFor={nav1}
         initialSlide={currentSlide}
-        afterChange={handleSliderAfterChange}
+        afterChange={() => handleSliderAfterChange(currentSlide)}
         slidesToShow={slidesCount}
       >
         { sliderImages && sliderImages.map((slide, index) => <div className="slide-product__nav">

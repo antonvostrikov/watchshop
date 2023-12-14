@@ -6,7 +6,6 @@ import Dropdown from '../Dropdown/Dropdown'
 import DropdownButton from '../Dropdown/DropdownButton'
 import DropdownContent from '../Dropdown/DropdownContent'
 import DropdownList from '../Dropdown/DropdownList'
-import DropdownItemCity from '../Dropdown/DropdownItemCity'
 import Menu from '../Menu/Menu'
 import SearchSection from '../SearchSection/SearchSection'
 
@@ -15,11 +14,9 @@ import EnterSvg from '../../ímg/enter.svg'
 import BasketSvg from '../../ímg/basket.svg'
 import FavoriteSvg from '../../ímg/heart-white.svg'
 
-import { useAppDispatch, useAppSelector } from '../../hooks/hook'
+import { useAppDispatch } from '../../hooks/hook'
 import { getProductsSearch } from '../../redux/slices/getProductsSlice'
 import { getCities, getMainCity } from '../../redux/slices/citySlice'
-
-import { ICity } from '../../interfaces/city.interface'
 
 interface IHeaderProps {
   isOpen: boolean
@@ -30,7 +27,6 @@ const Header: React.FC<IHeaderProps> = ({ isOpen, setIsOpen }) => {
   const [enterPopup, setEnterPopup] = React.useState(false)
   const [searchValue, setSearchValue] = React.useState<string>('')
   const [resultSearch, setResultSearch] = React.useState<string>()
-
   const dispatch = useAppDispatch()
 
   const onClickOpenPopup = () => {
@@ -51,8 +47,6 @@ const Header: React.FC<IHeaderProps> = ({ isOpen, setIsOpen }) => {
       dispatch(getProductsSearch(resultSearch))
     }
   }, [resultSearch])
-  
-  const { mainCity, cities } = useAppSelector(state => state.cities)
 
   return (
     <header className="header-top" >
@@ -71,10 +65,10 @@ const Header: React.FC<IHeaderProps> = ({ isOpen, setIsOpen }) => {
         <div className="container">
           <div className="header-top__location">
             <Dropdown>
-              <DropdownButton> <img src={CityArrowSvg} alt="Город"/></DropdownButton>
+              <DropdownButton><img src={CityArrowSvg} alt="Город"/></DropdownButton>
               <DropdownContent>
                 <DropdownList>
-                  { cities.map(city => <DropdownItemCity city={city.city} />) }
+                  
                 </DropdownList>
               </DropdownContent> 
             </Dropdown >

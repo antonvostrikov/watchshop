@@ -7,7 +7,7 @@ import YouTubeSvg from '../../ímg/youtube.svg'
 import InstagramSvg from '../../ímg/instagram.svg'
 import FacebookSvg from '../../ímg/facebook.svg'
 
-const Footer: React.FC = () => {
+const Footer: React.FC = React.memo(() => {
   return (
     <footer className="footer-bottom">
       <div className="container-footer">
@@ -139,6 +139,6 @@ const Footer: React.FC = () => {
       </div>
     </footer>
   )
-}
+})
 
 export default Footer

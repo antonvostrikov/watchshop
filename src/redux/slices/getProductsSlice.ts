@@ -35,7 +35,7 @@ export const getProducts = createAsyncThunk<IProduct[], RequireAllProducts>(
     const sex = sexList.length === 0 ? '' : `&sex=${sexList.join('&sex=')}`
     const min = minPrice === 0 ? '' : `&price_gte=${minPrice}`
     const max = maxPrice === 0 ? '' : `&price_lte=${maxPrice}`
-    console.log(sex)
+  
     try {
       const { data } = await axios.get(`http://localhost:3001/products?${brand}${country}${sex}&_sort=${sortBy}&_order=${order}${min}${max}${material}${color}`)
       
