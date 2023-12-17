@@ -3,6 +3,11 @@
   height: 0;
   &.active {
     transform: scale(1);
-    min-height: 450px;
+    min-height: 500px;
+    position: absolute;
+    z-index: 100;
+    box-shadow: 0 9px 11px rgba(0,0,0,.09);
+    width: 100%;
+    background: #fff;
   }
 }

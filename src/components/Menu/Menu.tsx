@@ -11,7 +11,7 @@ interface IMenuProps {
   handlerOpenSearchSection: (isOpen: boolean) => void
 }
 
-const Menu:React.FC<IMenuProps> = ({ 
+const Menu:React.FC<IMenuProps> = React.forwardRef(({ 
   handlerSearch, 
   searchValue,
   handlerResult,
@@ -67,6 +67,6 @@ const Menu:React.FC<IMenuProps> = ({
       </div>
     </div>
   )
-}
+})
 
 export default Menu

@@ -1,6 +1,5 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import axios from "axios";
-import FilterItems from "../../components/FilterItems/FilterItems";
 
 import { ISort } from "../../interfaces/filter.interface";
 
@@ -23,6 +22,7 @@ const initialState: ISort = {
   coversBrandsFilter: [],
   coversColorsFilter: [],
   coversMaterialsFilter: [],
+  pageCount: 1
 }
 
 export const getWristBrandsFilter = createAsyncThunk(
@@ -158,7 +158,11 @@ export const getMaterialsBeltsFilter = createAsyncThunk(
 const filterSlice = createSlice({
   name: 'filter',
   initialState,
-  reducers: {},
+  reducers: {
+    setChangePage(state, action: PayloadAction<number>) {
+      state.pageCount = action.payload
+    }
+  },
   extraReducers: (builder) => {
     builder.addCase(getWristBrandsFilter.fulfilled, (state, action) => {
       state.wristBrandsFilter = action.payload
@@ -193,4 +197,5 @@ const filterSlice = createSlice({
   }
 })
 
+export const { setChangePage } = filterSlice.actions
 export default filterSlice.reducer

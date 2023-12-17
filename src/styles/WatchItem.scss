@@ -11,6 +11,7 @@
   width: 350px;
   text-align: center;
   padding: 25px 0;
+  border: 1px solid transparent;
   &__image {
     height: 450px;
     img {
@@ -69,7 +70,7 @@
     }
   }
   &:hover {
-    border: 1px solid #cccccc;
+    border-color: #cccccc;
     .watch-item__buy {
       display: block;
     }

@@ -16,6 +16,7 @@ export interface ISort {
   coversBrandsFilter: IFilterItems[]
   coversColorsFilter: IFilterItems[]
   coversMaterialsFilter: IFilterItems[]
+  pageCount: number
 }
 
 interface IFilterItems {

@@ -36,7 +36,7 @@ const SearchSection:React.FC<ISearchSectionProps> = ({
   return (
     <div className={isOpen ? "header-top__search active" : "header-top__search"} ref={searchRef}>
       <div className="container">
-        <WatchBlockSearch  products={searchProducts}/>
+        {searchProducts && <WatchBlockSearch products={searchProducts}/> } 
       </div>
     </div>
   )

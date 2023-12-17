@@ -34,14 +34,16 @@ const Cart:React.FC = () => {
           <div className="cart-wrapper">
             { cart.length === 0 ? <CartEmpty /> : cart.map(item => <CartItem key={item.id} {...item} />) }
           </div>
-          <div className="cart-footer">
-            <div className="cart-footer__count">
-              <h3>Товаров: <span>{count}</span></h3>
+          { cart.length === 0  ? '' : (
+            <div className="cart-footer">
+              <div className="cart-footer__count">
+                <h3>Товаров: <span>{count}</span></h3>
+              </div>
+              <div className="cart-footer__total">
+                <h3>Всего: <span>{transformPrice}</span></h3>
+              </div>
             </div>
-            <div className="cart-footer__total">
-              <h3>Всего: <span>{transformPrice}</span></h3>
-            </div>
-          </div>
+          )}
         </div>
       </div>
       <Footer />

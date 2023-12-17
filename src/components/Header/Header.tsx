@@ -14,7 +14,7 @@ import EnterSvg from '../../ímg/enter.svg'
 import BasketSvg from '../../ímg/basket.svg'
 import FavoriteSvg from '../../ímg/heart-white.svg'
 
-import { useAppDispatch } from '../../hooks/hook'
+import { useAppDispatch, useAppSelector } from '../../hooks/hook'
 import { getProductsSearch } from '../../redux/slices/getProductsSlice'
 import { getCities, getMainCity } from '../../redux/slices/citySlice'
 
@@ -27,6 +27,7 @@ const Header: React.FC<IHeaderProps> = ({ isOpen, setIsOpen }) => {
   const [enterPopup, setEnterPopup] = React.useState(false)
   const [searchValue, setSearchValue] = React.useState<string>('')
   const [resultSearch, setResultSearch] = React.useState<string>()
+
   const dispatch = useAppDispatch()
 
   const onClickOpenPopup = () => {
@@ -47,6 +48,8 @@ const Header: React.FC<IHeaderProps> = ({ isOpen, setIsOpen }) => {
       dispatch(getProductsSearch(resultSearch))
     }
   }, [resultSearch])
+
+  const { searchProducts } = useAppSelector(state => state.products)
 
   return (
     <header className="header-top" >
@@ -109,7 +112,7 @@ const Header: React.FC<IHeaderProps> = ({ isOpen, setIsOpen }) => {
         handlerOpenSearchSection={setIsOpen}
       />
       { enterPopup && <Enter popup={enterPopup} closePopup={onClickClosePopup}/> }
-      { resultSearch && <SearchSection 
+      { searchProducts.length !== 0  && <SearchSection 
         handlerSearchValue={setSearchValue} 
         isOpen={isOpen} 
         handleOpenSearch={setIsOpen} /> 

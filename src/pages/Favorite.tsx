@@ -3,6 +3,7 @@ import WatchItem from '../components/WatchItem/WatchItem'
 import { useNavigate } from 'react-router-dom'
 import { useAppSelector } from '../hooks/hook'
 import FavoriteEmpty from '../components/FavoriteEmpty/FavoriteEmpty'
+import Footer from '../components/Footer/Footer'
 
 const Favorite: React.FC = () => {
 	const navigate = useNavigate()
@@ -24,6 +25,7 @@ const Favorite: React.FC = () => {
 					{ favoriteProducts.length !== 0 ? favoriteProducts.map(favorite => <WatchItem key={favorite.id} {...favorite} />) : <FavoriteEmpty /> }
 				</div>
 			</div>
+			<Footer />
     </section>
 	)
 }
