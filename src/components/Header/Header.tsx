@@ -2,33 +2,21 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 import Enter from '../Enter/Enter'
-import Dropdown from '../Dropdown/Dropdown'
-import DropdownButton from '../Dropdown/DropdownButton'
-import DropdownContent from '../Dropdown/DropdownContent'
-import DropdownList from '../Dropdown/DropdownList'
 import Menu from '../Menu/Menu'
-import SearchSection from '../SearchSection/SearchSection'
+import Logo from '../Logo/Logo'
 
-import CityArrowSvg from '../../ímg/city-arrow.svg'
+import SearchSvg from '../../ímg/search.svg'
+import CloseSvg from '../../ímg/close.svg'
 import EnterSvg from '../../ímg/enter.svg'
 import BasketSvg from '../../ímg/basket.svg'
 import FavoriteSvg from '../../ímg/heart-white.svg'
 
-import { useAppDispatch, useAppSelector } from '../../hooks/hook'
-import { getProductsSearch } from '../../redux/slices/getProductsSlice'
-import { getCities, getMainCity } from '../../redux/slices/citySlice'
+import { useAppDispatch } from '../../hooks/hook'
+import SectionSearch from '../SectionSearch/SectionSearch'
 
-interface IHeaderProps {
-  isOpen: boolean
-  setIsOpen: (isOpen: boolean) => void
-}
-
-const Header: React.FC<IHeaderProps> = ({ isOpen, setIsOpen }) => {
+const Header: React.FC = () => {
   const [enterPopup, setEnterPopup] = React.useState(false)
-  const [searchValue, setSearchValue] = React.useState<string>('')
-  const [resultSearch, setResultSearch] = React.useState<string>()
-
-  const dispatch = useAppDispatch()
+  const [searchPopup, setSearchPopup] = React.useState(false)
 
   const onClickOpenPopup = () => {
     setEnterPopup(true)
@@ -38,18 +26,13 @@ const Header: React.FC<IHeaderProps> = ({ isOpen, setIsOpen }) => {
     setEnterPopup(false)
   }
 
-  React.useEffect(() => {
-    dispatch(getMainCity())
-    dispatch(getCities())
-  }, [])
+  const onClickOpenSearch = () => {
+    setSearchPopup(true)
+  }
 
-  React.useEffect(() => {
-    if (resultSearch) {
-      dispatch(getProductsSearch(resultSearch))
-    }
-  }, [resultSearch])
-
-  const { searchProducts } = useAppSelector(state => state.products)
+  const onClickCloseSearch = () => {
+    setSearchPopup(false)
+  }
 
   return (
     <header className="header-top" >
@@ -66,31 +49,35 @@ const Header: React.FC<IHeaderProps> = ({ isOpen, setIsOpen }) => {
       </div>
       <div className="header-top__main">
         <div className="container">
-          <div className="header-top__location">
-            <Dropdown>
-              <DropdownButton><img src={CityArrowSvg} alt="Город"/></DropdownButton>
-              <DropdownContent>
-                <DropdownList>
-                  
-                </DropdownList>
-              </DropdownContent> 
-            </Dropdown >
-          </div>
-          <div className="header-top__logo">
-            <h1><Link to='/'>watchshop</Link></h1>
+          <div className="header-top__left">
+            <div className="header-top__logo">
+              <Logo />
+            </div>
+            <div className="header-top__menu">
+              <Menu />
+            </div>
           </div>
           <div className="header-top__right">
+            <div className="header-top__search">
+              { searchPopup ? (
+                <span className="button-close__search" onClick={() => onClickCloseSearch()}>
+                  <img src={CloseSvg} alt="" />
+                </span>
+              ) : (
+                <span className="button-open__search" onClick={() => onClickOpenSearch()}>
+                  <img src={SearchSvg} alt="" />
+                </span>
+              )}
+            </div>
             <div className="header-top__enter">
               <span onClick={() => onClickOpenPopup()}>
                 <img src={EnterSvg} alt="Вход" />
-                Вход
               </span>
             </div>
             <div className="header-top__favorite">
               <Link to="/favorite">
                 <span>
                   <img src={FavoriteSvg} alt="" />
-                  Избранное
                 </span>
               </Link>
             </div>
@@ -98,25 +85,14 @@ const Header: React.FC<IHeaderProps> = ({ isOpen, setIsOpen }) => {
               <Link to="/cart">
                 <span>
                   <img src={BasketSvg} alt="Корзина" />
-                  Корзина
                 </span>
               </Link>
             </div>
           </div>
         </div>
       </div>
-      <Menu 
-        handlerSearch={setSearchValue} 
-        searchValue={searchValue} 
-        handlerResult={setResultSearch}
-        handlerOpenSearchSection={setIsOpen}
-      />
       { enterPopup && <Enter popup={enterPopup} closePopup={onClickClosePopup}/> }
-      { searchProducts.length !== 0  && <SearchSection 
-        handlerSearchValue={setSearchValue} 
-        isOpen={isOpen} 
-        handleOpenSearch={setIsOpen} /> 
-      }
+      { searchPopup && <SectionSearch search={searchPopup} setSearchPopup={setSearchPopup}/> }
     </header>
   )
 }

@@ -7,9 +7,6 @@ import useTransformPrice from '../../hooks/useTransformPrice'
 
 import FavoriteSvg from '../../ímg/heart.svg'
 
-import { Link } from 'react-router-dom'
-import { useAppSelector } from '../../hooks/hook'
-
 const renderListsProduct = (type: string, items: any) => {
   switch (type) {
     case 'premium':

@@ -50,6 +50,7 @@ body {
   }
 }
 
+@import './styles/Logo.scss';
 @import './styles/Header.scss';
 @import './styles/Menu.scss';
 @import './styles/Landing.scss';
@@ -66,5 +67,6 @@ body {
 @import './styles/Dropdown.scss';
 @import './styles/Accessories.scss';
 @import './styles/Modal.scss';
-@import './styles/SearchSection.scss';
-@import './styles/WatchItemSearch.scss';
+@import './styles/SectionSearch.scss';
+@import './styles/SearchedBlock.scss';
+@import './styles/SearchedItem.scss';

@@ -39,7 +39,6 @@ export interface IProductItemProps {
 export interface IProducts {
   products: IProduct[]
   product: IProduct[]
-  searchProducts: IProduct[]
   status: string
 }
 

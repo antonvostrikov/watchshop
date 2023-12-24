@@ -30,76 +30,47 @@
     padding: 60px 0;
     .container {
       display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
+      grid-template-columns: 2fr 1fr;
       align-items: center;
-      .header-top__location {
+      .header-top__left {
         display: flex;
-        position: relative;
-        .dropdown {
-          span {
-            font-family: $OpenSans;
-            font-weight: 100;
-            &:hover {
-              img {
-                margin: 0 0 3px 0;
-                transition: .3s ease-in-out;
-              }
-            }
-          }
-          .dropdown-content {
-            border: 1px solid #CCC;
-            position: absolute;
-            z-index: 1;
-            background: #FFF;
-            top: 40px;
-            display: none;
-            width: 200px;
-            &.active {
-              display: block;
-            }
-            &__list {
-              margin: 0;
-              list-style: none;
-              padding: 0;
-              li {
-                padding: 15px 15px;
-                font-family: $Roboto;
-                font-size: 16px;
-                cursor: pointer;
-                &:hover {
-                  background: #F8F8F8;
-                  transition: .7s;
-                }
-              }
-            }
-          }
-        }
-      }
-      .header-top__logo {
-        display: flex;
-        justify-content: center;
-        h1 {
-          text-transform: uppercase;
-          font-size: 54px;
-          font-family: $Raleway;
-          font-weight: 400;
-          cursor: pointer;
-          a {
-            text-decoration: none;
-            color: black;
-          }
+        align-items: center;
+        .header-top__logo {
+          margin: 0 50px 0 0;
         }
       }
       .header-top__right {
         display: flex;
         flex-direction: row;
         justify-content: flex-end;
+        align-items: center;
         a {
           text-decoration: none;
           color: black;
         }
+        .header-top__search {
+          margin: 0 15px 0 0;
+          .button-open__search {
+            display: flex;
+            cursor: pointer;
+            img {
+              transition: .6s easy;
+              width: 30px;
+              height: 30px;
+            }
+          }
+          .button-close__search {
+            display: flex;
+            cursor: pointer;
+            img {
+              transition: .6s easy;
+              width: 40px;
+              height: 40px;
+            }
+          }
+        }
         .header-top__enter {
-          margin: 0 40px 0 0;
+          margin: 0 15px 0 0;
           span {
             font-family: $OpenSans;
             font-size: 16px;
@@ -113,7 +84,7 @@
           }
         }
         .header-top__favorite {
-          margin: 0 40px 0 0;
+          margin: 0 15px 0 0;
           span {
             font-family: $OpenSans;
             font-size: 16px;

@@ -29,7 +29,7 @@ const App:React.FC = () => {
 
   return (
     <div className="App">
-      <Header isOpen={isOpen} setIsOpen={setIsOpen}/>
+      <Header />
       <Routes>
         <Route path="/" element={<Main />} />
         <Route path="watches" element={<WristWatches />} />
