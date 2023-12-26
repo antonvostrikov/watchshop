@@ -6,6 +6,8 @@ import { useAppDispatch, useAppSelector } from '../../hooks/hook';
 import { searchProduct } from '../../redux/slices/searchProductsSlice';
 import SearchedBlock from '../SearchedBlock/SearchedBlock';
 
+import { IProduct } from '../../interfaces/product.interface';
+
 interface ISectionSearchProps {
   search: boolean
   setSearchPopup: (search: boolean) => void
@@ -14,21 +16,26 @@ interface ISectionSearchProps {
 const SectionSearch:React.FC<ISectionSearchProps> = ({ search, setSearchPopup }) => {
   const searchRef = React.useRef<HTMLDivElement>(null)
   const [searchValue, setSearchValue] = React.useState<string>('')
-  const [resultValue, setResultValue] = React.useState<string>()
+  const [resultProducts, setResultProducts] = React.useState<IProduct[]>([])
 
-  const dispatch = useAppDispatch()
+  const { products } = useAppSelector(state => state.products)
 
   const debounced = useDebounce(searchValue, 800)
 
-  React.useEffect(() => {
-    setResultValue(debounced)
-  }, [debounced])
+  const inputSearchHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchValue(event.target.value)
+  }
 
   React.useEffect(() => {
-    if (resultValue) {
-      dispatch(searchProduct(resultValue))
+    if (debounced) {
+      const searchedProducts = products.filter(product => product.name.toLowerCase().includes(debounced.toLowerCase()))
+
+      setResultProducts(searchedProducts)
+    } else {
+      setResultProducts([])
     }
-  }, [resultValue])
+    
+  }, [debounced])
 
   React.useEffect(() => {
     search && document.body.classList.add('modal-body')
@@ -38,14 +45,21 @@ const SectionSearch:React.FC<ISectionSearchProps> = ({ search, setSearchPopup })
     }
   }, [search])
 
-  const inputSearchHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchValue(event.target.value)
-  }
+  React.useEffect(() => {
+    const onClickOutsideSearch = (e: MouseEvent) => {
+      if (search && searchRef && searchRef.current && !searchRef.current.contains(e.target as Node)) {
+        setSearchPopup(false)
+      }      
+    }
+    document.addEventListener('mousedown', onClickOutsideSearch)
 
-  const { searchProducts } = useAppSelector(state => state.search)
-  console.log(searchProducts)
+    return () => {
+      document.removeEventListener('mousedown', onClickOutsideSearch)
+    }
+  }, [searchRef])
+
   return (
-    <div className="search-block" ref={searchRef}>
+    <div className={resultProducts.length !== 0 ? `search-block active` : `search-block`} ref={searchRef}>
       <div className="container">
         <div className="search-block__form">
           <form>
@@ -53,7 +67,7 @@ const SectionSearch:React.FC<ISectionSearchProps> = ({ search, setSearchPopup })
             <span><img src={SearchSvg} /></span>
           </form>
         </div>
-        { searchProducts.length !== 0 && <SearchedBlock products={searchProducts}/> }
+       { resultProducts.length !== 0 && <SearchedBlock products={resultProducts}/> }
       </div>
     </div>
   )

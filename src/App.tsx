@@ -18,16 +18,26 @@ import Accessories from './pages/Accessories';
 import Belts from './pages/Belts';
 import Covers from './pages/Covers';
 
+import { getProductsInitial } from './redux/slices/getProductsSlice';
+
+export const AppContext = React.createContext({
+  searchPopup: false,
+  setSearchPopup: (searchPopup: boolean) => {}
+})
+
 const App:React.FC = () => {
   const dispatch = useAppDispatch()
 
+  const [searchPopup, setSearchPopup] = React.useState(false)
+
   React.useEffect(() => {
 		dispatch(getProductsFromFavorite());
+    dispatch(getProductsInitial())
 	}, [])
-
   const [isOpen, setIsOpen] = React.useState(false)
 
   return (
+    <AppContext.Provider value={{ searchPopup, setSearchPopup }}>
     <div className="App">
       <Header />
       <Routes>
@@ -44,6 +54,7 @@ const App:React.FC = () => {
         <Route path="accessories/covers" element={<Covers />} />
       </Routes>
     </div>
+    </AppContext.Provider>
   )
 }
 

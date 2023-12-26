@@ -66,8 +66,8 @@ export interface RequireAllProducts {
   colorsFilter?: IFilter[]
   materialsFilter?: IFilter[]
   sexFilter?: IFilter[]
-  sortBy: string
-  order: string
-  minPrice: number
-  maxPrice: number
+  sortBy?: string
+  order?: string
+  minPrice?: number
+  maxPrice?: number
 }

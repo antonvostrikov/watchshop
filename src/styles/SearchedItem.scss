@@ -5,6 +5,9 @@
   align-items: center;
   margin: 0 40px 0 0;
   &__image {
+    a {
+      text-decoration: none;
+    }
     img {
       width: 200px;
       height: 300px;
@@ -13,17 +16,25 @@
   }
   &__name {
     margin: 0 0 20px 0;
-    h2 {
-      font-family: $OpenSans;
-      font-size: 16px;
-      font-weight: 400;
-      text-align: center;
+    a {
+      text-decoration: none;
+      h2 {
+        font-family: $OpenSans;
+        font-size: 16px;
+        font-weight: 400;
+        text-align: center;
+        color: #000;
+      }
     }
   }
   &__price {
-    span {
-      font-family: $OpenSans;
-      font-weight: 400;
+    a {
+      text-decoration: none;
+      span {
+        font-family: $OpenSans;
+        font-weight: 400;
+        color: #000;
+      }
     }
   }
 }

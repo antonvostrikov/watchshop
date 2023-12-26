@@ -29,14 +29,18 @@
   .header-top__main {
     padding: 60px 0;
     .container {
-      display: grid;
-      grid-template-columns: 2fr 1fr;
-      align-items: center;
-      .header-top__left {
+      .header-top__inner {
         display: flex;
         align-items: center;
+        justify-content: space-between;
         .header-top__logo {
           margin: 0 50px 0 0;
+        }
+        .header-top__menu {
+          flex: 1 1 auto;
+        }
+        .header-top__mobile-button {
+          display: none;
         }
       }
       .header-top__right {
@@ -113,6 +117,100 @@
           }
         }
       }
+    }
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .header-top {
+    .header-top__main {
+      padding: 40px 0;
+      .container {
+        .header-top__inner {
+          .header-top__menu {
+            display: none;
+          }
+          .header-top__mobile-button {
+            display: block;
+            order: -1;
+          }
+          .header-top__logo {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            margin: 0;
+          }
+        }
+      }
+    }    
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .header-top {
+    .header-top__connection {
+      display: none;
+    }
+    .header-top__main {
+      padding: 20px 0;
+      .container {
+        .header-top__inner {
+          .header-top__logo {
+            .logotype {
+              span {
+                font-size: 24px;
+                line-height: 24px;
+              }
+            }
+          }
+          .header-top__right {
+            .header-top__enter {
+              display: none;
+            }
+          }
+        }
+      }   
+    }
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .header-top {
+    .header-top__main {
+      .container {
+        .header-top__inner {
+          .header-top__right {
+            .header-top__search {
+              span {
+                img {
+                  width: 25px;
+                  height: 25px;
+                }
+              }
+            }
+            .header-top__favorite {
+              a {
+                span {
+                  img {
+                    width: 20px;
+                    height: 20px;
+                  }
+                }
+              }
+            }
+            .header-top__basket {
+              a {
+                span {
+                  img {
+                    width: 20px;
+                    height: 20px;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }   
     }
   }
 }

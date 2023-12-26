@@ -1,10 +1,10 @@
 import React from 'react'
 
-import Menu from '../components/Menu/Menu'
 import { useAppDispatch, useAppSelector } from '../hooks/hook'
 import { Link } from 'react-router-dom'
-import Footer from '../components/Footer/Footer'
 import { getAccessoriesName } from '../redux/slices/getAccessoriesSlice'
+
+import Footer from '../components/Footer/Footer'
 
 const Accessories:React.FC = () => {
   const dispatch = useAppDispatch()

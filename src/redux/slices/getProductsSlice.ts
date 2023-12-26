@@ -10,6 +10,19 @@ const initialState: IProducts = {
   status: "pending"
 }
 
+export const getProductsInitial = createAsyncThunk<IProduct[]>(
+  'products/getProductsInitial',
+  async () => {
+    try {
+      const { data } = await axios.get('http://localhost:3001/products')
+
+      return data
+    } catch (e) {
+      console.log(e)
+    }
+  }
+)
+
 export const getProducts = createAsyncThunk<IProduct[], RequireAllProducts>(
   'products/getProducts',
   async (params) => {
@@ -78,6 +91,9 @@ const getProductsSlice = createSlice({
     builder.addCase(getProduct.fulfilled, (state, action) => {
       state.product = []
       state.product.push(action.payload)
+    })
+    builder.addCase(getProductsInitial.fulfilled, (state, action) => {
+      state.products = action.payload
     })
   }
 })

@@ -5,22 +5,23 @@ import Enter from '../Enter/Enter'
 import Menu from '../Menu/Menu'
 import Logo from '../Logo/Logo'
 
+import Hamburger from 'hamburger-react'
+
 import SearchSvg from '../../ímg/search.svg'
 import CloseSvg from '../../ímg/close.svg'
 import EnterSvg from '../../ímg/enter.svg'
 import BasketSvg from '../../ímg/basket.svg'
 import FavoriteSvg from '../../ímg/heart-white.svg'
 
-import { useAppDispatch } from '../../hooks/hook'
 import SectionSearch from '../SectionSearch/SectionSearch'
+import { AppContext } from '../../App'
+import MobileMenu from '../MobileMenu/MobileMenu'
 
 const Header: React.FC = () => {
   const [enterPopup, setEnterPopup] = React.useState(false)
-  const [searchPopup, setSearchPopup] = React.useState(false)
+  const [mobileButton, setMobileButton] = React.useState(false)
 
-  const onClickOpenPopup = () => {
-    setEnterPopup(true)
-  } 
+  const { searchPopup, setSearchPopup } = React.useContext(AppContext)
 
   const onClickClosePopup = () => {
     setEnterPopup(false)
@@ -49,44 +50,48 @@ const Header: React.FC = () => {
       </div>
       <div className="header-top__main">
         <div className="container">
-          <div className="header-top__left">
+          <div className="header-top__inner">
             <div className="header-top__logo">
               <Logo />
             </div>
             <div className="header-top__menu">
               <Menu />
             </div>
-          </div>
-          <div className="header-top__right">
-            <div className="header-top__search">
-              { searchPopup ? (
-                <span className="button-close__search" onClick={() => onClickCloseSearch()}>
-                  <img src={CloseSvg} alt="" />
-                </span>
-              ) : (
-                <span className="button-open__search" onClick={() => onClickOpenSearch()}>
-                  <img src={SearchSvg} alt="" />
-                </span>
-              )}
+            <div className="header-top__mobile-button">
+              <Hamburger toggled={mobileButton} toggle={setMobileButton} />
             </div>
-            <div className="header-top__enter">
-              <span onClick={() => onClickOpenPopup()}>
-                <img src={EnterSvg} alt="Вход" />
-              </span>
-            </div>
-            <div className="header-top__favorite">
-              <Link to="/favorite">
-                <span>
-                  <img src={FavoriteSvg} alt="" />
+            { mobileButton && <MobileMenu openEnter={setEnterPopup} closeMenu={setMobileButton}/> }
+            <div className="header-top__right">
+              <div className="header-top__search">
+                { searchPopup ? (
+                  <span className="button-close__search" onClick={() => onClickCloseSearch()}>
+                    <img src={CloseSvg} alt="" />
+                  </span>
+                ) : (
+                  <span className="button-open__search" onClick={() => onClickOpenSearch()}>
+                    <img src={SearchSvg} alt="" />
+                  </span>
+                )}
+              </div>
+              <div className="header-top__enter">
+                <span onClick={() => setEnterPopup(true)}>
+                  <img src={EnterSvg} alt="Вход" />
                 </span>
-              </Link>
-            </div>
-            <div className="header-top__basket">
-              <Link to="/cart">
-                <span>
-                  <img src={BasketSvg} alt="Корзина" />
-                </span>
-              </Link>
+              </div>
+              <div className="header-top__favorite">
+                <Link to="/favorite">
+                  <span>
+                    <img src={FavoriteSvg} alt="" />
+                  </span>
+                </Link>
+              </div>
+              <div className="header-top__basket">
+                <Link to="/cart">
+                  <span>
+                    <img src={BasketSvg} alt="Корзина" />
+                  </span>
+                </Link>
+              </div>
             </div>
           </div>
         </div>

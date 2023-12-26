@@ -31,6 +31,10 @@
           }
         }
       }
+      .catalog {
+        display: flex;
+        flex-direction: column;
+      }
       .about-company {
         display: flex;
         flex-direction: column;
@@ -49,7 +53,7 @@
     }
     .footer-connection {
       display: grid;
-      grid-template-columns: 275.5px 275.5px;
+      grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
       .connect-us {
         display: flex;
         flex-direction: column;
@@ -133,4 +137,44 @@
       text-align: center;
     }
   }
+}
+
+@media screen and (max-width: 700px) {
+  .footer-bottom {
+    padding: 20px 0 0 0;
+    .container-footer {
+      .footer-menu {
+        grid-template-columns: 1fr 1fr;
+        grid-row-gap: 50px;
+        margin: 0 0 120px 0;
+        .about-company {
+          align-items: baseline;
+        }
+        .for-buyers {
+          align-items: baseline;
+        }
+        .our-work {
+          align-items: baseline;
+        }
+      }
+    } 
+    .footer-copyright {
+      padding: 20px 0;
+    }
+  }
+}
+
+@media screen and (max-width: 489px) {
+  .footer-bottom {
+    .container-footer {
+      .footer-connection {
+        .connect-us {
+          margin: 0 0 40px 0;
+        }
+        .social-network {
+          padding: 0;
+        }
+      }
+    }
+  }     
 }

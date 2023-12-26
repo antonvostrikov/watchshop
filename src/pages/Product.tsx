@@ -14,6 +14,8 @@ import { addToFavorite } from '../redux/slices/favoriteSlice'
 
 import { IProduct } from '../interfaces/product.interface'
 
+import { AppContext } from '../App'
+
 interface IProductProps {
   setIsOpen: (isOpen: boolean) => void
 }
@@ -22,11 +24,15 @@ const Product:React.FC<IProductProps> = ({ setIsOpen }) => {
   const navigate = useNavigate()
   const { id } = useParams()
 
+  const { searchPopup, setSearchPopup } = React.useContext(AppContext)
+
+
   const dispatch = useAppDispatch()
 
   React.useEffect(() => {
     dispatch(getProduct(Number(id)))
     setIsOpen(false)
+    setSearchPopup(false)
   }, [id])
 
   const { product, status } = useAppSelector(state => state.products)
