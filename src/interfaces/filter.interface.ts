@@ -1,8 +1,3 @@
-interface IFilterItems {
-  id: number
-  filter: string
-}
-
 export interface ISort {
   wristBrandsFilter: IFilterItems[]
   premiumBrandsFilter: IFilterItems[]

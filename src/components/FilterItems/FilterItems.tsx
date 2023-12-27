@@ -31,77 +31,77 @@ const FilterItems:React.FC<IFilterSort> = ({
 
   return (
     <div className="filter-toolbar">
-        <div className="filter-toolbar__category">
-          <div className="category-item category-price">
-            <Dropdown>
-              <DropdownButton>Цена</DropdownButton>
-              <DropdownContent>
-                <DropdownItemPrice minHandler={minPriceHandler} maxHandler={maxPriceHandler} />
-              </DropdownContent>
-            </Dropdown>
-          </div>
-          <div className="category-item category-sex">
-            <Dropdown>
-              <DropdownButton>Пол</DropdownButton>
-              <DropdownContent>
-                <DropdownList>
-                  { sex && sex.map(s => <DropdownItem
-                    filterList={sexFilters}
-                    filterHandler={sexFiltersHandler}
-                    filter={s.filter}
-                    filterID={s.id}
-                  ></DropdownItem>) }
-                </DropdownList>
-              </DropdownContent>
-            </Dropdown>
-          </div>
-          <div className="category-item category-brand">
-            <Dropdown className={'dropdown-brand'}>
-              <DropdownButton>Бренд</DropdownButton>
-              <DropdownContent>
-                <DropdownList>
-                  { brands && brands.map(brand => <DropdownItem 
-                    filterList={brandsFilters} 
-                    filterHandler={brandsFiltersHandler} 
-                    filter={brand.filter} 
-                    filterID={brand.id}></DropdownItem>
-                  ) }
-                </DropdownList>
-              </DropdownContent>
-            </Dropdown>
-          </div>
-          <div className="category-item">
-            <Dropdown className={'dropdown-country'}>
-              <DropdownButton>Страна</DropdownButton>
-              <DropdownContent>
-                <DropdownList>
-                  { countries && countries.map(country => <DropdownItem 
-                    filterList={countriesFilters} 
-                    filterHandler={countriesFiltersHandler}
-                    filter={country.filter}
-                    filterID={country.id}></DropdownItem>
-                  ) }
-                </DropdownList>
-              </DropdownContent>
-            </Dropdown>
-          </div>
+      <div className="filter-toolbar__category">
+        <div className="category-item category-price">
+          <Dropdown>
+            <DropdownButton>Цена</DropdownButton>
+            <DropdownContent>
+              <DropdownItemPrice minHandler={minPriceHandler} maxHandler={maxPriceHandler} />
+            </DropdownContent>
+          </Dropdown>
         </div>
-        <div className="filter-toolbar__sort">
-          <Dropdown className={'dropdown-right'}>
-            <DropdownButton>
-              <div className="sort-item">{sortMain.name} <img src={FilterArrow} alt="Сортировка" /></div>
-            </DropdownButton>
+        <div className="category-item category-sex">
+          <Dropdown>
+            <DropdownButton>Пол</DropdownButton>
             <DropdownContent>
               <DropdownList>
-                { sort.map(sortItem => <DropdownItemSet
-                  sortName={sortItem.name}
-                  sortProperty={sortItem.sortProperty}
-                  sortHandler={sortMainHandler}
-                ></DropdownItemSet>) }
+                { sex && sex.map(s => <DropdownItem
+                  filterList={sexFilters}
+                  filterHandler={sexFiltersHandler}
+                  filter={s.filter}
+                  filterID={s.id}
+                />) }
               </DropdownList>
             </DropdownContent>
           </Dropdown>
         </div>
+        <div className="category-item category-brand">
+          <Dropdown className={'dropdown-brand'}>
+            <DropdownButton>Бренд</DropdownButton>
+            <DropdownContent>
+              <DropdownList>
+                { brands && brands.map(brand => <DropdownItem 
+                  filterList={brandsFilters} 
+                  filterHandler={brandsFiltersHandler} 
+                  filter={brand.filter} 
+                  filterID={brand.id}
+                />) }
+              </DropdownList>
+            </DropdownContent>
+          </Dropdown>
+        </div>
+        <div className="category-item">
+          <Dropdown className={'dropdown-country'}>
+            <DropdownButton>Страна</DropdownButton>
+            <DropdownContent>
+              <DropdownList>
+                { countries && countries.map(country => <DropdownItem 
+                  filterList={countriesFilters} 
+                  filterHandler={countriesFiltersHandler}
+                  filter={country.filter}
+                  filterID={country.id}
+                />) }
+              </DropdownList>
+            </DropdownContent>
+          </Dropdown>
+        </div>
+      </div>
+      <div className="filter-toolbar__sort">
+        <Dropdown className={'dropdown-right'}>
+          <DropdownButton>
+            <div className="sort-item">{sortMain.name} <img src={FilterArrow} alt="Сортировка" /></div>
+          </DropdownButton>
+          <DropdownContent>
+            <DropdownList>
+              { sort.map(sortItem => <DropdownItemSet
+                sortName={sortItem.name}
+                sortProperty={sortItem.sortProperty}
+                sortHandler={sortMainHandler}
+              />) }
+            </DropdownList>
+          </DropdownContent>
+        </Dropdown>
+      </div>
     </div>
   )
 }

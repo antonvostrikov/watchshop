@@ -5,6 +5,8 @@
   &__category {
     display: flex;
     .category-item {
+      display: flex;
+      align-items: center;
       font-family: $Roboto;
       font-weight: 500;
       font-size: 16px;
@@ -51,5 +53,11 @@
         width: 25px;
       }
     }
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .filter-toolbar {
+    display: none;
   }
 }

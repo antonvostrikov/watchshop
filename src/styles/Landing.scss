@@ -251,9 +251,11 @@
 }
 
 @media screen and (max-width: 1000px) {
-  .section-landing__futures {
-    .future-landing {
-      padding: 45px 15px;
+  .section-landing {
+    &__futures {
+      .future-landing {
+        padding: 45px 15px;
+      }
     }
   }
   .section-landing__links,
@@ -309,65 +311,189 @@
 }
 
 @media screen and (max-width: 900px) {
-  .section-landing__links {
-    grid-template-areas: "A B"
-    "C C";
-    grid-gap: 15px;
-    grid-template-columns: none;
-    grid-template-rows: none;
-    .big {
-      img {
-        height: 410px;
+  .section-landing {
+    &__links {
+      grid-template-areas: "A B"
+      "C C";
+      grid-gap: 15px;
+      grid-template-columns: none;
+      grid-template-rows: none;
+      .big {
+        img {
+          height: 410px;
+        }
+      }
+      .small-top {
+        img {
+          height: 410px;
+        }
+      }
+      .small-bottom {
+        img {
+          height: 325px;
+        }
       }
     }
-    .small-top {
-      img {
-        height: 410px;
+    .section-landing {
+      &__futures {
+        grid-template-areas: "A A"
+        "B D"
+        "C E";
+        .future-landing:nth-child(1) {
+          h2 {
+            letter-spacing: 0;
+          }
+        }
       }
     }
-    .small-bottom {
-      img {
-        height: 325px;
-      }
-    }
-  }
-  .section-landing__futures {
-    grid-template-areas: "A A"
-    "B D"
-    "C E"
-  }
-  .section-landing__about {
-    .about-block {
-      h2 {
-        font-size: 22px;
+    .section-landing__about {
+      .about-block {
+        h2 {
+          font-size: 22px;
+        }
       }
     }
   } 
 }
 
 @media screen and (max-width: 700px) {
-  .section-landing__links {
-    .big {
-      h2 {
-        top: 30px;
-        left: 35px;
+  .section-landing {
+    &__links {
+      grid-template-areas: "A"
+      "B"
+      "C";
+      gap: 15px;
+      margin: 0 0 50px 0;
+      .big {
+        h2 {
+          top: 30px;
+          left: 35px;
+        }
+        img {
+          height: 435px;
+        }
       }
-      img {
-        height: 325px;
+      .small-top {
+        img {
+          height: 325px;
+        }
+      }
+      .small-bottom {
+        img {
+          height: 325px;
+        }
       }
     }
-    .small-top {
-      img {
-        height: 325px;
+    &__snapshots {
+      grid-template-areas: "A"
+      "B"
+      "C";
+      grid-template-columns: 1fr;
+      gap: 15px;
+      margin: 0 0 50px 0;
+      .snapshot-landing:nth-child(1) {
+        img {
+          height: 435px;
+        }
       }
-    }
-    .small-bottom {
-      img {
-        height: 325px;
+      .snapshot-landing:nth-child(2) {
+        img {
+          height: 325px;
+        }
+      }
+      .snapshot-landing:nth-child(3) {
+        img {
+          height: 325px;
+        }
       }
     }
   }
   .section-landing__about {
     grid-template-columns: 1fr;
+  }
+} 
+
+@media screen and (max-width: 500px) {
+  .section-landing {
+    &__links {
+      margin: 0 0 30px 0;
+      .big {
+        img {
+          height: 300px;
+          object-position: bottom;
+        }
+      }
+      .small-top {
+        img {
+          height: 250px;
+        }
+      }
+      .small-bottom {
+        img {
+          height: 250px;
+        }
+      }
+    }
+    &__futures {
+      margin: 0 0 30px 0;
+    }
+    &__snapshots {
+      .snapshot-landing:nth-child(1) {
+        img {
+          height: 300px;
+        }
+      }
+      .snapshot-landing:nth-child(2) {
+        img {
+          height: 250px;
+        }
+      }
+      .snapshot-landing:nth-child(3) {
+        img {
+          height: 250px;
+        }
+      }
+    }
+    .section-landing__about {
+      margin: 0 0 30px 0;
+      .about-block {
+        h2 {
+          font-size: 20px;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .section-landing {
+    .section-landing__futures {
+      grid-template-areas:
+        "A"
+        "B"
+        "C"
+        "D"
+        "E";
+      grid-template-columns: 1fr;
+      gap: 15px;
+      .future-landing:nth-child(1) {
+        h2 {
+          font-size: 20px;
+        }
+        form {
+          display: flex;
+          flex-direction: column;
+          input {
+            font-size: 14px;
+            width: 100%;
+            margin: 0 0 10px 0;
+          }
+          button {
+            font-size: 14px;
+            width: 100%;
+          }
+        }
+      }
+    }
   }
 }

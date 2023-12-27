@@ -7,6 +7,7 @@ import Footer from '../components/Footer/Footer'
 import { useAppDispatch, useAppSelector } from '../hooks/hook'
 import { getProducts } from '../redux/slices/getProductsSlice'
 import { getWristBrandsFilter, getWristCountriesFilter, setChangePage } from '../redux/slices/filterSlice'
+import FilterItemsMobile from '../FilterItemsMobile/FilterItemsMobile'
 
 const Watches:React.FC = () => {
   const dispatch = useAppDispatch()
@@ -47,6 +48,24 @@ const Watches:React.FC = () => {
             <div className="wrapper-watches__title">
               <h1>наручные часы</h1>
             </div>
+            <FilterItemsMobile 
+              brands={wristBrandsFilter} 
+              brandsFilters={brandsFilter}
+              brandsFiltersHandler={setBrandsFilter}
+              countries={wristCountriesFilter}
+              countriesFilters={countriesFilter} 
+              countriesFiltersHandler={setCountriesFilter}
+              sex={sexSort}
+              sexFilters={sexFilter}
+              sexFiltersHandler={setSexFilter}
+              sort={sortItems}
+              sortMain={sortMain}
+              sortMainHandler={setSortMain}
+              minPrice={minPrice}
+              maxPrice={maxPrice}
+              minPriceHandler={setMinPrice}
+              maxPriceHandler={setMaxPrice}
+            />
             <FilterItems 
               brands={wristBrandsFilter} 
               brandsFilters={brandsFilter}

@@ -1,0 +1,122 @@
+.filter-items__mobile {
+  display: none;
+  &-button {
+    span {
+      display: flex;
+      align-items: center;
+      font-family: $OpenSans;
+      img {
+        padding: 0 0 0 10px;
+        width: 35px;
+        height: 35px;
+      }
+    }
+  }
+  &-wrapper {
+    display: none;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: #fff;
+    padding: 20px 15px 0 15px ;
+    .filter-items__inner {
+      display: flex;
+      flex-direction: column;
+      overflow-y: auto;
+      height: 90vh;
+      .filter-wrapper__title {
+        padding: 0 0 50px 0;
+        h2 {
+          font-family: $Roboto;
+          font-size: 24px;
+          font-weight: 100;
+        }
+        span {
+          position: absolute;
+          right: 40px;
+          top: 20px;
+          img {
+            width: 35px;
+            height: 35px;
+          }
+        }
+      }
+      .filter-wrapper__inner {
+        margin: 0 0 40px 0;
+        h2 {
+          font-family: $Raleway;
+          font-weight: 500;
+          font-size: 20px;
+          padding: 0 0 20px 0;
+        }
+        .list-filter__items {
+          list-style: none;
+          li {
+            display: flex;
+            align-items: center;
+            font-family: $OpenSans;
+            margin: 0 0 10px 0;
+            input {
+              margin: 0 10px 0 0;
+              width: 20px;
+              height: 20px;
+            }
+          }
+        }
+      }
+      .filter-wrapper__price {
+        margin: 0 0 40px 0;
+        h2 {
+          font-family: $Raleway;
+          font-weight: 500;
+          font-size: 20px;
+          padding: 0 0 20px 0;
+        }
+        .filter-price {
+          display: flex;
+          align-items: center;
+          span {
+            font-family: $OpenSans;
+            margin: 0 20px 0 0;
+          }
+          input {
+            height: 30px;
+            width: 140px;
+            margin: 0 20px 0 0;
+            font-size: 16px;
+            padding: 0 5px;
+          }
+        }
+      }
+    }
+    .filter-items__button {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 10%;
+      border-top: 1px solid #ccc;
+      button {
+        background: #000;
+        border: none;
+        color: #fff;
+        font-size: 16px;
+        font-family: $OpenSans;
+        padding: 10px 20px;
+      }
+    }
+    &.active {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .filter-items__mobile {
+    display: block;
+  }
+}
