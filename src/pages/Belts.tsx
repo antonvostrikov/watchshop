@@ -1,8 +1,9 @@
 import React from 'react'
+
 import Footer from '../components/Footer/Footer'
-import Menu from '../components/Menu/Menu'
 import WatchBlock from '../components/WatchBlock/WatchBlock'
-import FilterItemsAccessories from '../components/FilterItems/FilterItemsAccessories'
+import FilterItems from '../components/FilterItems/FilterItems'
+import FilterItemsMobile from '../FilterItemsMobile/FilterItemsMobile'
 
 import { useAppDispatch, useAppSelector } from '../hooks/hook'
 import { getProducts } from '../redux/slices/getProductsSlice'
@@ -47,7 +48,26 @@ const Belts:React.FC = () => {
             <div className="wrapper-watches__title">
               <h1>Ремни</h1>
             </div>
-            <FilterItemsAccessories 
+            <FilterItemsMobile 
+              sex={sexSortAccessories}
+              sexFilters={sexFilter}
+              sexFiltersHandler={setSexFilter}
+              brands={beltsBrandsFilter}
+              brandsFilters={brandsFilter}
+              brandsFiltersHandler={setBrandsFilter}
+              materials={beltsMaterialsFilter}
+              materialsFilter={materialsFilter}
+              materialsFiltersHandler={setMaterialsFilter}
+              colors={beltsColorsFilter}
+              colorsFilters={colorsFilter}
+              colorsFiltersHandler={setColorsFilter}
+              sort={sortItems}
+              sortMain={sortMain}
+              sortMainHandler={setSortMain}
+              minPriceHandler={setMinPrice}
+              maxPriceHandler={setMaxPrice}
+            />
+            <FilterItems 
               sex={sexSortAccessories}
               sexFilters={sexFilter}
               sexFiltersHandler={setSexFilter}

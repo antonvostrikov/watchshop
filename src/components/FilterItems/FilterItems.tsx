@@ -26,7 +26,13 @@ const FilterItems:React.FC<IFilterSort> = ({
   sortMain,
   sortMainHandler,
   minPriceHandler,
-  maxPriceHandler
+  maxPriceHandler,
+  colors,
+  colorsFilters,
+  colorsFiltersHandler,
+  materials,
+  materialsFilter,
+  materialsFiltersHandler
   }) => {
 
   return (
@@ -55,36 +61,74 @@ const FilterItems:React.FC<IFilterSort> = ({
             </DropdownContent>
           </Dropdown>
         </div>
-        <div className="category-item category-brand">
-          <Dropdown className={'dropdown-brand'}>
-            <DropdownButton>Бренд</DropdownButton>
-            <DropdownContent>
-              <DropdownList>
-                { brands && brands.map(brand => <DropdownItem 
-                  filterList={brandsFilters} 
-                  filterHandler={brandsFiltersHandler} 
-                  filter={brand.filter} 
-                  filterID={brand.id}
-                />) }
-              </DropdownList>
-            </DropdownContent>
-          </Dropdown>
-        </div>
-        <div className="category-item">
-          <Dropdown className={'dropdown-country'}>
-            <DropdownButton>Страна</DropdownButton>
-            <DropdownContent>
-              <DropdownList>
-                { countries && countries.map(country => <DropdownItem 
-                  filterList={countriesFilters} 
-                  filterHandler={countriesFiltersHandler}
-                  filter={country.filter}
-                  filterID={country.id}
-                />) }
-              </DropdownList>
-            </DropdownContent>
-          </Dropdown>
-        </div>
+        { brands && (
+          <div className="category-item category-brand">
+            <Dropdown className={'dropdown-brand'}>
+              <DropdownButton>Бренд</DropdownButton>
+              <DropdownContent>
+                <DropdownList>
+                  { brands && brands.map(brand => <DropdownItem 
+                    filterList={brandsFilters} 
+                    filterHandler={brandsFiltersHandler} 
+                    filter={brand.filter} 
+                    filterID={brand.id}
+                  />) }
+                </DropdownList>
+              </DropdownContent>
+            </Dropdown>
+          </div>
+        ) }
+        { countries && (
+          <div className="category-item">
+            <Dropdown className={'dropdown-country'}>
+              <DropdownButton>Страна</DropdownButton>
+              <DropdownContent>
+                <DropdownList>
+                  { countries && countries.map(country => <DropdownItem 
+                    filterList={countriesFilters} 
+                    filterHandler={countriesFiltersHandler}
+                    filter={country.filter}
+                    filterID={country.id}
+                  />) }
+                </DropdownList>
+              </DropdownContent>
+            </Dropdown>
+          </div>
+        ) }
+        { colors && (
+          <div className="category-item">
+            <Dropdown>
+              <DropdownButton>Цвет</DropdownButton>
+              <DropdownContent>
+                <DropdownList>
+                  { colors && colors.map(s => <DropdownItem
+                    filterList={colorsFilters}
+                    filterHandler={colorsFiltersHandler}
+                    filter={s.filter}
+                    filterID={s.id}
+                  ></DropdownItem>) }
+                </DropdownList>
+              </DropdownContent>
+            </Dropdown>
+          </div>
+        ) }
+        { materials && (
+          <div className="category-item">
+            <Dropdown>
+              <DropdownButton>Материал</DropdownButton>
+              <DropdownContent>
+                <DropdownList>
+                  { materials && materials.map(s => <DropdownItem
+                    filterList={materialsFilter}
+                    filterHandler={materialsFiltersHandler}
+                    filter={s.filter}
+                    filterID={s.id}
+                  ></DropdownItem>) }
+                </DropdownList>
+              </DropdownContent>
+            </Dropdown>
+          </div>
+        ) }
       </div>
       <div className="filter-toolbar__sort">
         <Dropdown className={'dropdown-right'}>

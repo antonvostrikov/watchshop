@@ -1,6 +1,6 @@
 import React from "react";
 
-import Menu from "../components/Menu/Menu";
+import FilterItemsMobile from "../FilterItemsMobile/FilterItemsMobile";
 import Footer from "../components/Footer/Footer";
 import FilterItems from "../components/FilterItems/FilterItems";
 import WatchBlock from "../components/WatchBlock/WatchBlock";
@@ -46,6 +46,24 @@ const PremiumWatches: React.FC = () => {
             <div className="wrapper-watches__title">
               <h1>премиум часы</h1>
             </div>
+            <FilterItemsMobile 
+              brands={premiumBrandsFilter} 
+              brandsFilters={brandsFilter}
+              brandsFiltersHandler={setBrandsFilter}
+              countries={premiumCountriesFilter}
+              countriesFilters={countriesFilter} 
+              countriesFiltersHandler={setCountriesFilter}
+              sex={sexSort}
+              sexFilters={sexFilter}
+              sexFiltersHandler={setSexFilter}
+              sort={sortItems}
+              sortMain={sortMain}
+              sortMainHandler={setSortMain}
+              minPrice={minPrice}
+              maxPrice={maxPrice}
+              minPriceHandler={setMinPrice}
+              maxPriceHandler={setMaxPrice}
+            />
             <FilterItems 
               brands={premiumBrandsFilter} 
               brandsFilters={brandsFilter}

@@ -1,11 +1,11 @@
 import React from 'react'
 
-import Menu from '../components/Menu/Menu'
+import FilterItemsMobile from '../FilterItemsMobile/FilterItemsMobile'
+import FilterItems from '../components/FilterItems/FilterItems'
 import WatchBlock from '../components/WatchBlock/WatchBlock'
 import Footer from '../components/Footer/Footer'
 
 import { useAppDispatch, useAppSelector } from '../hooks/hook'
-import FilterItemsProduct from '../components/FilterItems/FIlterItemsProduct'
 import { getProducts } from '../redux/slices/getProductsSlice'
 
 const Casio:React.FC = () => {
@@ -40,7 +40,17 @@ const Casio:React.FC = () => {
             <div className="wrapper-watches__title">
               <h1>Casio</h1>
             </div>
-            <FilterItemsProduct 
+            <FilterItemsMobile 
+              sex={sexSort}
+              sexFilters={sexFilter}
+              sexFiltersHandler={setSexFilter}
+              sort={sortItems}
+              sortMain={sortMain}
+              sortMainHandler={setSortMain}
+              minPriceHandler={setMinPrice}
+              maxPriceHandler={setMaxPrice}
+            />
+            <FilterItems 
               sex={sexSort}
               sexFilters={sexFilter}
               sexFiltersHandler={setSexFilter}

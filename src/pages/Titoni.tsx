@@ -1,12 +1,13 @@
 import React from 'react'
 
-import Menu from '../components/Menu/Menu'
+import FilterItemsMobile from '../FilterItemsMobile/FilterItemsMobile'
 import WatchBlock from '../components/WatchBlock/WatchBlock'
 import Footer from '../components/Footer/Footer'
+import FilterItems from '../components/FilterItems/FilterItems'
 
 import { useAppDispatch, useAppSelector } from '../hooks/hook'
 import { getProducts } from '../redux/slices/getProductsSlice'
-import FilterItemsProduct from '../components/FilterItems/FIlterItemsProduct'
+
 
 const Titoni:React.FC = () => {
   const [sexFilter, setSexFilter] = React.useState([])
@@ -40,7 +41,17 @@ const Titoni:React.FC = () => {
             <div className="wrapper-watches__title">
               <h1>Titoni</h1>
             </div>
-            <FilterItemsProduct 
+            <FilterItemsMobile 
+              sex={sexSort}
+              sexFilters={sexFilter}
+              sexFiltersHandler={setSexFilter}
+              sort={sortItems}
+              sortMain={sortMain}
+              sortMainHandler={setSortMain}
+              minPriceHandler={setMinPrice}
+              maxPriceHandler={setMaxPrice}
+            />
+            <FilterItems 
               sex={sexSort}
               sexFilters={sexFilter}
               sexFiltersHandler={setSexFilter}

@@ -3,12 +3,13 @@ import React from 'react'
 import { useAppDispatch, useAppSelector } from '../hooks/hook'
 import { getProducts } from '../redux/slices/getProductsSlice'
 
+import FilterItems from '../components/FilterItems/FilterItems'
+import FilterItemsMobile from '../FilterItemsMobile/FilterItemsMobile'
 import Footer from '../components/Footer/Footer'
-import Menu from '../components/Menu/Menu'
 import WatchBlock from '../components/WatchBlock/WatchBlock'
-import FilterItemsAccessories from '../components/FilterItems/FilterItemsAccessories'
 
 import { getBrandsCoversFilter, getColorsCoversFilter, getMaterialsCoversFilter } from '../redux/slices/filterSlice'
+
 
 const Covers:React.FC = () => {
   const dispatch = useAppDispatch()
@@ -49,7 +50,26 @@ const Covers:React.FC = () => {
             <div className="wrapper-watches__title">
               <h1>Чехлы</h1>
             </div>
-            <FilterItemsAccessories 
+            <FilterItemsMobile 
+              sex={sexSortAccessories}
+              sexFilters={sexFilter}
+              sexFiltersHandler={setSexFilter}
+              brands={coversBrandsFilter}
+              brandsFilters={brandsFilter}
+              brandsFiltersHandler={setBrandsFilter}
+              materials={coversMaterialsFilter}
+              materialsFilter={materialsFilter}
+              materialsFiltersHandler={setMaterialsFilter}
+              colors={coversColorsFilter}
+              colorsFilters={colorsFilter}
+              colorsFiltersHandler={setColorsFilter}
+              sort={sortItems}
+              sortMain={sortMain}
+              sortMainHandler={setSortMain}
+              minPriceHandler={setMinPrice}
+              maxPriceHandler={setMaxPrice}
+            />
+            <FilterItems 
               sex={sexSortAccessories}
               sexFilters={sexFilter}
               sexFiltersHandler={setSexFilter}
