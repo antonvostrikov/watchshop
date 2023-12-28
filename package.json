@@ -1,6 +1,7 @@
 {
   "name": "watchshop-pet",
   "version": "0.1.0",
+  "homepage": "https://antonvostrikov123.github.io/watchshop",
   "private": true,
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.5",
@@ -36,7 +37,9 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "server": "json-server -w db.json -p 3001"
+    "server": "json-server -w db.json -p 3001",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
@@ -58,6 +61,7 @@
   },
   "devDependencies": {
     "@types/react-slick": "^0.23.10",
+    "gh-pages": "^6.1.1",
     "resolve-url-loader": "^5.0.0"
   }
 }
