@@ -5,6 +5,7 @@ import axios from "axios";
 import {RequireAllProducts, IProduct, IProducts} from '../../interfaces/product.interface'
 
 const initialState: IProducts = {
+  initialProducts: [],
   products: [],
   product: [],
   status: "pending"
@@ -93,7 +94,7 @@ const getProductsSlice = createSlice({
       state.product.push(action.payload)
     })
     builder.addCase(getProductsInitial.fulfilled, (state, action) => {
-      state.products = action.payload
+      state.initialProducts = action.payload
     })
   }
 })

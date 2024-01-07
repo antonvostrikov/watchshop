@@ -28,6 +28,12 @@
       max-width: 100%;
       width: 95vw;
       height: 95vh;
+      .modal-window__content.empty {
+        display: flex;
+        justify-content: center;
+        height: 80%;
+        align-items: center;
+      }
     }
   }
 }

@@ -37,6 +37,7 @@ export interface IProductItemProps {
 }
 
 export interface IProducts {
+  initialProducts: IProduct[]
   products: IProduct[]
   product: IProduct[]
   status: string

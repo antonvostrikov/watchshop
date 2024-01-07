@@ -18,8 +18,8 @@ import Accessories from './pages/Accessories';
 import Belts from './pages/Belts';
 import Covers from './pages/Covers';
 
-import { getProductsInitial } from './redux/slices/getProductsSlice';
 import { getProductsFromCart } from './redux/slices/cartSlice';
+import { getProductsInitial } from './redux/slices/getProductsSlice';
 
 export const AppContext = React.createContext({
   searchPopup: false,
@@ -32,8 +32,8 @@ const App:React.FC = () => {
   const [searchPopup, setSearchPopup] = React.useState(false)
 
   React.useEffect(() => {
+    dispatch(getProductsInitial());
 		dispatch(getProductsFromFavorite());
-    dispatch(getProductsInitial())
     dispatch(getProductsFromCart())
 	}, [])
   

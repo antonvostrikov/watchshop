@@ -1,40 +1,52 @@
-import React from 'react'
+import React, { ChangeEvent } from 'react'
 import Modal from '../Modal/Modal'
 
 import CloseSvg from '../../ímg/close.svg'
-import useDebounce from '../../hooks/useDebounce'
-import { searchProduct } from '../../redux/slices/searchProductsSlice'
+import ClearSvg from '../../ímg/clear.svg'
+import debounce from 'lodash.debounce'
 import { useAppDispatch, useAppSelector } from '../../hooks/hook'
+import { searchProduct } from '../../redux/slices/searchProductsSlice'
 import SearchBlock from '../SearchBlock/SearchBlock'
+import SearchEmpty from '../SearchEmpty/SearchEmpty'
 
-interface IEnterSearch {
+interface ISearchProps {
   popup: boolean
   closePopup: () => void
 }
 
-const Search:React.FC<IEnterSearch> = ({ popup, closePopup }) => {
+const Search:React.FC<ISearchProps> = ({ popup, closePopup }) => {
   const [inputValue, setInputValue] = React.useState<string>('')
-  const [resultValue, setResultValue] = React.useState<string>()
-
-  const debounced = useDebounce(inputValue, 1000)
 
   const dispatch = useAppDispatch()
 
-  React.useEffect(() => {
-    if (debounced) {
-      setResultValue(debounced)
-    }
-  }, [debounced])
-  
-  
-  React.useEffect(() => {
-    if (resultValue) {
-      dispatch(searchProduct(resultValue))
-    } 
-    
-  }, [resultValue])
+  const clearInputHandler = () => {
+    setInputValue('')
+  }
+
+  const updateInputSearch = React.useCallback(
+    debounce((str: string) => {
+      dispatch(searchProduct(str));
+    }, 1000),
+    [],
+  );
+
+  const inputSerachHandler = (event: ChangeEvent<HTMLInputElement>) => {
+    setInputValue(event.target.value)
+    updateInputSearch(event.target.value)
+  }
 
   const { searchProducts } = useAppSelector(state => state.search)
+  const { initialProducts } = useAppSelector(state => state.products)
+  
+  const renderSearchBlock = () => {
+    if (inputValue !== '' && searchProducts.length === 0) {
+      return <SearchEmpty />
+    } else if (inputValue === ''){
+      return <SearchBlock products={initialProducts.slice(0, 12)} />
+    } else {
+      return <SearchBlock products={searchProducts.slice(0, 12)} /> 
+    }
+  }
 
   return (
     <>
@@ -48,12 +60,17 @@ const Search:React.FC<IEnterSearch> = ({ popup, closePopup }) => {
           </div>
           <div className="search-form">
             <form>
-              <input type="text" placeholder="Введите запрос.." onChange={(e) => setInputValue(e.target.value)}/>
+              <input type="text" placeholder="Введите запрос.." value={inputValue} onChange={(event) => inputSerachHandler(event)}/>
             </form>
+            <div className="search-clear" onClick={() => clearInputHandler()}>
+              <img src={ClearSvg} alt="" />
+            </div>
           </div>
         </Modal.Header>
-        <Modal.Content>
-          { searchProducts.length !== 0 && <SearchBlock products={searchProducts}/> }
+        <Modal.Content className={inputValue !== '' && searchProducts.length === 0 ? 'empty' : ''}>
+          <div className="container-search">
+            { renderSearchBlock() }
+          </div>
         </Modal.Content>
       </Modal>
     </>

@@ -7,4 +7,5 @@ export interface IModalProps {
 
 export interface IModalElementProps {
   children: React.ReactNode
+  className?: string
 }

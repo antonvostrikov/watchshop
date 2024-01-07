@@ -28,9 +28,9 @@ const ModalHeader = ({ children }: IModalElementProps): JSX.Element => {
   )
 }
 
-const ModalContent = ({ children }: IModalElementProps): JSX.Element => {
+const ModalContent = ({ children, className }: IModalElementProps): JSX.Element => {
   return (
-    <div className="modal-window__content">
+    <div className={`modal-window__content ${className || ''}`}>
       { children }
     </div>
   )
