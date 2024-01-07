@@ -338,9 +338,18 @@
         .slick-slider {
           .slick-list {
             width: 300px;
+            height: 350px;
+            .slide-product__main {
+              img {
+                height: 345px;
+              }
+            }
           }
         }
       } 
+      .product-aside {
+        padding: 15px 0 0 0;
+      }
     } 
   } 
 }

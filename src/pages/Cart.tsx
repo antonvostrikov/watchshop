@@ -8,12 +8,7 @@ import useTransformPrice from '../hooks/useTransformPrice';
 import Footer from '../components/Footer/Footer';
 
 const Cart:React.FC = () => {
-  const dispatch = useAppDispatch()
   const navigate = useNavigate()
-
-  React.useEffect(() => {
-    dispatch(getProductsFromCart())
-  }, [])
 
   const { cart, count, total } = useAppSelector(state => state.cart)
 

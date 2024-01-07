@@ -24,13 +24,13 @@ export const addToFavorite = createAsyncThunk<IFavoriteItem, IFavoriteItem, { st
 export const deleteProductFromFavorite = createAsyncThunk<number, number, { rejectValue: string }>(
   'favorite/deleteProductFromFavorite',
   async (id, { rejectWithValue }) => {
-      const response = await axios.delete(`http://localhost:3001/favorite/${id}`)
+    const response = await axios.delete(`http://localhost:3001/favorite/${id}`)
 
-      if (!response) {
-        rejectWithValue('Some error')
-      }
+    if (!response) {
+      rejectWithValue('Some error')
+    }
 
-      return id
+    return id
   }
 )
 

@@ -36,7 +36,7 @@ body {
 .wrapper-watches,
 .wrapper-accessories {
   border-top: 1px solid #979797;
-  padding: 100px 0 0 0;
+  padding: 100px 0 80px 0;
   &__title {
     margin: 0 0 90px 0;
     h1 {
@@ -67,8 +67,6 @@ body {
 @import './styles/Dropdown.scss';
 @import './styles/Accessories.scss';
 @import './styles/Modal.scss';
-@import './styles/SectionSearch.scss';
-@import './styles/SearchedBlock.scss';
-@import './styles/SearchedItem.scss';
 @import './styles/MobileMenu.scss';
 @import './styles/FilterItemsMobile.scss';
+@import './styles/Search.scss';

@@ -13,9 +13,9 @@ import EnterSvg from '../../ímg/enter.svg'
 import BasketSvg from '../../ímg/basket.svg'
 import FavoriteSvg from '../../ímg/heart-white.svg'
 
-import SectionSearch from '../SectionSearch/SectionSearch'
 import { AppContext } from '../../App'
 import MobileMenu from '../MobileMenu/MobileMenu'
+import Search from '../Search/Search'
 
 const Header: React.FC = () => {
   const [enterPopup, setEnterPopup] = React.useState(false)
@@ -96,8 +96,8 @@ const Header: React.FC = () => {
           </div>
         </div>
       </div>
-      { enterPopup && <Enter popup={enterPopup} closePopup={onClickClosePopup}/> }
-      { searchPopup && <SectionSearch search={searchPopup} setSearchPopup={setSearchPopup}/> }
+      { enterPopup && <Enter popup={enterPopup} closePopup={onClickClosePopup} /> }
+      { searchPopup && <Search popup={searchPopup} closePopup={onClickCloseSearch} /> }
     </header>
   )
 }

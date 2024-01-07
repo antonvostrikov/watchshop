@@ -113,6 +113,8 @@ const cartSlice = createSlice({
 
         findProduct.price = action.payload.price
       } else {
+        state.count = state.count + 1
+        state.total = state.total + action.payload.price
         state.cart.push(action.payload)
       }
     })
@@ -120,14 +122,14 @@ const cartSlice = createSlice({
       state.cart = action.payload
 
       state.total = state.cart.reduce((sum, obj) => (obj.price * obj.sum) + sum, 0)
-      state.count = state.cart.reduce((sum, obj) => (obj.sum + sum), 0)
+      state.count = state.cart.length
     })
     builder.addCase(deleteProductFromCart.fulfilled, (state, action) => {
       const findProduct = state.cart.find(item => item.id === action.payload) 
 
       if (findProduct) {
         state.total = state.total - findProduct.total
-        state.count = state.count - findProduct.sum
+        state.count = state.count - 1
       }
 
       state.cart = state.cart.filter(product => product.id !== action.payload)
@@ -140,7 +142,6 @@ const cartSlice = createSlice({
         findProduct.total = action.payload.total
 
         state.total = state.total + action.payload.price
-        state.count = state.count + 1
       }
     })
     builder.addCase(minusProductToCart.fulfilled, (state, action) => {
@@ -150,7 +151,6 @@ const cartSlice = createSlice({
         findProduct.sum = action.payload.sum
         findProduct.total = action.payload.total
         
-        state.count = state.count - 1
         state.total = state.total - action.payload.price
       }
     })

@@ -164,6 +164,61 @@
   }
 }
 
+@media screen and (max-width: 600px) {
+  .footer-bottom {
+    .container-footer {
+      .footer-menu {
+        h3 {
+          font-size: 16px;
+          ul {
+            a {
+              font-size: 14px;
+            }
+          }
+        }
+      }
+      .footer-connection {
+        .connect-us {
+          h3 {
+            font-size: 16px;
+          }
+          &__phone {
+            span {
+              font-size: 14px;
+            }
+          }
+          &__visiting {
+            span {
+              font-size: 14px;
+            }
+          }
+        }
+        .social-network {
+          h3 {
+            font-size: 16px;
+          }
+          ul {
+            li {
+              a {
+                img {
+                  width: 30px;
+                  height: 30px;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    .footer-copyright {
+      padding: 15px 0;
+      p {
+        font-size: 14px;
+      }
+    }
+  }
+}
+
 @media screen and (max-width: 489px) {
   .footer-bottom {
     .container-footer {

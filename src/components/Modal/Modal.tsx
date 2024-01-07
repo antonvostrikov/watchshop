@@ -2,7 +2,7 @@ import React from 'react'
 
 import { IModalElementProps, IModalProps } from '../../interfaces/modal.interface'
 
-const Modal = ({ children, isOpen, closeModal }: IModalProps): JSX.Element => {
+const Modal = ({ children, isOpen, closeModal, className }: IModalProps): JSX.Element => {
   React.useEffect(() => {
     isOpen && document.body.classList.add('modal-body')
 
@@ -13,7 +13,7 @@ const Modal = ({ children, isOpen, closeModal }: IModalProps): JSX.Element => {
 
   return (
     <div className={isOpen ? "modal-wrapper active" : "modal-wrapper"} onClick={closeModal}>
-      <div className="modal-window" onClick={(e) => e.stopPropagation()}>
+      <div className={`modal-window ${className || ''}`} onClick={(e) => e.stopPropagation()}>
         { children }
       </div>
     </div>

@@ -9,8 +9,8 @@ import { useNavigate, useParams } from 'react-router-dom'
 import LeftArrowSvg from '../ímg/arrow-left.svg'
 
 import { getProduct } from '../redux/slices/getProductsSlice'
-import { addProductToCart } from '../redux/slices/cartSlice'
-import { addToFavorite } from '../redux/slices/favoriteSlice'
+import { addProductToCart, deleteProductFromCart } from '../redux/slices/cartSlice'
+import { addToFavorite, deleteProductFromFavorite } from '../redux/slices/favoriteSlice'
 
 import { IProduct } from '../interfaces/product.interface'
 
@@ -24,16 +24,27 @@ const Product:React.FC<IProductProps> = ({ setIsOpen }) => {
   const navigate = useNavigate()
   const { id } = useParams()
 
-  const { searchPopup, setSearchPopup } = React.useContext(AppContext)
+  const [isInCart, setIsInCart] = React.useState(false)
+  const [isInFavorite, setIsInFavorite] = React.useState(false)
 
+  const { setSearchPopup } = React.useContext(AppContext)
 
   const dispatch = useAppDispatch()
 
+  const { cart } = useAppSelector(state => state.cart)
+  const { favorite } = useAppSelector(state => state.favorite)
+
   React.useEffect(() => {
     dispatch(getProduct(Number(id)))
-    setIsOpen(false)
+    setIsOpen(false)       
     setSearchPopup(false)
-  }, [id])
+
+    const findProductInCart = cart.find(item => item.id === Number(id))
+    const findProductInFavorite = favorite.find(item => item.id === Number(id))
+
+    findProductInCart ? setIsInCart(true) : setIsInCart(false)
+    findProductInFavorite ? setIsInFavorite(true) : setIsInFavorite(false)
+  }, [id, cart, favorite])
 
   const { product, status } = useAppSelector(state => state.products)
 
@@ -62,6 +73,18 @@ const Product:React.FC<IProductProps> = ({ setIsOpen }) => {
     dispatch(addToFavorite(productToFavorite))
   }
 
+  const deleteFromCartHandler = () => {
+    setIsInCart(false)
+
+    dispatch(deleteProductFromCart(Number(id)))
+  }
+
+  const deleteFromFavoriteHandler = () => {
+    setIsInFavorite(false)
+
+    dispatch(deleteProductFromFavorite(Number(id)))
+  }
+
   return (
     <>
       <section className="section-product">
@@ -71,9 +94,13 @@ const Product:React.FC<IProductProps> = ({ setIsOpen }) => {
           </div>
           { status && product.map(item => (
             <ProductItem 
+              inFavorite={isInFavorite}
+              inCart={isInCart}
               item={item} 
               addToFavorite={addToFavoriteHandler}
               addToCart={addToCartHandler}
+              deleteFromCart={deleteFromCartHandler}
+              deleteFromFavorite={deleteFromFavoriteHandler}
             />
           )) }
         </div>

@@ -15,7 +15,7 @@ const settingsSlider = {
   infinite: true,
   focusOnSelect: true,
   swipeToSlide: true,
-  autoplay: true
+  autoplay: false
 }
 
 const settingsSliderNav = {
@@ -25,7 +25,7 @@ const settingsSliderNav = {
   swipeToSlide: true,
   vertical: true,
   verticalSwiping: true,
-  autoplay: true
+  autoplay: false
 }
 
 const settingsModalSlider = {
@@ -71,14 +71,6 @@ const SliderProduct:React.FC<ISliderProductPropos> = ({ sliderImages }) => {
     setCurrentSlide(currentSlideAfterChange)
   }
 
-  const handleOpenModal = () => {
-    setIsModalOpen(true)
-  }
-
-  const handleCloseModal = () => {
-    setIsModalOpen(false)
-  }
-
   const handleNextSlide = () => {
     slider1.current && slider1.current.slickNext()
   }
@@ -106,10 +98,10 @@ const SliderProduct:React.FC<ISliderProductPropos> = ({ sliderImages }) => {
   return (
     <>
     <div className="product-slider__main">
-      <Modal isOpen={isModalOpen} closeModal={handleCloseModal}>
+      <Modal isOpen={isModalOpen} closeModal={() => setIsModalOpen(false)}>
         <Modal.Header>
           <div className="modal-close">
-            <span onClick={() => handleCloseModal()}><img src={CloseSvg} alt="" /></span>
+            <span onClick={() => setIsModalOpen(false)}><img src={CloseSvg} alt="" /></span>
           </div>
         </Modal.Header>
         <Modal.Content>
@@ -135,7 +127,7 @@ const SliderProduct:React.FC<ISliderProductPropos> = ({ sliderImages }) => {
         initialSlide={currentSlide}
         afterChange={() => handleSliderAfterChange(currentSlide)}
       >
-        { sliderImages && sliderImages.map((slide, index) => <div className="slide-product__main" onClick={handleOpenModal}>
+        { sliderImages && sliderImages.map((slide, index) => <div className="slide-product__main" onClick={() => setIsModalOpen(true)}>
           <img src={slide.img} alt={`Слайд ${index}`} />
         </div>) }
       </Slider>

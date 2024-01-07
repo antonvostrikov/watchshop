@@ -26,10 +26,10 @@
 }
 
 .favorite-wrapper {
-  padding: 110px 0;
+  padding: 0 0 110px 0;
   display: grid;
-  gap: 30px;
   grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  justify-items: center;
   a {
     text-decoration: none;
   }
@@ -48,4 +48,100 @@
       font-size: 24px;
     }
   }
+}
+
+@media screen and (max-width: 1080px) {
+  .favorite-watches {
+    .favorite-wrapper {
+      .watch-item {
+        &__image {
+          height: 330px;
+          img {
+            width: 250px;
+            height: 330px;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .favorite-watches {
+    .favorite-header {
+      margin: 0 0 80px 0;
+      &__title {
+        h2 {
+          font-size: 26px;
+        }
+      }
+    }
+  }
+  .favorite-wrapper {
+    padding: 0;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .favorite-watches {
+    .favorite-header {
+      padding: 30px 0 0 0;
+      &__title {
+        h2 {
+          font-size: 22px;
+        }
+      }
+      &__back {
+        span {
+          font-size: 14px;
+        }
+      }
+    }
+    .favorite-wrapper {
+      .watch-item {
+        &__image {
+          height: 300px;
+          img {
+            height: 300px;
+          }
+        }
+      }
+    }
+  } 
+}
+
+@media screen and (max-width: 450px) {
+  .favorite-watches {
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    .favorite-wrapper {
+      justify-content: center;
+      .watch-item {
+        width: 300px;
+        padding: 10px 0;
+        &__title {
+          a {
+            h2 {
+              font-size: 16px;
+            }
+          }
+        }
+        &__price {
+          span {
+            font-size: 16px;
+          }
+        }
+      }
+    }
+  } 
+}
+
+@media screen and (max-width: 400px) {
+  .favorite-watches {
+    .favorite-header {
+      flex-direction: column;
+      &__back {
+        padding: 15px 0 0 0;
+      }
+    }
+  }  
 }

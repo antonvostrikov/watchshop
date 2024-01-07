@@ -23,6 +23,12 @@
     background: #fff;
     padding: 30px;
     border-radius: 5px;
+    &.modal-search {
+      overflow-y: auto;
+      max-width: 100%;
+      width: 95vw;
+      height: 95vh;
+    }
   }
 }
 

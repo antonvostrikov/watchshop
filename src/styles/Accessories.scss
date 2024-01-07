@@ -1,11 +1,14 @@
 .accessories {
-  min-height: 500px;
+  min-height: 400px;
   .wrapper-accessories__items {
-    display: grid;
-    grid-template-columns: repeat(6, minmax(150px, 1fr));
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
     .wrapper-accessories__item {
       display: flex;
       flex-direction: column;
+      padding: 0 40px;
+      margin: 0 0 30px 0px;
       .accessories-count {
         font-family: $Roboto;
         font-size: 14px;
@@ -29,4 +32,49 @@
       }
     }
   }
+}
+
+@media screen and (max-width: 768px) {
+  .accessories {
+    .wrapper-accessories {
+      &__title {
+        margin: 0 0 80px 0;
+        h1 {
+          font-size: 26px;
+        }
+      }
+      &__items {
+        .wrapper-accessories__item {
+          flex-direction: row;
+          .accessories-count {
+            margin: 0 20px 0 0;
+          }
+        }
+      }
+    }    
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .accessories {
+    min-height: 300px;
+    .wrapper-accessories {
+      padding: 30px 0;
+      &__title {
+        margin: 0 0 60px 0;
+        h1 {
+          font-size: 22px;
+        }
+      }
+      &__items {
+        .wrapper-accessories__item {
+          a {
+            .accessories-name {
+              font-size: 16px;
+            }
+          }
+        }
+      }
+    }
+  }    
 }
