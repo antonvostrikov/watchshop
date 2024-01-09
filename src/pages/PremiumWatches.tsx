@@ -4,6 +4,7 @@ import FilterItemsMobile from "../FilterItemsMobile/FilterItemsMobile";
 import Footer from "../components/Footer/Footer";
 import FilterItems from "../components/FilterItems/FilterItems";
 import WatchBlock from "../components/WatchBlock/WatchBlock";
+import Pagination from "../components/Pagination/Pagination";
 
 import { useAppDispatch, useAppSelector } from "../hooks/hook";
 import { getProducts } from "../redux/slices/getProductsSlice";
@@ -23,20 +24,28 @@ const PremiumWatches: React.FC = () => {
   ])
   const [minPrice, setMinPrice] = React.useState(0)
   const [maxPrice, setMaxPrice] = React.useState(0)
+  const [currentPage, setCurrentPage] = React.useState(1)
+  const [maxItemsPage, setMaxItemsPage] = React.useState(6)
+  const [countPages, setCountPages] = React.useState(1)
 
   const order = sortMain.sortProperty.includes('-') ? 'desc' : 'asc'
   const sortBy = sortMain.sortProperty.replace('-', '')
 
+  const categoryType = "premium"
+  const productType = "watch"
+
   React.useEffect(() => {
-    dispatch(getProducts({ brandsFilter, countriesFilter, sexFilter, sortBy, order, minPrice, maxPrice }))
+    dispatch(getProducts({ brandsFilter, countriesFilter, sexFilter, sortBy, order, minPrice, maxPrice, productType, categoryType }))
     dispatch(getPremiumBrandsFilter())
     dispatch(getPremiumCountriesFilter())
-  }, [brandsFilter, countriesFilter, sexFilter, sortBy, order, minPrice, maxPrice])
+  }, [brandsFilter, countriesFilter, sexFilter, sortBy, order, minPrice, maxPrice, categoryType, productType])
 
   const { products, status } = useAppSelector(state => state.products)
   const { premiumBrandsFilter, premiumCountriesFilter, sexSort } = useAppSelector(state => state.filter)
 
-  const productsPremium = products.filter(product => product.categoryType === 'premium')
+  React.useEffect(() => {
+    setCountPages(Math.ceil(products.length / maxItemsPage))
+  }, [products])
 
   return (
     <>
@@ -82,7 +91,8 @@ const PremiumWatches: React.FC = () => {
               minPriceHandler={setMinPrice}
               maxPriceHandler={setMaxPrice}
             />
-            <WatchBlock products={productsPremium} status={status}/>
+            <WatchBlock products={products} status={status}/>
+            <Pagination countPages={countPages} changeCurrentPage={setCurrentPage} />
           </div>       
         </div>
       </section>

@@ -7,9 +7,9 @@ import FilterItems from '../components/FilterItems/FilterItems'
 import FilterItemsMobile from '../FilterItemsMobile/FilterItemsMobile'
 import Footer from '../components/Footer/Footer'
 import WatchBlock from '../components/WatchBlock/WatchBlock'
+import Pagination from '../components/Pagination/Pagination'
 
 import { getBrandsCoversFilter, getColorsCoversFilter, getMaterialsCoversFilter } from '../redux/slices/filterSlice'
-
 
 const Covers:React.FC = () => {
   const dispatch = useAppDispatch()
@@ -26,22 +26,29 @@ const Covers:React.FC = () => {
   ])
   const [minPrice, setMinPrice] = React.useState(0)
   const [maxPrice, setMaxPrice] = React.useState(0)
+  const [currentPage, setCurrentPage] = React.useState(1)
+  const [maxItemsPage, setMaxItemsPage] = React.useState(6)
+  const [countPages, setCountPages] = React.useState(1)
 
   const order = sortMain.sortProperty.includes('-') ? 'desc' : 'asc'
   const sortBy = sortMain.sortProperty.replace('-', '')
 
+  const productType = "cover"
+
   React.useEffect(() => {
-    dispatch(getProducts({ brandsFilter, sortBy, order, minPrice, maxPrice, colorsFilter, materialsFilter, sexFilter }));
+    dispatch(getProducts({ brandsFilter, sortBy, order, minPrice, maxPrice, colorsFilter, materialsFilter, sexFilter, maxItemsPage, currentPage, productType }));
     dispatch(getBrandsCoversFilter());
     dispatch(getColorsCoversFilter());
     dispatch(getMaterialsCoversFilter());
-  }, [brandsFilter, sortBy, order, minPrice, maxPrice, colorsFilter, materialsFilter, sexFilter])
+  }, [brandsFilter, sortBy, order, minPrice, maxPrice, colorsFilter, materialsFilter, sexFilter, productType])
 
   const { products, status } = useAppSelector(state => state.products)
   const { sexSortAccessories, coversBrandsFilter, coversColorsFilter, coversMaterialsFilter } = useAppSelector(state => state.filter)
-
-  const accessoriesProducts = products.filter(product => product.categoryType === 'cover')
   
+  React.useEffect(() => {
+    setCountPages(Math.ceil(products.length / maxItemsPage))
+  }, [products])
+
   return (
     <>
       <section className="watches">
@@ -88,7 +95,8 @@ const Covers:React.FC = () => {
               minPriceHandler={setMinPrice}
               maxPriceHandler={setMaxPrice}
             />
-            <WatchBlock products={accessoriesProducts} status={status} />
+            <WatchBlock products={products} status={status} />
+            <Pagination countPages={countPages} changeCurrentPage={setCurrentPage} />
           </div>
         </div>
       </section>

@@ -27,6 +27,7 @@ export interface IProduct {
   rating?: number
   color?: string
   material?: string
+  product: string
 }
 
 export interface IProductItemProps {
@@ -71,4 +72,8 @@ export interface RequireAllProducts {
   order?: string
   minPrice?: number
   maxPrice?: number
+  maxItemsPage?: number
+  currentPage?: number
+  productType?: string
+  categoryType?: string
 }

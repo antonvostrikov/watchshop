@@ -1,0 +1,44 @@
+.favorite-wrapper {
+  .favorite-empty {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 200px;
+    background: #F8F8F8;
+    padding: 20px;
+    p {
+      font-family: $Raleway;
+      font-size: 24px;
+    }
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .favorite-wrapper {
+    .favorite-empty {
+      height: 150px;
+      p {
+        font-size: 20px;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .favorite-wrapper {
+    .favorite-empty {
+      height: 100px;
+    }
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .favorite-wrapper {
+    .favorite-empty {
+      height: 70px;
+      p {
+        font-size: 16px;
+      }
+    }
+  }
+}

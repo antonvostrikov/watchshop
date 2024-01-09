@@ -4,6 +4,7 @@ import Footer from '../components/Footer/Footer'
 import WatchBlock from '../components/WatchBlock/WatchBlock'
 import FilterItems from '../components/FilterItems/FilterItems'
 import FilterItemsMobile from '../FilterItemsMobile/FilterItemsMobile'
+import Pagination from '../components/Pagination/Pagination'
 
 import { useAppDispatch, useAppSelector } from '../hooks/hook'
 import { getProducts } from '../redux/slices/getProductsSlice'
@@ -24,12 +25,17 @@ const Belts:React.FC = () => {
   ])
   const [minPrice, setMinPrice] = React.useState(0)
   const [maxPrice, setMaxPrice] = React.useState(0)
+  const [currentPage, setCurrentPage] = React.useState(1)
+  const [maxItemsPage, setMaxItemsPage] = React.useState(6)
+  const [countPages, setCountPages] = React.useState(1)
 
   const order = sortMain.sortProperty.includes('-') ? 'desc' : 'asc'
   const sortBy = sortMain.sortProperty.replace('-', '')
 
+  const productType = "belt"
+
   React.useEffect(() => {
-    dispatch(getProducts({ brandsFilter, colorsFilter, materialsFilter, sortBy, order, minPrice, maxPrice, sexFilter }))
+    dispatch(getProducts({ brandsFilter, colorsFilter, materialsFilter, sortBy, order, minPrice, maxPrice, sexFilter, maxItemsPage, currentPage, productType }))
     dispatch(getColorsBeltsFilter());
     dispatch(getBrandsBeltsFilter());
     dispatch(getMaterialsBeltsFilter());
@@ -37,9 +43,11 @@ const Belts:React.FC = () => {
 
   const { products, status } = useAppSelector(state => state.products)
   const { sexSortAccessories, beltsColorsFilter, beltsBrandsFilter, beltsMaterialsFilter } = useAppSelector(state => state.filter)
-
-  const accessoriesProducts = products.filter(product => product.categoryType === 'belt')
   
+  React.useEffect(() => {
+    setCountPages(Math.ceil(products.length / maxItemsPage))
+  }, [products])
+
   return (
     <>
       <section className="watches">
@@ -86,7 +94,8 @@ const Belts:React.FC = () => {
               minPriceHandler={setMinPrice}
               maxPriceHandler={setMaxPrice}
             />
-            <WatchBlock products={accessoriesProducts} status={status} />
+            <WatchBlock products={products} status={status} />
+            <Pagination countPages={countPages} changeCurrentPage={setCurrentPage} />
           </div>
         </div>
       </section>

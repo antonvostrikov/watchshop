@@ -3,6 +3,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
 import {RequireAllProducts, IProduct, IProducts} from '../../interfaces/product.interface'
+import Product from "../../pages/Product";
 
 const initialState: IProducts = {
   initialProducts: [],
@@ -27,7 +28,21 @@ export const getProductsInitial = createAsyncThunk<IProduct[]>(
 export const getProducts = createAsyncThunk<IProduct[], RequireAllProducts>(
   'products/getProducts',
   async (params) => {
-    const { brandsFilter, countriesFilter, colorsFilter, materialsFilter, sexFilter, sortBy, order, minPrice, maxPrice } = params
+    const { 
+      brandsFilter, 
+      countriesFilter, 
+      colorsFilter, 
+      materialsFilter, 
+      sexFilter, 
+      sortBy, 
+      order, 
+      minPrice, 
+      maxPrice, 
+      maxItemsPage, 
+      currentPage, 
+      productType, 
+      categoryType 
+    } = params
 
     const materialsList: string[] = []
     const colorsList: string[] = []
@@ -48,9 +63,11 @@ export const getProducts = createAsyncThunk<IProduct[], RequireAllProducts>(
     const sex = sexList.length === 0 ? '' : `&sex=${sexList.join('&sex=')}`
     const min = minPrice === 0 ? '' : `&price_gte=${minPrice}`
     const max = maxPrice === 0 ? '' : `&price_lte=${maxPrice}`
+    const product = productType ? `&product=${productType}` : ''
+    const category = categoryType ? `&categoryType=${categoryType}` : ''
   
     try {
-      const { data } = await axios.get(`http://localhost:3001/products?${brand}${country}${sex}&_sort=${sortBy}&_order=${order}${min}${max}${material}${color}`)
+      const { data } = await axios.get(`http://localhost:3001/products?${brand}${country}${sex}&_sort=${sortBy}&_order=${order}${min}${max}${material}${color}${product}${category}&_limit=${maxItemsPage}&_page=${currentPage}`)
       
       return data
     } catch (e) {

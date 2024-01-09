@@ -4,6 +4,7 @@ import FilterItemsMobile from '../FilterItemsMobile/FilterItemsMobile'
 import FilterItems from '../components/FilterItems/FilterItems'
 import WatchBlock from '../components/WatchBlock/WatchBlock'
 import Footer from '../components/Footer/Footer'
+import Pagination from '../components/Pagination/Pagination'
 
 import { useAppDispatch, useAppSelector } from '../hooks/hook'
 import { getProducts } from '../redux/slices/getProductsSlice'
@@ -19,6 +20,9 @@ const Casio:React.FC = () => {
   const [minPrice, setMinPrice] = React.useState(0)
   const [maxPrice, setMaxPrice] = React.useState(0)
   const [brandsFilter, setBrandsFilter] = React.useState([{ id: 1, filter: 'Casio' }])
+  const [currentPage, setCurrentPage] = React.useState(1)
+  const [maxItemsPage, setMaxItemsPage] = React.useState(6)
+  const [countPages, setCountPages] = React.useState(1)
 
   const dispatch = useAppDispatch()
 
@@ -26,11 +30,15 @@ const Casio:React.FC = () => {
   const order = sortMain.sortProperty.includes('-') ? 'desc' : 'asc'
 
   React.useEffect(() => {
-    dispatch(getProducts({ brandsFilter, sexFilter, minPrice, maxPrice, sortBy, order }))
+    dispatch(getProducts({ brandsFilter, sexFilter, minPrice, maxPrice, sortBy, order, maxItemsPage, currentPage }))
   }, [sexFilter, minPrice, maxPrice, sortBy, order])
 
   const { products, status } = useAppSelector(state => state.products)
   const { sexSort } = useAppSelector(state => state.filter)
+
+  React.useEffect(() => {
+    setCountPages(Math.ceil(products.length / maxItemsPage))
+  }, [products])
 
   return (
     <>
@@ -61,6 +69,7 @@ const Casio:React.FC = () => {
               maxPriceHandler={setMaxPrice}
             />
             <WatchBlock products={products} status={status} />
+            <Pagination countPages={countPages} changeCurrentPage={setCurrentPage} />
           </div>       
         </div>
       </section>

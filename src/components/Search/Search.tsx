@@ -16,11 +16,13 @@ interface ISearchProps {
 
 const Search:React.FC<ISearchProps> = ({ popup, closePopup }) => {
   const [inputValue, setInputValue] = React.useState<string>('')
+  const inputRef = React.useRef<HTMLInputElement>(null)
 
   const dispatch = useAppDispatch()
 
   const clearInputHandler = () => {
     setInputValue('')
+    inputRef.current?.focus()
   }
 
   const updateInputSearch = React.useCallback(
@@ -60,7 +62,7 @@ const Search:React.FC<ISearchProps> = ({ popup, closePopup }) => {
           </div>
           <div className="search-form">
             <form>
-              <input type="text" placeholder="Введите запрос.." value={inputValue} onChange={(event) => inputSerachHandler(event)}/>
+              <input type="text" placeholder="Введите запрос.." value={inputValue} onChange={(event) => inputSerachHandler(event)} ref={inputRef} />
             </form>
             <div className="search-clear" onClick={() => clearInputHandler()}>
               <img src={ClearSvg} alt="" />

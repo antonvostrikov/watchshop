@@ -30,7 +30,8 @@
           "img": "https://www.alltime.ru/obj/catalog/watch/casio/img/big/DW-5600BB-1E__4.jpg"
         }
       ],
-      "rating": 5
+      "rating": 5,
+      "product": "watch"
     },
     {
       "id": 2,
@@ -62,7 +63,8 @@
           "img": "https://www.alltime.ru/obj/catalog/watch/daniel-wellington/img/big/DW00100650__3.jpg"
         }
       ],
-      "rating": 4
+      "rating": 4,
+      "product": "watch"
     },
     {
       "id": 3,
@@ -85,7 +87,8 @@
           "img": "https://www.alltime.ru/obj/catalog/watch/seiko/img/big/SSB321P1.jpg"
         }
       ],
-      "rating": 2
+      "rating": 2,
+      "product": "watch"
     },
     {
       "id": 4,
@@ -117,7 +120,8 @@
           "img": "https://www.alltime.ru/obj/catalog/watch/ciga-design/img/big/U032-WU01-W5W7W__4.jpg"
         }
       ],
-      "rating": 3
+      "rating": 3,
+      "product": "watch"
     },
     {
       "id": 5,
@@ -149,7 +153,8 @@
           "img": "https://www.alltime.ru/obj/catalog/watch/cuervo-y-sobrinos/img/big/2860-1BL__3.jpg"
         }
       ],
-      "rating": 5
+      "rating": 5,
+      "product": "watch"
     },
     {
       "id": 6,
@@ -181,7 +186,8 @@
           "img": "https://www.alltime.ru/obj/catalog/watch/boxing/Titoni-box.jpg"
         }
       ],
-      "rating": 2
+      "rating": 2,
+      "product": "watch"
     },
     {
       "id": 7,
@@ -195,7 +201,7 @@
       "material": "натуральная телячья кожа",
       "color": "Темно-коричневый",
       "dimensions": "125x3,5см",
-      "categoryType": "belt",
+      "categoryType": "default",
       "sliderImages": [
         {
           "img": "https://static.alltime.ru/obj/catalog/presents/piquadro/img/normal2020/CU6279W118-TM.jpg"
@@ -204,7 +210,8 @@
           "img": "https://static.alltime.ru/obj/catalog/presents/piquadro/img/big/CU6279W118-TM__1.jpg"
         }
       ],
-      "rating": 4
+      "rating": 4,
+      "product": "belt"
     },
     {
       "id": 8,
@@ -218,7 +225,7 @@
       "material": "натуральная телячья кожа",
       "color": "Синий, черный",
       "dimensions": "175x3,5см, вес 190г",
-      "categoryType": "belt",
+      "categoryType": "default",
       "sliderImages": [
         {
           "img": "https://static.alltime.ru/obj/catalog/presents/piquadro/img/big/CU2619B2-NBLU2.jpg"
@@ -230,7 +237,8 @@
           "img": "https://static.alltime.ru/obj/catalog/presents/piquadro/img/big/CU2619B2-NBLU2__2.jpg"
         }
       ],
-      "rating": 5
+      "rating": 5,
+      "product": "belt"
     },
     {
       "id": 9,
@@ -244,7 +252,7 @@
       "material": "натуральная телячья кожа",
       "color": "Красный",
       "dimensions": "110x2,5см, вес 95г",
-      "categoryType": "belt",
+      "categoryType": "default",
       "sliderImages": [
         {
           "img": "https://static.alltime.ru/obj/catalog/presents/piquadro/img/big/CU6179W92-R3.jpg"
@@ -253,7 +261,8 @@
           "img": "https://static.alltime.ru/obj/catalog/presents/piquadro/img/big/CU6179W92-R3__1.jpg"
         }
       ],
-      "rating": 3
+      "rating": 3,
+      "product": "belt"
     },
     {
       "id": 10,
@@ -267,7 +276,7 @@
       "material": "натуральная телячья кожа",
       "color": "Черный, серебристый",
       "dimensions": "6х10см",
-      "categoryType": "belt",
+      "categoryType": "default",
       "sliderImages": [
         {
           "img": "https://static.alltime.ru/obj/catalog/presents/rebel-heart/img/big/RH16001.jpg"
@@ -282,7 +291,8 @@
           "img": "https://static.alltime.ru/obj/catalog/presents/rebel-heart/img/big/RH16001__3.jpg"
         }
       ],
-      "rating": 5
+      "rating": 5,
+      "product": "belt"
     },
     {
       "id": 11,
@@ -295,7 +305,7 @@
       "model": "Montblanc MB124128",
       "material": "натуральная кожа",
       "color": "Синий",
-      "categoryType": "cover",
+      "categoryType": "default",
       "sliderImages": [
         {
           "img": "https://static.alltime.ru/obj/catalog/presents/montblanc/img/big/MB124128.jpg"
@@ -304,7 +314,8 @@
           "img": "https://static.alltime.ru/obj/catalog/presents/montblanc/img/big/MB124128__1.jpg"
         }
       ],
-      "rating": 4
+      "rating": 4,
+      "product": "cover"
     },
     {
       "id": 12,
@@ -317,13 +328,14 @@
       "model": "S.T.Dupont ST50700",
       "material": "натуральная кожа",
       "color": "Черный",
-      "categoryType": "cover",
+      "categoryType": "default",
       "sliderImages": [
         {
           "img": "https://static.alltime.ru/obj/catalog/presents/stdupont/img/big/ST50700.jpg"
         }
       ],
-      "rating": 2
+      "rating": 2,
+      "product": "cover"
     },
     {
       "id": 13,
@@ -358,7 +370,8 @@
           "img": "https://static.alltime.ru/obj/catalog/watch/boxing/Casio_G-SHOCK-box.jpg"
         }
       ],
-      "rating": 5
+      "rating": 5,
+      "product": "watch"
     },
     {
       "id": 14,
@@ -399,7 +412,8 @@
           "img": "https://static.alltime.ru/obj/catalog/watch/ciga-design/img/big/U031-BG01-W6B7B__6.jpg"
         }
       ],
-      "rating": 2
+      "rating": 2,
+      "product": "watch"
     },
     {
       "id": 15,
@@ -437,7 +451,8 @@
           "img": "https://static.alltime.ru/obj/catalog/watch/boxing/Stuhrling-box-new.jpg"
         }
       ],
-      "rating": 3
+      "rating": 3,
+      "product": "watch"
     },
     {
       "id": 16,
@@ -472,7 +487,8 @@
           "img": "https://static.alltime.ru/obj/catalog/watch/boxing/CK-box.jpg"
         }
       ],
-      "rating": 4
+      "rating": 4,
+      "product": "watch"
     },
     {
       "id": 17,
@@ -519,7 +535,8 @@
           "img": "https://static.alltime.ru/obj/catalog/watch/suunto/img/big/SS050889000__8.jpg"
         }
       ],
-      "rating": 4
+      "rating": 4,
+      "product": "watch"
     },
     {
       "id": 18,
@@ -551,7 +568,8 @@
           "img": "https://static.alltime.ru/obj/catalog/watch/tommy-hilfiger/img/big/1782349__3.jpg"
         }
       ],
-      "rating": 5
+      "rating": 5,
+      "product": "watch"
     }
   ],
   "accessoriesName": [
