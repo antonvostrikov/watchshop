@@ -4,10 +4,9 @@ import { useAppDispatch, useAppSelector } from '../hooks/hook'
 import { getProducts } from '../redux/slices/getProductsSlice'
 
 import FilterItems from '../components/FilterItems/FilterItems'
-import FilterItemsMobile from '../FilterItemsMobile/FilterItemsMobile'
+import FilterItemsMobile from '../components/FilterItemsMobile/FilterItemsMobile'
 import Footer from '../components/Footer/Footer'
 import WatchBlock from '../components/WatchBlock/WatchBlock'
-import Pagination from '../components/Pagination/Pagination'
 
 import { getBrandsCoversFilter, getColorsCoversFilter, getMaterialsCoversFilter } from '../redux/slices/filterSlice'
 
@@ -96,7 +95,6 @@ const Covers:React.FC = () => {
               maxPriceHandler={setMaxPrice}
             />
             <WatchBlock products={products} status={status} />
-            <Pagination countPages={countPages} changeCurrentPage={setCurrentPage} />
           </div>
         </div>
       </section>

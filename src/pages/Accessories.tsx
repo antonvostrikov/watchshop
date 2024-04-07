@@ -25,7 +25,7 @@ const Accessories:React.FC = () => {
             </div>
             <div className="wrapper-accessories__items">
               { accessoriesName.map(name => (
-                <div className="wrapper-accessories__item">
+                <div className="wrapper-accessories__item" key={name.id}>
                   <span className="accessories-count">({name.count})</span> 
                   <Link to={`${name.type}`}><span className="accessories-name">{name.name}</span></Link>
                 </div>

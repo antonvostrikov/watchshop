@@ -1,17 +1,17 @@
 import React from 'react'
 
-import CloseSvg from '../ímg/close.svg'
-import FilterSvg from '../ímg/filters.svg'
+import CloseSvg from '../../ímg/close.svg'
+import FilterSvg from '../../ímg/filters.svg'
 import FilterItemsPrice from './FilterItemsPrice'
-import FilterArrowSvg from '../ímg/arrow-sort.svg'
+import FilterArrowSvg from '../../ímg/arrow-sort.svg'
 
-import { IFilterSort } from '../interfaces/filter.interface'
+import { IFilterSort } from '../../interfaces/filter.interface'
 
-import Dropdown from '../components/Dropdown/Dropdown'
-import DropdownButton from '../components/Dropdown/DropdownButton'
-import DropdownContent from '../components/Dropdown/DropdownContent'
-import DropdownList from '../components/Dropdown/DropdownList'
-import DropdownItemSet from '../components/Dropdown/DropdownItemSet'
+import Dropdown from '../Dropdown/Dropdown'
+import DropdownButton from '../Dropdown/DropdownButton'
+import DropdownContent from '../Dropdown/DropdownContent'
+import DropdownList from '../Dropdown/DropdownList'
+import DropdownItemSet from '../Dropdown/DropdownItemSet'
 import FilterItemMobile from './FilterItemMobile'
 
 const FilterItemsMobile:React.FC<IFilterSort> = ({ 
@@ -68,7 +68,8 @@ const FilterItemsMobile:React.FC<IFilterSort> = ({
             </DropdownButton>
             <DropdownContent>
               <DropdownList>
-                { sort.map(sortItem => <DropdownItemSet
+                { sort.map((sortItem, idx) => <DropdownItemSet
+                  key={idx}
                   sortName={sortItem.name}
                   sortProperty={sortItem.sortProperty}
                   sortHandler={sortMainHandler}
@@ -82,6 +83,7 @@ const FilterItemsMobile:React.FC<IFilterSort> = ({
             <h2>Пол</h2>
             <ul className="list-filter__items">
               { sex && sex.map(s => <FilterItemMobile 
+                key={s.id}
                 filterList={sexFilters}
                 filterHandler={sexFiltersHandler}
                 filter={s.filter}
@@ -94,6 +96,7 @@ const FilterItemsMobile:React.FC<IFilterSort> = ({
               <h2>Бренд</h2>
               <ul className="list-filter__items">
                 { brands && brands.map(brand => <FilterItemMobile 
+                  key={brand.id}
                   filterList={brandsFilters}
                   filterHandler={brandsFiltersHandler}
                   filter={brand.filter}
@@ -107,6 +110,7 @@ const FilterItemsMobile:React.FC<IFilterSort> = ({
               <h2>Страна</h2>
               <ul className="list-filter__items">
                 { countries && countries.map(country => <FilterItemMobile 
+                  key={country.id}
                   filterList={countriesFilters}
                   filterHandler={countriesFiltersHandler}
                   filter={country.filter}
@@ -120,6 +124,7 @@ const FilterItemsMobile:React.FC<IFilterSort> = ({
               <h2>Материал</h2>
               <ul className="list-filter__items">
                 { materials && materials.map(material => <FilterItemMobile 
+                  key={material.id}
                   filterList={materialsFilter}
                   filterHandler={materialsFiltersHandler}
                   filter={material.filter}
@@ -133,6 +138,7 @@ const FilterItemsMobile:React.FC<IFilterSort> = ({
               <h2>Цвет</h2>
               <ul className="list-filter__items">
                 { colors && colors.map(color => <FilterItemMobile 
+                  key={color.id}
                   filterList={colorsFilters}
                   filterHandler={colorsFiltersHandler}
                   filter={color.filter}

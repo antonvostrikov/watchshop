@@ -28,7 +28,8 @@ body {
 
 .container-watches,
 .container-accessories,
-.container-search {
+.container-search,
+.container-notfound {
   max-width: 1150px;
   width: 100%;
   padding: 0 15px;
@@ -73,3 +74,4 @@ body {
 @import './styles/FilterItemsMobile.scss';
 @import './styles/Search.scss';
 @import './styles/FavoriteEmpty.scss';
+@import './styles/NotFound.scss';

@@ -21,8 +21,7 @@ const initialState: ISort = {
   beltsMaterialsFilter: [],
   coversBrandsFilter: [],
   coversColorsFilter: [],
-  coversMaterialsFilter: [],
-  pageCount: 1
+  coversMaterialsFilter: []
 }
 
 export const getWristBrandsFilter = createAsyncThunk(
@@ -159,9 +158,6 @@ const filterSlice = createSlice({
   name: 'filter',
   initialState,
   reducers: {
-    setChangePage(state, action: PayloadAction<number>) {
-      state.pageCount = action.payload
-    }
   },
   extraReducers: (builder) => {
     builder.addCase(getWristBrandsFilter.fulfilled, (state, action) => {
@@ -197,5 +193,4 @@ const filterSlice = createSlice({
   }
 })
 
-export const { setChangePage } = filterSlice.actions
 export default filterSlice.reducer

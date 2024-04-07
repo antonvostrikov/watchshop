@@ -1,10 +1,9 @@
 import React from 'react'
 
-import FilterItemsMobile from '../FilterItemsMobile/FilterItemsMobile'
+import FilterItemsMobile from '../components/FilterItemsMobile/FilterItemsMobile'
 import FilterItems from '../components/FilterItems/FilterItems'
 import WatchBlock from '../components/WatchBlock/WatchBlock'
 import Footer from '../components/Footer/Footer'
-import Pagination from '../components/Pagination/Pagination'
 
 import { useAppDispatch, useAppSelector } from '../hooks/hook'
 import { getProducts } from '../redux/slices/getProductsSlice'
@@ -69,7 +68,6 @@ const Casio:React.FC = () => {
               maxPriceHandler={setMaxPrice}
             />
             <WatchBlock products={products} status={status} />
-            <Pagination countPages={countPages} changeCurrentPage={setCurrentPage} />
           </div>       
         </div>
       </section>

@@ -20,6 +20,7 @@ import Covers from './pages/Covers';
 
 import { getProductsFromCart } from './redux/slices/cartSlice';
 import { getProductsInitial } from './redux/slices/getProductsSlice';
+import NotFoundPage from './pages/NotFoundPage';
 
 export const AppContext = React.createContext({
   searchPopup: false,
@@ -35,7 +36,7 @@ const App:React.FC = () => {
     dispatch(getProductsInitial());
 		dispatch(getProductsFromFavorite());
     dispatch(getProductsFromCart())
-	}, [])
+	}, [dispatch])
   
   const [isOpen, setIsOpen] = React.useState(false)
 
@@ -55,6 +56,7 @@ const App:React.FC = () => {
         <Route path="accessories" element={<Accessories />} />
         <Route path="accessories/belts" element={<Belts />} />
         <Route path="accessories/covers" element={<Covers />} />
+        <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </div>
     </AppContext.Provider>

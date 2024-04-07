@@ -52,6 +52,7 @@ const FilterItems:React.FC<IFilterSort> = ({
             <DropdownContent>
               <DropdownList>
                 { sex && sex.map(s => <DropdownItem
+                  key={s.id}
                   filterList={sexFilters}
                   filterHandler={sexFiltersHandler}
                   filter={s.filter}
@@ -68,6 +69,7 @@ const FilterItems:React.FC<IFilterSort> = ({
               <DropdownContent>
                 <DropdownList>
                   { brands && brands.map(brand => <DropdownItem 
+                    key={brand.id}
                     filterList={brandsFilters} 
                     filterHandler={brandsFiltersHandler} 
                     filter={brand.filter} 
@@ -85,6 +87,7 @@ const FilterItems:React.FC<IFilterSort> = ({
               <DropdownContent>
                 <DropdownList>
                   { countries && countries.map(country => <DropdownItem 
+                    key={country.id}
                     filterList={countriesFilters} 
                     filterHandler={countriesFiltersHandler}
                     filter={country.filter}
@@ -102,6 +105,7 @@ const FilterItems:React.FC<IFilterSort> = ({
               <DropdownContent>
                 <DropdownList>
                   { colors && colors.map(s => <DropdownItem
+                    key={s.id}
                     filterList={colorsFilters}
                     filterHandler={colorsFiltersHandler}
                     filter={s.filter}
@@ -119,6 +123,7 @@ const FilterItems:React.FC<IFilterSort> = ({
               <DropdownContent>
                 <DropdownList>
                   { materials && materials.map(s => <DropdownItem
+                    key={s.id}
                     filterList={materialsFilter}
                     filterHandler={materialsFiltersHandler}
                     filter={s.filter}
@@ -137,7 +142,8 @@ const FilterItems:React.FC<IFilterSort> = ({
           </DropdownButton>
           <DropdownContent>
             <DropdownList>
-              { sort.map(sortItem => <DropdownItemSet
+              { sort.map((sortItem, idx) => <DropdownItemSet
+                key={idx}
                 sortName={sortItem.name}
                 sortProperty={sortItem.sortProperty}
                 sortHandler={sortMainHandler}

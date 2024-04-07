@@ -44,6 +44,8 @@ const Product:React.FC<IProductProps> = ({ setIsOpen }) => {
 
     findProductInCart ? setIsInCart(true) : setIsInCart(false)
     findProductInFavorite ? setIsInFavorite(true) : setIsInFavorite(false)
+    
+    window.scrollTo(0, 0)
   }, [id, cart, favorite])
 
   const { product, status } = useAppSelector(state => state.products)
@@ -94,6 +96,7 @@ const Product:React.FC<IProductProps> = ({ setIsOpen }) => {
           </div>
           { status && product.map(item => (
             <ProductItem 
+              ket={item.id}
               inFavorite={isInFavorite}
               inCart={isInCart}
               item={item} 

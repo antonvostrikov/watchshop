@@ -15,7 +15,7 @@ const settingsSlider = {
   infinite: true,
   focusOnSelect: true,
   swipeToSlide: true,
-  autoplay: false
+  autoplay: true
 }
 
 const settingsSliderNav = {
@@ -127,7 +127,7 @@ const SliderProduct:React.FC<ISliderProductPropos> = ({ sliderImages }) => {
         initialSlide={currentSlide}
         afterChange={() => handleSliderAfterChange(currentSlide)}
       >
-        { sliderImages && sliderImages.map((slide, index) => <div className="slide-product__main" onClick={() => setIsModalOpen(true)}>
+        { sliderImages && sliderImages.map((slide, index) => <div key={index} className="slide-product__main" onClick={() => setIsModalOpen(true)}>
           <img src={slide.img} alt={`Слайд ${index}`} />
         </div>) }
       </Slider>

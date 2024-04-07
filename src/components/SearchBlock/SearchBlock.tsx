@@ -10,7 +10,7 @@ interface ISearchBlockProps {
 const SearchBlock:React.FC<ISearchBlockProps> = ({ products }) => {
   return (
     <div className="search-results">
-      { products.map(product => <SearchItem {...product}/>) }
+      { products.map(product => <SearchItem key={product.id} {...product}/>) }
     </div>
   )
 }

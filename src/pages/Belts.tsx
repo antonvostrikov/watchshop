@@ -3,8 +3,7 @@ import React from 'react'
 import Footer from '../components/Footer/Footer'
 import WatchBlock from '../components/WatchBlock/WatchBlock'
 import FilterItems from '../components/FilterItems/FilterItems'
-import FilterItemsMobile from '../FilterItemsMobile/FilterItemsMobile'
-import Pagination from '../components/Pagination/Pagination'
+import FilterItemsMobile from '../components/FilterItemsMobile/FilterItemsMobile'
 
 import { useAppDispatch, useAppSelector } from '../hooks/hook'
 import { getProducts } from '../redux/slices/getProductsSlice'
@@ -95,7 +94,6 @@ const Belts:React.FC = () => {
               maxPriceHandler={setMaxPrice}
             />
             <WatchBlock products={products} status={status} />
-            <Pagination countPages={countPages} changeCurrentPage={setCurrentPage} />
           </div>
         </div>
       </section>

@@ -3,7 +3,6 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
 import {RequireAllProducts, IProduct, IProducts} from '../../interfaces/product.interface'
-import Product from "../../pages/Product";
 
 const initialState: IProducts = {
   initialProducts: [],
@@ -67,7 +66,7 @@ export const getProducts = createAsyncThunk<IProduct[], RequireAllProducts>(
     const category = categoryType ? `&categoryType=${categoryType}` : ''
   
     try {
-      const { data } = await axios.get(`http://localhost:3001/products?${brand}${country}${sex}&_sort=${sortBy}&_order=${order}${min}${max}${material}${color}${product}${category}&_limit=${maxItemsPage}&_page=${currentPage}`)
+      const { data } = await axios.get(`http://localhost:3001/products?${brand}${country}${sex}&_sort=${sortBy}&_order=${order}${min}${max}${material}${color}${product}${category}`)
       
       return data
     } catch (e) {
