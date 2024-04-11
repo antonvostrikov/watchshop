@@ -8,7 +8,8 @@ import { useAppDispatch, useAppSelector } from '../hooks/hook'
 import { getProducts } from '../redux/slices/getProductsSlice'
 import { getWristBrandsFilter, getWristCountriesFilter } from '../redux/slices/filterSlice'
 import FilterItemsMobile from '../components/FilterItemsMobile/FilterItemsMobile'
-import { IProduct } from '../interfaces/product.interface'
+import usePagination from '../hooks/usePagination'
+import Pagination from '../components/Pagination/Pagination'
 
 const Watches:React.FC = () => {
   const dispatch = useAppDispatch()
@@ -24,9 +25,10 @@ const Watches:React.FC = () => {
   ])
   const [minPrice, setMinPrice] = React.useState(0)
   const [maxPrice, setMaxPrice] = React.useState(0)
+  const [currentPage, setCurrentPage] = React.useState(1)
+  const [itemsOnPage, setItemsOnPage] = React.useState(3)
   const order = sortMain.sortProperty.includes('-') ? 'desc' : 'asc'
   const sortBy = sortMain.sortProperty.replace('-', '')
-
   const productType = "watch"
 
   React.useEffect(() => {
@@ -38,6 +40,7 @@ const Watches:React.FC = () => {
   const { wristBrandsFilter, wristCountriesFilter, sexSort } = useAppSelector(state => state.filter)
   const { products, status } = useAppSelector(state => state.products)
 
+  const { totalPages, currentProducts } = usePagination({ currentPage, itemsOnPage, products })
 
   return (
     <>
@@ -83,7 +86,8 @@ const Watches:React.FC = () => {
               minPriceHandler={setMinPrice}
               maxPriceHandler={setMaxPrice}
             />
-            <WatchBlock products={products} status={status} />
+            <WatchBlock products={currentProducts} status={status} />
+            <Pagination totalPages={totalPages} setCurrentPage={setCurrentPage} />
           </div>       
         </div>
       </section>

@@ -3,8 +3,6 @@ import { Routes, Route } from "react-router-dom";
 import { getProductsFromFavorite } from './redux/slices/favoriteSlice';
 import { useAppDispatch } from './hooks/hook';
 
-import './App.css';
-
 import Main from './pages/Main';
 import Header from './components/Header/Header';
 import WristWatches from './pages/WristWatches';

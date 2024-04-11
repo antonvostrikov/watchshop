@@ -25,9 +25,6 @@ const Covers:React.FC = () => {
   ])
   const [minPrice, setMinPrice] = React.useState(0)
   const [maxPrice, setMaxPrice] = React.useState(0)
-  const [currentPage, setCurrentPage] = React.useState(1)
-  const [maxItemsPage, setMaxItemsPage] = React.useState(6)
-  const [countPages, setCountPages] = React.useState(1)
 
   const order = sortMain.sortProperty.includes('-') ? 'desc' : 'asc'
   const sortBy = sortMain.sortProperty.replace('-', '')
@@ -35,7 +32,7 @@ const Covers:React.FC = () => {
   const productType = "cover"
 
   React.useEffect(() => {
-    dispatch(getProducts({ brandsFilter, sortBy, order, minPrice, maxPrice, colorsFilter, materialsFilter, sexFilter, maxItemsPage, currentPage, productType }));
+    dispatch(getProducts({ brandsFilter, sortBy, order, minPrice, maxPrice, colorsFilter, materialsFilter, sexFilter, productType }));
     dispatch(getBrandsCoversFilter());
     dispatch(getColorsCoversFilter());
     dispatch(getMaterialsCoversFilter());
@@ -43,10 +40,6 @@ const Covers:React.FC = () => {
 
   const { products, status } = useAppSelector(state => state.products)
   const { sexSortAccessories, coversBrandsFilter, coversColorsFilter, coversMaterialsFilter } = useAppSelector(state => state.filter)
-  
-  React.useEffect(() => {
-    setCountPages(Math.ceil(products.length / maxItemsPage))
-  }, [products])
 
   return (
     <>

@@ -19,9 +19,6 @@ const Casio:React.FC = () => {
   const [minPrice, setMinPrice] = React.useState(0)
   const [maxPrice, setMaxPrice] = React.useState(0)
   const [brandsFilter, setBrandsFilter] = React.useState([{ id: 1, filter: 'Casio' }])
-  const [currentPage, setCurrentPage] = React.useState(1)
-  const [maxItemsPage, setMaxItemsPage] = React.useState(6)
-  const [countPages, setCountPages] = React.useState(1)
 
   const dispatch = useAppDispatch()
 
@@ -29,15 +26,11 @@ const Casio:React.FC = () => {
   const order = sortMain.sortProperty.includes('-') ? 'desc' : 'asc'
 
   React.useEffect(() => {
-    dispatch(getProducts({ brandsFilter, sexFilter, minPrice, maxPrice, sortBy, order, maxItemsPage, currentPage }))
+    dispatch(getProducts({ brandsFilter, sexFilter, minPrice, maxPrice, sortBy, order }))
   }, [sexFilter, minPrice, maxPrice, sortBy, order])
 
   const { products, status } = useAppSelector(state => state.products)
   const { sexSort } = useAppSelector(state => state.filter)
-
-  React.useEffect(() => {
-    setCountPages(Math.ceil(products.length / maxItemsPage))
-  }, [products])
 
   return (
     <>

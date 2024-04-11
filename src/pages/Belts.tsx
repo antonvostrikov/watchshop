@@ -8,6 +8,8 @@ import FilterItemsMobile from '../components/FilterItemsMobile/FilterItemsMobile
 import { useAppDispatch, useAppSelector } from '../hooks/hook'
 import { getProducts } from '../redux/slices/getProductsSlice'
 import { getBrandsBeltsFilter, getColorsBeltsFilter, getMaterialsBeltsFilter } from '../redux/slices/filterSlice'
+import usePagination from '../hooks/usePagination'
+import Pagination from '../components/Pagination/Pagination'
 
 const Belts:React.FC = () => {
   const dispatch = useAppDispatch()
@@ -25,8 +27,7 @@ const Belts:React.FC = () => {
   const [minPrice, setMinPrice] = React.useState(0)
   const [maxPrice, setMaxPrice] = React.useState(0)
   const [currentPage, setCurrentPage] = React.useState(1)
-  const [maxItemsPage, setMaxItemsPage] = React.useState(6)
-  const [countPages, setCountPages] = React.useState(1)
+  const [itemsOnPage, setItemsOnPage] = React.useState(3)
 
   const order = sortMain.sortProperty.includes('-') ? 'desc' : 'asc'
   const sortBy = sortMain.sortProperty.replace('-', '')
@@ -34,7 +35,7 @@ const Belts:React.FC = () => {
   const productType = "belt"
 
   React.useEffect(() => {
-    dispatch(getProducts({ brandsFilter, colorsFilter, materialsFilter, sortBy, order, minPrice, maxPrice, sexFilter, maxItemsPage, currentPage, productType }))
+    dispatch(getProducts({ brandsFilter, colorsFilter, materialsFilter, sortBy, order, minPrice, maxPrice, sexFilter, productType }))
     dispatch(getColorsBeltsFilter());
     dispatch(getBrandsBeltsFilter());
     dispatch(getMaterialsBeltsFilter());
@@ -42,10 +43,8 @@ const Belts:React.FC = () => {
 
   const { products, status } = useAppSelector(state => state.products)
   const { sexSortAccessories, beltsColorsFilter, beltsBrandsFilter, beltsMaterialsFilter } = useAppSelector(state => state.filter)
-  
-  React.useEffect(() => {
-    setCountPages(Math.ceil(products.length / maxItemsPage))
-  }, [products])
+
+  const { totalPages, currentProducts } = usePagination({ currentPage, products, itemsOnPage })
 
   return (
     <>
@@ -93,7 +92,8 @@ const Belts:React.FC = () => {
               minPriceHandler={setMinPrice}
               maxPriceHandler={setMaxPrice}
             />
-            <WatchBlock products={products} status={status} />
+            <WatchBlock products={currentProducts} status={status} />
+            <Pagination totalPages={totalPages} setCurrentPage={setCurrentPage} />
           </div>
         </div>
       </section>
