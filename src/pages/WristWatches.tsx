@@ -35,7 +35,7 @@ const Watches:React.FC = () => {
     dispatch(getProducts({ brandsFilter, countriesFilter, sexFilter, sortBy, order, minPrice, maxPrice, productType }))
     dispatch(getWristBrandsFilter())
     dispatch(getWristCountriesFilter())
-  }, [brandsFilter, countriesFilter, sexFilter, sortBy, order, minPrice, maxPrice, productType])
+  }, [brandsFilter, countriesFilter, sexFilter, sortBy, order, minPrice, maxPrice, productType, dispatch])
 
   const { wristBrandsFilter, wristCountriesFilter, sexSort } = useAppSelector(state => state.filter)
   const { products, status } = useAppSelector(state => state.products)
@@ -87,7 +87,7 @@ const Watches:React.FC = () => {
               maxPriceHandler={setMaxPrice}
             />
             <WatchBlock products={currentProducts} status={status} />
-            <Pagination totalPages={totalPages} setCurrentPage={setCurrentPage} />
+            <Pagination totalPages={totalPages} setCurrentPage={setCurrentPage} currentPage={currentPage} />
           </div>       
         </div>
       </section>

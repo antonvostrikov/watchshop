@@ -31,7 +31,7 @@ const Titoni:React.FC = () => {
 
   React.useEffect(() => {
     dispatch(getProducts({ brandsFilter, sexFilter, minPrice, maxPrice, sortBy, order }))
-  }, [sexFilter, minPrice, maxPrice, sortBy, order])
+  }, [sexFilter, minPrice, maxPrice, sortBy, order, dispatch])
 
   const { products, status } = useAppSelector(state => state.products)
   const { sexSort } = useAppSelector(state => state.filter)
@@ -67,7 +67,7 @@ const Titoni:React.FC = () => {
               maxPriceHandler={setMaxPrice}
             />
             <WatchBlock products={currentProducts} status={status}/>
-            <Pagination totalPages={totalPages} setCurrentPage={setCurrentPage} />
+            <Pagination totalPages={totalPages} setCurrentPage={setCurrentPage} currentPage={currentPage} />
           </div>       
         </div>
       </section>

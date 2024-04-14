@@ -156,6 +156,9 @@
 @media screen and (max-width: 768px) {
   .section-cart {
     .container-watches {
+      .cart-wrapper {
+        padding: 0;
+      }
       .cart-header {
         margin: 0 0 80px 0;
         &__title {

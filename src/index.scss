@@ -53,6 +53,12 @@ body {
   }
 }
 
+@media screen and (max-width: 768px) {
+  .container-watches {
+    padding: 0 15px 50px 15px;
+  }
+}
+
 @import './styles/Logo.scss';
 @import './styles/Header.scss';
 @import './styles/Menu.scss';

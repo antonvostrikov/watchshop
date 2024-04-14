@@ -93,7 +93,7 @@ const Belts:React.FC = () => {
               maxPriceHandler={setMaxPrice}
             />
             <WatchBlock products={currentProducts} status={status} />
-            <Pagination totalPages={totalPages} setCurrentPage={setCurrentPage} />
+            <Pagination totalPages={totalPages} setCurrentPage={setCurrentPage} currentPage={currentPage} />
           </div>
         </div>
       </section>
