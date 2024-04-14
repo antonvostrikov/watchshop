@@ -9,6 +9,8 @@ import Footer from '../components/Footer/Footer'
 import WatchBlock from '../components/WatchBlock/WatchBlock'
 
 import { getBrandsCoversFilter, getColorsCoversFilter, getMaterialsCoversFilter } from '../redux/slices/filterSlice'
+import usePagination from '../hooks/usePagination'
+import Pagination from '../components/Pagination/Pagination'
 
 const Covers:React.FC = () => {
   const dispatch = useAppDispatch()
@@ -25,6 +27,8 @@ const Covers:React.FC = () => {
   ])
   const [minPrice, setMinPrice] = React.useState(0)
   const [maxPrice, setMaxPrice] = React.useState(0)
+  const [currentPage, setCurrentPage] = React.useState(1)
+  const [itemsOnPage, setItemsOnPage] = React.useState(3)
 
   const order = sortMain.sortProperty.includes('-') ? 'desc' : 'asc'
   const sortBy = sortMain.sortProperty.replace('-', '')
@@ -40,6 +44,8 @@ const Covers:React.FC = () => {
 
   const { products, status } = useAppSelector(state => state.products)
   const { sexSortAccessories, coversBrandsFilter, coversColorsFilter, coversMaterialsFilter } = useAppSelector(state => state.filter)
+
+  const { totalPages, currentProducts } = usePagination({ currentPage, itemsOnPage, products })
 
   return (
     <>
@@ -88,6 +94,7 @@ const Covers:React.FC = () => {
               maxPriceHandler={setMaxPrice}
             />
             <WatchBlock products={products} status={status} />
+            <Pagination totalPages={totalPages} setCurrentPage={setCurrentPage} />
           </div>
         </div>
       </section>

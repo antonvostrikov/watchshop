@@ -7,6 +7,8 @@ import Footer from '../components/Footer/Footer'
 
 import { useAppDispatch, useAppSelector } from '../hooks/hook'
 import { getProducts } from '../redux/slices/getProductsSlice'
+import usePagination from '../hooks/usePagination'
+import Pagination from '../components/Pagination/Pagination'
 
 const Casio:React.FC = () => {
   const [sexFilter, setSexFilter] = React.useState([])
@@ -19,6 +21,8 @@ const Casio:React.FC = () => {
   const [minPrice, setMinPrice] = React.useState(0)
   const [maxPrice, setMaxPrice] = React.useState(0)
   const [brandsFilter, setBrandsFilter] = React.useState([{ id: 1, filter: 'Casio' }])
+  const [currentPage, setCurrentPage] = React.useState(1)
+  const [itemsOnPage, setItemsOnPage] = React.useState(3)
 
   const dispatch = useAppDispatch()
 
@@ -31,6 +35,8 @@ const Casio:React.FC = () => {
 
   const { products, status } = useAppSelector(state => state.products)
   const { sexSort } = useAppSelector(state => state.filter)
+
+  const { totalPages, currentProducts } = usePagination({ currentPage, itemsOnPage, products })
 
   return (
     <>
@@ -60,7 +66,8 @@ const Casio:React.FC = () => {
               minPriceHandler={setMinPrice}
               maxPriceHandler={setMaxPrice}
             />
-            <WatchBlock products={products} status={status} />
+            <WatchBlock products={currentProducts} status={status} />
+            <Pagination totalPages={totalPages} setCurrentPage={setCurrentPage} />
           </div>       
         </div>
       </section>

@@ -19,6 +19,8 @@ const usePagination = ({ currentPage, itemsOnPage, products }: IUsePaginationPro
     lastIndex && setFirstIndex(lastIndex - itemsOnPage)
     setTotalPages(Math.ceil(products.length / itemsOnPage)) 
     setCurrentProducts(products.slice(firstIndex, lastIndex))
+
+    window.scrollTo(0, 0)
   }, [firstIndex, lastIndex, currentPage, products])    
 
   return {
